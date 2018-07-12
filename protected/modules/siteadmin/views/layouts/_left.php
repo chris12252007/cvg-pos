@@ -7,7 +7,7 @@
                 <img src="<?php print Settings::get_baseUrl(); ?>/adminlte/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image" />
             </div>
             <div class="pull-left info">
-                <p><?php print Settings::get_Username()?></p>
+                <p><?php print Employees::sql_getFirstName(Settings::get_EmployeeID())?></p>
 
                 <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
             </div>

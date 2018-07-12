@@ -12,30 +12,16 @@ Yii::app()->clientScript->registerScript("javascript", "
         $( 'input' ).addClass('form-control' );
         $('select').select2({ width: 'resolve' });
         $('.select2-hidden-accessible').attr('hidden', true);
-        hover();
-    }
-    
-    function hover()
-    {
-        $('[rel=tooltip]').tooltip();
     }
     ", 2);
 ?>
-<br />
-<article class="col-sm-12">
-    <div class="jarviswidget jarviswidget-color-blueDark" id="wid-id-4" data-widget-colorbutton="false" data-widget-editbutton="false" data-widget-custombutton="false">
-
-        <header>
-            <span class="widget-icon"> <i class="fa fa-edit"></i> </span>
-            <h2>Manage Actions</h2>
-        </header>
-
-        <div class="modal-content">     
-            <div class="smart-form" style="text-align: center;padding-bottom: 1px;">
-                <?php print CHtml::link('<i class="fa fa-plus-circle">' . ' Create New</i>', $this->createUrl('actions/create'), array('class' => 'btn btn-success btn-sm', 'style' => 'width: 150px;', 'id' => 'btnPayment')); ?>
-            </div>
-
-            <?php $static = array('' => Yii::t('', 'All')); ?>
+<div class="col-md-12">
+    <div class="box box-primary">
+        <div class="box-header with-border">
+            <h3 class="box-title">Manage</h3>
+            <?php echo CHtml::link('<i class="fa fa-plus"></i>', $this->createUrl('actions/create'), array('class' => 'btn btn-xs btn-success pull-right', 'data-toggle' => 'tooltip', 'title' => 'Create')); ?>
+        </div>
+        <div class="box-body"> <?php $static = array('' => Yii::t('', 'All')); ?>
             <?php
             $this->widget('zii.widgets.grid.CGridView', array(
                 'id' => 'barangays-grid',
@@ -113,6 +99,4 @@ Yii::app()->clientScript->registerScript("javascript", "
             ?>
         </div>
     </div>
-</article>
-<br/>
-
+</div>
