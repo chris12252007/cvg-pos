@@ -1,6 +1,5 @@
 
-<!-- Info boxes -->
-<div class="row">
+<script src="<?php print Settings::get_baseUrl(); ?>/adminlte/dist/js/pages/dashboard2.js"></script>
     <div class="col-md-3 col-sm-6 col-xs-12">
         <div class="info-box">
             <span class="info-box-icon bg-aqua"><i class="ion ion-ios-gear-outline"></i></span>
@@ -593,7 +592,7 @@
                 <ul class="products-list product-list-in-box">
                     <li class="item">
                         <div class="product-img">
-                            <img src="http://placehold.it/50x50/d2d6de/ffffff" alt="Product Image"/>
+                            <img src="<?php print Settings::get_baseUrl(); ?>/adminlte/dist/img/default-50x50.gif" alt="Product Image"/>
                         </div>
                         <div class="product-info">
                             <a href="javascript::;" class="product-title">Samsung Washer <span class="label label-warning pull-right">$1800</span></a>
@@ -615,7 +614,7 @@
                     </li><!-- /.item -->
                     <li class="item">
                         <div class="product-img">
-                            <img src="dist/img/default-50x50.gif" alt="Product Image"/>
+                            <img src="<?php print Settings::get_baseUrl(); ?>/adminlte/dist/img/default-50x50.gif" alt="Product Image"/>
                         </div>
                         <div class="product-info">
                             <a href="javascript::;" class="product-title">LG Dryer <span class="label label-danger pull-right">$350</span></a>
@@ -642,4 +641,3 @@
             </div><!-- /.box-footer -->
         </div><!-- /.box -->
     </div><!-- /.col -->
-</div><!-- /.row -->

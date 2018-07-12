@@ -11,7 +11,7 @@
 <script src="<?php print Settings::get_baseUrl(); ?>/adminlte/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 <!-- Morris.js charts -->
 <script src="<?php print Settings::get_baseUrl(); ?>/adminlte/bower_components/raphael/raphael.min.js"></script>
-<script src="<?php print Settings::get_baseUrl(); ?>/adminlte/bower_components/morris.js/morris.min.js"></script>
+<script src="<?php print Settings::get_baseUrl(); ?>/adminlte/bower_components/morris/morris.min.js"></script>
 <!-- Sparkline -->
 <script src="<?php print Settings::get_baseUrl(); ?>/adminlte/bower_components/jquery-sparkline/dist/jquery.sparkline.min.js"></script>
 <!-- jvectormap -->
@@ -33,23 +33,18 @@
 <!-- AdminLTE App -->
 <script src="<?php print Settings::get_baseUrl(); ?>/adminlte/dist/js/adminlte.min.js"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-<script src="<?php print Settings::get_baseUrl(); ?>/adminlte/dist/js/pages/dashboard.js"></script>
+<!--<script src="<?php print Settings::get_baseUrl(); ?>/adminlte/dist/js/pages/dashboard.js"></script>-->
 <!--Dashboard 2-->
 <!-- ChartJS -->
 <script src="<?php print Settings::get_baseUrl(); ?>/adminlte/bower_components/Chart.js/Chart.js"></script>
-<script src="<?php print Settings::get_baseUrl(); ?>/adminlte/dist/js/pages/dashboard2.js"></script>
 
 <!--Others-->
 <!-- Select2 -->
 <script src="<?php print Settings::get_baseUrl(); ?>/adminlte/bower_components/select2/dist/js/select2.full.min.js"></script>
 <script src="<?php print Settings::get_baseUrl(); ?>/adminlte/plugins/iCheck/icheck.min.js" type="text/javascript"></script>
-<script async="" src="//www.google-analytics.com/analytics.js"></script>
-<!--Old-->
-<!--<script src="<?php // print Settings::get_baseUrl(); ?>/adminlte/dist/js/app.min.js" type="text/javascript"></script>-->
 
 <script>
     $(function () {
-        $('.select2').select2();
         $('.datepicker').datepicker({
             autoclose: true
         });

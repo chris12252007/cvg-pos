@@ -19,7 +19,7 @@
              folder instead of downloading all of them to reduce the load. -->
         <link rel="stylesheet" href="<?php print Settings::get_baseUrl(); ?>/adminlte/dist/css/skins/_all-skins.min.css">
         <!-- Morris chart -->
-        <link rel="stylesheet" href="<?php print Settings::get_baseUrl(); ?>/adminlte/bower_components/morris.js/morris.css">
+        <link rel="stylesheet" href="<?php print Settings::get_baseUrl(); ?>/adminlte/bower_components/morris/morris.css">
         <!-- jvectormap -->
         <link rel="stylesheet" href="<?php print Settings::get_baseUrl(); ?>/adminlte/bower_components/jvectormap/jquery-jvectormap.css">
         <!-- Date Picker -->
@@ -31,7 +31,6 @@
 
         <!--Dashboard 2->
         <!-- Ionic Icons -->
-        <link rel="stylesheet" href="<?php print Settings::get_baseUrl(); ?>/adminlte/bower_components/Ionicons/css/ionicons.min.css">
         <!-- Google Font -->
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 
@@ -39,6 +38,8 @@
         <link rel="shortcut icon" href="<?php print Settings::get_baseUrl(); ?>/images/favicon.png" type="image/x-icon">
         <!-- Select2 -->
         <link rel="stylesheet" href="<?php print Settings::get_baseUrl(); ?>/adminlte/bower_components/select2/dist/css/select2.min.css">
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="<?php print Settings::get_baseUrl(); ?>/adminlte/bower_components/font-awesome/css/font-awesome.min.css">
         <!-- Font Awesome -->
         <link rel="stylesheet" href="<?php print Settings::get_baseUrl(); ?>/adminlte/bower_components/font-awesome/css/font-awesome.min.css">
 
