@@ -280,9 +280,9 @@ class UserBasedAccess extends CActiveRecord
         return self::model()->findAll('parent_id = :parentID AND user_id =:userID AND is_accesible=:isAccesible', array(':parentID' => $parentID, ':userID' => $userID, ':isAccesible' => $isAccesible));
     }
 
-    public static function model_getParentUserID($parentID, $userID, $isAccesible, $moduleID)
+    public static function model_getParentUserID($parentID, $userID, $isAccesible)
     {
-        return self::model()->findAll('parent_id = :parentID AND user_id =:userID AND is_accesible=:isAccesible AND module_id=:moduleID', array(':parentID' => $parentID, ':userID' => $userID, ':isAccesible' => $isAccesible, ':moduleID' => $moduleID));
+        return self::model()->findAll('parent_id = :parentID AND user_id =:userID AND is_accesible=:isAccesible', array(':parentID' => $parentID, ':userID' => $userID, ':isAccesible' => $isAccesible));
     }
 
     public static function model_getByUserID_menuID($menuID, $userID, $isDeleted)

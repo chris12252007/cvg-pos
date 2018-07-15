@@ -194,11 +194,5 @@ class Modules extends CActiveRecord {
     {
         return Utilities::get_ActiveSelect($this->is_deleted);
     }
-     public function sql_getAllData()
-    {
-        $cnn = Utilities::createConnection();
-        $sql = 'SELECT DISTINCT(name) FROM ' . self::tbl();
-        $command = $cnn->createCommand($sql);
-        return $command->queryAll();
-    }
+
 }
