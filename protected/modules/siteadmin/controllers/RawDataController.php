@@ -1,7 +1,6 @@
 <?php
 
-class RawDataController extends SiteadminController
-{
+class RawDataController extends SiteadminController {
     /**
      * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
      * using two-column layout. See 'protected/views/layouts/column2.php'.
@@ -199,7 +198,7 @@ class RawDataController extends SiteadminController
 //        $dataPoint = array();
 //        foreach ($model as $value)
 //        {
-            $resp = RawData::sql_getAllCustomers();       
+        $resp = RawData::sql_getAllCustomers();
 //            $modules  = Modules::sql_getAllData();
 //
 //            foreach ($resp as $cust)
@@ -209,15 +208,15 @@ class RawDataController extends SiteadminController
 //                $dataPoint = array($value['branch'] => $datTest);
 //                $arrayMerge  = array_merge($dataPoint, $datTest);
 //        }
-    $levels = array();
-    foreach($model as $lvel=>$val) {
-     $levels[] .= $val['branch'];
-    }
-    
-     $attributes = array();
-    foreach($resp as $respi=>$res) {
-     $attributes[] .= $res['customer_name'];
-    }
+        $levels = array();
+        foreach ($model as $lvel => $val) {
+            $levels[] .= $val['branch'];
+        }
+
+        $attributes = array();
+        foreach ($resp as $respi => $res) {
+            $attributes[] .= $res['customer_name'];
+        }
 
 
 //        $levels = array('low', 'medium', 'high');
@@ -225,7 +224,7 @@ class RawDataController extends SiteadminController
 
         foreach ($levels as $key => $level):
             foreach ($attributes as $k => $attribute):
-                $variables[$level] = $attributes ;
+                $variables[$level] = $attributes;
             endforeach;
         endforeach;
         print json_encode($variables);

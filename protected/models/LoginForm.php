@@ -87,7 +87,6 @@ class LoginForm extends CFormModel {
     public function authenticateUser()
     {
         if (!$this->hasErrors()) {  // we only want to authenticate when no input errors
-
             $identity = new UserIdentity($this->username, $this->password);
             $identity->checkAccount();
 
@@ -107,7 +106,6 @@ class LoginForm extends CFormModel {
     public function authenticateStudentAccount()
     {
         if (!$this->hasErrors()) {  // we only want to authenticate when no input errors
-
             $identity = new UserIdentity($this->username, $this->password);
             $identity->checkAccountStudents();
 

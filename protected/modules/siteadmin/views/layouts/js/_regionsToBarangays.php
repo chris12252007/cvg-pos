@@ -1,5 +1,6 @@
-<?php 
-    Yii::app()->clientScript->registerScript("findCityByProv","
+<?php
+
+Yii::app()->clientScript->registerScript("findCityByProv", "
         
     $(function(){
         $('select').select2();
@@ -89,5 +90,5 @@
         }
 
         
-    ",2);
+    ", 2);
 ?>

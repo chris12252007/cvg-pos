@@ -32,7 +32,7 @@
             <?php $this->renderPartial('/layouts/_left'); ?>
             <div class="content-wrapper">
                 <section class="content-header">
-                <?php $this->renderPartial('/layouts/_ribbon'); ?>
+                    <?php $this->renderPartial('/layouts/_ribbon'); ?>
                     <!-- Main content -->
                     <section class="content">
 

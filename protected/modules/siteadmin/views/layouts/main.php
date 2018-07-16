@@ -63,6 +63,8 @@
                 <!-- Main content -->
                 <section class="content">
                     <div class="row">
+                        <?php $this->renderPartial('/layouts/js/_select2'); ?>
+                        <?php $this->widget('Flashes'); ?>
                         <?php print $content; ?>
                     </div>
                 </section><!-- /.content -->

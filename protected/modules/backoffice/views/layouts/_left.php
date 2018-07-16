@@ -33,7 +33,6 @@
 
             $menus = RoleBasedAccess::model_getParentUserID(Utilities::NO, Settings::get_UserID(), Utilities::YES, $model->role);
         }
-     
         ?>
         <?php
         foreach ($menus as $menus):
@@ -71,17 +70,17 @@
                                 <?php if ($subMenu1->menus->is_url == Utilities::YES): ?>
                                     <?php $liClass = str_replace("'", "", $subMenu1->menus->li_class); ?>
                                     <?php $liClassArr = explode("::", $subMenu1->menus->li_class); ?>
-                <?php $menuClass = $subMenu1->menus->li_class; ?>
+                                    <?php $menuClass = $subMenu1->menus->li_class; ?>
                                     <li class="treeview">
                                         <a href="#"><i class ="fa fa-user"></i><span class="menu-item-parent"><?php print $subMenu1->menus->name ?></span></a>
 
                                         <ul class="treeview-menu">        
                                             <li class="<?php print $subMenu1->menus->name ?>" >
-                <?php print CHtml::link('<i class ="fa fa-circle-o"></i>Manage', $this->createUrl($subMenu1->menus->controller_name . '/' . $subMenu1->menus->action_name), array('onclick' => 'setSessionData(this.href)')); ?>
+                                                <?php print CHtml::link('<i class ="fa fa-circle-o"></i>Manage', $this->createUrl($subMenu1->menus->controller_name . '/' . $subMenu1->menus->action_name), array('onclick' => 'setSessionData(this.href)')); ?>
                                             </li>
                                         </ul>
                                     </li>
-            <?php else: ?>  
+                                <?php else: ?>  
                                     <li class="treeview">
                                         <a href="#"><i class ="fa fa-user"></i><?php print $subMenu1->menus->name; ?></a>  
 
@@ -105,7 +104,7 @@
                                                 <?php if ($subMenu2->menus->is_url == Utilities::YES): ?>
                                                     <?php $liClass = str_replace("'", "", $subMenu2->menus->li_class); ?>
                                                     <?php $liClassArr = explode("::", $subMenu2->menus->li_class); ?>
-                                                        <?php $menuClass = $subMenu2->menus->li_class; ?>
+                                                    <?php $menuClass = $subMenu2->menus->li_class; ?>
                                                     <li class="treeview">
                                                         <?php
                                                         if ($paramsArr[1] != "") {
@@ -115,7 +114,7 @@
                                                         }
                                                         ?>
                                                     </li>  
-                    <?php else: ?>
+                                                <?php else: ?>
                                                     <li class="treeview">
                                                         <a href="#"><?php print $subMenu2->menus->name; ?></a>  
 
@@ -132,7 +131,7 @@
                                                                     <?php $params2Arr = explode("=", $subMenu3->menus->params); ?>
                                                                 <?php else: ?>
                                                                     <?php $params2Arr = null; ?>
-                            <?php endif; ?>
+                                                                <?php endif; ?>
 
                                                                 <li class="treeview">
                                                                     <?php
@@ -142,19 +141,19 @@
                                                                         print CHtml::link('<i class ="fa fa-circle-o"></i>' . $subMenu3->menus->name, $this->createUrl($subMenu3->menus->controller_name . '/' . $subMenu3->menus->action_name), array('onclick' => 'setSessionData(this.href)'));
                                                                     }
                                                                     ?>
-                                                                <?php // print CHtml::link('<i class ="minia-icon-file-add"></i>' . $subMenu3->menus->name, $this->createUrl($subMenu3->menus->controller_name . '/' . $subMenu3->menus->action_name, array($params2Arr[0] => ($params2Arr[1]) ? $params2Arr[1] : "")), array('onclick' => 'setSessionData(this.href)'));  ?>
+                                                                    <?php // print CHtml::link('<i class ="minia-icon-file-add"></i>' . $subMenu3->menus->name, $this->createUrl($subMenu3->menus->controller_name . '/' . $subMenu3->menus->action_name, array($params2Arr[0] => ($params2Arr[1]) ? $params2Arr[1] : "")), array('onclick' => 'setSessionData(this.href)'));  ?>
                                                                 </li>  
-                        <?php endforeach; ?>
+                                                            <?php endforeach; ?>
                                                         </ul>
                                                     </li>
                                                 <?php endif; ?>
-                <?php endforeach; ?>
+                                            <?php endforeach; ?>
                                         </ul>
                                     </li>
                                 <?php endif; ?>
-                        <?php endforeach; ?>
+                            <?php endforeach; ?>
                         </ul> 
-    <?php endif; ?>
+                    <?php endif; ?>
                 </li>
             </ul>
             <?php

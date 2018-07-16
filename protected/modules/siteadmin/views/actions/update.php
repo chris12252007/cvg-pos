@@ -3,6 +3,6 @@
         <div class="box-header with-border">
             <h3 class="box-title">Update</h3>
         </div>
-        <?php echo $this->renderPartial('_formUpdate', array('model' => $model)); ?>
+        <?php print $this->renderPartial('_formUpdate', array('model' => $model)); ?>
     </div>
 </div>

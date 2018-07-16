@@ -25,8 +25,7 @@
  * @property string $link_class
  * @property integer $is_deleted
  */
-class Menus extends CActiveRecord
-{
+class Menus extends CActiveRecord {
 
     protected $oldAttributes;
 
@@ -52,8 +51,7 @@ class Menus extends CActiveRecord
 
         $changedArray = array_diff_assoc($this->attributes, $this->oldAttributes);
 
-        foreach ($changedArray as $key => $value)
-        {
+        foreach ($changedArray as $key => $value) {
             if (strcmp($key, 'updated_at'))
                 AuditTrails::newRecord(AuditTrails::TRANS_TYPE_UPDATE, self::tbl(), $key, $this->attributes['id'], $this->oldAttributes[$key], $value, Settings::get_UserID(), Settings::get_EmployeeID());
         }
@@ -97,6 +95,7 @@ class Menus extends CActiveRecord
             'actions' => array(self::BELONGS_TO, 'Actions', 'action_id'),
             'controllers' => array(self::BELONGS_TO, 'Controllers', 'controller_id'),
             'modules' => array(self::BELONGS_TO, 'Modules', 'module_id'),
+            'menus' => array(self::BELONGS_TO, 'Menus', 'parent_id'),
         );
     }
 
@@ -266,6 +265,11 @@ class Menus extends CActiveRecord
         return Utilities::get_ActiveSelect($this->is_parent);
     }
 
+    public function getIsMainMenu()
+    {
+        return Utilities::get_ActiveSelect($this->is_main_menu);
+    }
+
     public function getIsUrl()
     {
         return Utilities::get_ActiveSelect($this->is_url);
@@ -308,7 +312,6 @@ class Menus extends CActiveRecord
         $command->bindValue(':controllerName', $controllerName, PDO::PARAM_STR);
         $command->bindValue(':actionName', $actionName, PDO::PARAM_STR);
         return $command->queryScalar();
-        
     }
 
 }

@@ -35,7 +35,7 @@
         </div>
     </div>
     <div class="footer-button">
-        <?php echo CHtml::submitButton($model->isNewRecord ? 'Save' : 'Save', array('class' => 'btn btn-sm btn-success' )); ?>
+        <?php echo CHtml::submitButton($model->isNewRecord ? 'Save' : 'Save', array('class' => 'btn btn-sm btn-success')); ?>
     </div>
 </fieldset>
 <?php print CHtml::endForm(); ?>
