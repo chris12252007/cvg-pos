@@ -439,4 +439,4 @@ CREATE TABLE `Dealers` (
 ) ENGINE=INNODB  DEFAULT CHARSET=utf8;
 
 
-/*[11:58:12 AM][999 ms]*/ ALTER TABLE `migo_live`.`clients` DROP COLUMN `client_id`, ADD COLUMN `dealer_id` INT(11) NULL COMMENT 'refd to dealers.id' AFTER `branch_id`; 
+/*[11:58:12 AM][999 ms]*/ ALTER TABLE `clients` DROP COLUMN `client_id`, ADD COLUMN `dealer_id` INT(11) NULL COMMENT 'refd to dealers.id' AFTER `branch_id`; 
