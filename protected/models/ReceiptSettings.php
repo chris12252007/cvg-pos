@@ -1,33 +1,30 @@
 <?php
 
 /**
-* This is the model class for table "customers".
+* This is the model class for table "receipt_settings".
 *
-* The followings are the available columns in table 'customers':
+* The followings are the available columns in table 'receipt_settings':
     * @property integer $id
     * @property string $created_at
     * @property string $updated_at
-    * @property integer $branch_id
     * @property integer $client_id
-    * @property string $firstname
-    * @property string $middlename
-    * @property string $lastname
-    * @property string $company_name
-    * @property string $address
-    * @property string $email
-    * @property string $mobile
-    * @property string $phone
+    * @property integer $branch_id
+    * @property string $file_path
+    * @property string $file_pics
+    * @property string $header
+    * @property string $message
+    * @property string $footer
     * @property integer $is_sync
     * @property integer $is_deleted
 */
-class Customers extends CActiveRecord
+class ReceiptSettings extends CActiveRecord
 {
     /**
     * @return string the associated database table name
     */
     public function tableName()
     {
-        return 'customers';
+        return 'receipt_settings';
     }
 
     public static function tbl()
@@ -54,14 +51,13 @@ class Customers extends CActiveRecord
         // will receive user inputs.
         return array(
             array('created_at', 'required'),
-            array('branch_id, client_id, is_sync, is_deleted', 'numerical', 'integerOnly'=>true),
-            array('firstname, middlename, lastname', 'length', 'max'=>50),
-            array('company_name, address, email', 'length', 'max'=>100),
-            array('mobile, phone', 'length', 'max'=>15),
+            array('client_id, branch_id, is_sync, is_deleted', 'numerical', 'integerOnly'=>true),
+            array('file_path, file_pics, message', 'length', 'max'=>100),
+            array('header, footer', 'length', 'max'=>50),
             array('updated_at', 'safe'),
                 // The following rule is used by search().
             // Please remove those attributes that should not be searched.
-            array('id, created_at, updated_at, branch_id, client_id, firstname, middlename, lastname, company_name, address, email, mobile, phone, is_sync, is_deleted', 'safe', 'on'=>'search'),
+            array('id, created_at, updated_at, client_id, branch_id, file_path, file_pics, header, message, footer, is_sync, is_deleted', 'safe', 'on'=>'search'),
         );
     }
 
@@ -85,16 +81,13 @@ class Customers extends CActiveRecord
                 'id' => 'Id',
                 'created_at' => 'Date Created',
                 'updated_at' => 'Last Modified',
-                'branch_id' => 'Branch',
                 'client_id' => 'Client',
-                'firstname' => 'Firstname',
-                'middlename' => 'Middlename',
-                'lastname' => 'Lastname',
-                'company_name' => 'Company Name',
-                'address' => 'Address',
-                'email' => 'Email',
-                'mobile' => 'Mobile',
-                'phone' => 'Phone',
+                'branch_id' => 'Branch',
+                'file_path' => 'File Path',
+                'file_pics' => 'File Pics',
+                'header' => 'Header',
+                'message' => 'Message',
+                'footer' => 'Footer',
                 'is_sync' => 'Is Sync',
                 'is_deleted' => 'Is Deleted',
                 );
@@ -124,25 +117,19 @@ class Customers extends CActiveRecord
 
 		$criteria->compare('updated_at',$this->updated_at,true);
 
-		$criteria->compare('branch_id',$this->branch_id);
-
 		$criteria->compare('client_id',$this->client_id);
 
-		$criteria->compare('firstname',$this->firstname,true);
+		$criteria->compare('branch_id',$this->branch_id);
 
-		$criteria->compare('middlename',$this->middlename,true);
+		$criteria->compare('file_path',$this->file_path,true);
 
-		$criteria->compare('lastname',$this->lastname,true);
+		$criteria->compare('file_pics',$this->file_pics,true);
 
-		$criteria->compare('company_name',$this->company_name,true);
+		$criteria->compare('header',$this->header,true);
 
-		$criteria->compare('address',$this->address,true);
+		$criteria->compare('message',$this->message,true);
 
-		$criteria->compare('email',$this->email,true);
-
-		$criteria->compare('mobile',$this->mobile,true);
-
-		$criteria->compare('phone',$this->phone,true);
+		$criteria->compare('footer',$this->footer,true);
 
 		$criteria->compare('is_sync',$this->is_sync);
 
@@ -150,7 +137,7 @@ class Customers extends CActiveRecord
 
         $criteria->order = 'created_at DESC';
 
-        return new CActiveDataProvider('Customers', array(
+        return new CActiveDataProvider('ReceiptSettings', array(
             'criteria'=>$criteria,
             'pagination' => array(
                 'pageSize' => Utilities::PAGE_SIZE,
@@ -160,7 +147,7 @@ class Customers extends CActiveRecord
 
     /**
     * Returns the static model of the specified AR class.
-    * @return Customers the static model class
+    * @return ReceiptSettings the static model class
     */
     public static function model($className=__CLASS__)
     {

@@ -1,9 +1,9 @@
 <?php
 
 /**
-* This is the model class for table "customers".
+* This is the model class for table "suppliers".
 *
-* The followings are the available columns in table 'customers':
+* The followings are the available columns in table 'suppliers':
     * @property integer $id
     * @property string $created_at
     * @property string $updated_at
@@ -20,14 +20,14 @@
     * @property integer $is_sync
     * @property integer $is_deleted
 */
-class Customers extends CActiveRecord
+class Suppliers extends CActiveRecord
 {
     /**
     * @return string the associated database table name
     */
     public function tableName()
     {
-        return 'customers';
+        return 'suppliers';
     }
 
     public static function tbl()
@@ -150,7 +150,7 @@ class Customers extends CActiveRecord
 
         $criteria->order = 'created_at DESC';
 
-        return new CActiveDataProvider('Customers', array(
+        return new CActiveDataProvider('Suppliers', array(
             'criteria'=>$criteria,
             'pagination' => array(
                 'pageSize' => Utilities::PAGE_SIZE,
@@ -160,7 +160,7 @@ class Customers extends CActiveRecord
 
     /**
     * Returns the static model of the specified AR class.
-    * @return Customers the static model class
+    * @return Suppliers the static model class
     */
     public static function model($className=__CLASS__)
     {
