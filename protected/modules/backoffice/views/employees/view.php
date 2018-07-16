@@ -1,188 +1,109 @@
-<div class="col-lg-12">
-    <div class="metronicView">
-        <header>
-            <span><i class="minia-icon-search"></i>View - Employees</span>
-            <?php print CHtml::link('<i class="brocco-icon-plus"></i>', $this->createUrl('Employees/create'), array('class' => 'btn-back', 'data-tooltip' => 'create')); ?>
-            <?php print CHtml::link('View/Search', $this->createUrl('Employees/admin'), array('class' => 'btn-back', 'data-tooltip' => 'manage')); ?>
-        </header>
-        <div class ="row">
-            <ul class = "col-lg-6 unstyled">
-
-                <li>
-                    <span class='icon12 typ-icon-arrow-right'></span>
-                    id:
-                    <strong> <?php echo $model->id ?></strong>
-                </li> 
-
-                <li>
-                    <span class='icon12 typ-icon-arrow-right'></span>
-                    created_at:
-                    <strong> <?php echo $model->created_at ?></strong>
-                </li> 
-
-                <li>
-                    <span class='icon12 typ-icon-arrow-right'></span>
-                    updated_at:
-                    <strong> <?php echo $model->updated_at ?></strong>
-                </li> 
-
-                <li>
-                    <span class='icon12 typ-icon-arrow-right'></span>
-                    employee_no:
-                    <strong> <?php echo $model->employee_no ?></strong>
-                </li> 
-
-                <li>
-                    <span class='icon12 typ-icon-arrow-right'></span>
-                    firstname:
-                    <strong> <?php echo $model->firstname ?></strong>
-                </li> 
-
-                <li>
-                    <span class='icon12 typ-icon-arrow-right'></span>
-                    middlename:
-                    <strong> <?php echo $model->middlename ?></strong>
-                </li> 
-
-                <li>
-                    <span class='icon12 typ-icon-arrow-right'></span>
-                    lastname:
-                    <strong> <?php echo $model->lastname ?></strong>
-                </li> 
-
-                <li>
-                    <span class='icon12 typ-icon-arrow-right'></span>
-                    mobile:
-                    <strong> <?php echo $model->mobile ?></strong>
-                </li> 
-
-                <li>
-                    <span class='icon12 typ-icon-arrow-right'></span>
-                    phone:
-                    <strong> <?php echo $model->phone ?></strong>
-                </li> 
-
-                <li>
-                    <span class='icon12 typ-icon-arrow-right'></span>
-                    email:
-                    <strong> <?php echo $model->email ?></strong>
-                </li> 
-
-                <li>
-                    <span class='icon12 typ-icon-arrow-right'></span>
-                    birthdate:
-                    <strong> <?php echo $model->birthdate ?></strong>
-                </li> 
-
-                <li>
-                    <span class='icon12 typ-icon-arrow-right'></span>
-                    civil_status_id:
-                    <strong> <?php echo $model->civil_status_id ?></strong>
-                </li> 
-
-                <li>
-                    <span class='icon12 typ-icon-arrow-right'></span>
-                    address1:
-                    <strong> <?php echo $model->address1 ?></strong>
-                </li> 
-
-                <li>
-                    <span class='icon12 typ-icon-arrow-right'></span>
-                    address2:
-                    <strong> <?php echo $model->address2 ?></strong>
-                </li> 
-
-                <li>
-                    <span class='icon12 typ-icon-arrow-right'></span>
-                    region_id:
-                    <strong> <?php echo $model->region_id ?></strong>
-                </li> 
-
-                <li>
-                    <span class='icon12 typ-icon-arrow-right'></span>
-                    province_id:
-                    <strong> <?php echo $model->province_id ?></strong>
-                </li> 
-
-                <li>
-                    <span class='icon12 typ-icon-arrow-right'></span>
-                    municipality_id:
-                    <strong> <?php echo $model->municipality_id ?></strong>
-                </li> 
-
-                <li>
-                    <span class='icon12 typ-icon-arrow-right'></span>
-                    barangay_id:
-                    <strong> <?php echo $model->barangay_id ?></strong>
-                </li> 
-
-                <li>
-                    <span class='icon12 typ-icon-arrow-right'></span>
-                    office_id:
-                    <strong> <?php echo $model->office_id ?></strong>
-                </li> 
-
-                <li>
-                    <span class='icon12 typ-icon-arrow-right'></span>
-                    citizenship_id:
-                    <strong> <?php echo $model->citizenship_id ?></strong>
-                </li> 
-
-                <li>
-                    <span class='icon12 typ-icon-arrow-right'></span>
-                    branch_id:
-                    <strong> <?php echo $model->branch_id ?></strong>
-                </li> 
-
-                <li>
-                    <span class='icon12 typ-icon-arrow-right'></span>
-                    contact_person_id:
-                    <strong> <?php echo $model->contact_person_id ?></strong>
-                </li> 
-
-                <li>
-                    <span class='icon12 typ-icon-arrow-right'></span>
-                    occupation_id:
-                    <strong> <?php echo $model->occupation_id ?></strong>
-                </li> 
-
-                <li>
-                    <span class='icon12 typ-icon-arrow-right'></span>
-                    department_id:
-                    <strong> <?php echo $model->department_id ?></strong>
-                </li> 
-
-                <li>
-                    <span class='icon12 typ-icon-arrow-right'></span>
-                    manager_id:
-                    <strong> <?php echo $model->manager_id ?></strong>
-                </li> 
-
-                <li>
-                    <span class='icon12 typ-icon-arrow-right'></span>
-                    location_id:
-                    <strong> <?php echo $model->location_id ?></strong>
-                </li> 
-
-                <li>
-                    <span class='icon12 typ-icon-arrow-right'></span>
-                    is_agent:
-                    <strong> <?php echo $model->is_agent ?></strong>
-                </li> 
-
-                <li>
-                    <span class='icon12 typ-icon-arrow-right'></span>
-                    is_active:
-                    <strong> <?php echo $model->is_active ?></strong>
-                </li> 
-
-                <li>
-                    <span class='icon12 typ-icon-arrow-right'></span>
-                    is_deleted:
-                    <strong> <?php echo $model->is_deleted ?></strong>
-                </li> 
-
-            </ul>
+<div class="col-md-6">
+    <div class="box box-primary">
+        <div class="box-header with-border">
+            <h3 class="box-title">View</h3>
+            <?php echo CHtml::link('<i class="fa fa-plus"></i>', $this->createUrl('employees/create'), array('class' => 'btn btn-xs btn-success pull-right', 'data-toggle' => 'tooltip', 'title' => 'Create')); ?>
+            <?php echo CHtml::link('<i class="fa fa-arrow-left"></i>', $this->createUrl('employees/admin'), array('class' => 'btn btn-xs btn-primary pull-right', 'data-toggle' => 'tooltip', 'title' => 'Back', 'style' => 'margin-right: 5px;')); ?>
+        </div>
+        <div class="box-body">
+            <table class="table table-bordered">
+                <tr>
+                    <th>Date Created</th>
+                    <td><?php echo Settings::setDateTimeStandard($model->created_at) ?></td>
+                </tr>
+                <tr>
+                    <th>Last Modified</th>
+                    <td><?php echo Settings::setDateTimeStandard($model->updated_at) ?></td>
+                </tr>
+                <tr>
+                    <th>employee_no</th>
+                    <td><?php print $model->employee_no ?></td>
+                </tr>
+                <tr>
+                    <th>Name</th>
+                    <td><?php print $model->fullName ?></td>
+                </tr>
+                <tr>
+                    <th>Mobile</th>
+                    <td><?php print $model->mobile ?></td>
+                </tr>
+                <tr>
+                    <th>Phone</th>
+                    <td><?php print $model->phone ?></td>
+                </tr>
+                <tr>
+                    <th>Email</th>
+                    <td><?php print $model->email ?></td>
+                </tr>
+                <tr>
+                    <th>Birthdate</th>
+                    <td><?php print $model->birthdate ?></td>
+                </tr>
+                <tr>
+                    <th>Civil Status</th>
+                    <td><?php print $model->civil_status_id ?></td>
+                </tr>
+                <tr>
+                    <th>Address1</th>
+                    <td><?php print $model->address1 ?></td>
+                </tr>
+                <tr>
+                    <th>Address2</th>
+                    <td><?php print $model->address2 ?></td>
+                </tr>
+                <tr>
+                    <th>Region</th>
+                    <td><?php print $model->region_id ?></td>
+                </tr>
+                <tr>
+                    <th>Province</th>
+                    <td><?php print $model->province_id ?></td>
+                </tr>
+                <tr>
+                    <th>Municipality</th>
+                    <td><?php print $model->municipality_id ?></td>
+                </tr>
+                <tr>
+                    <th>Barangay</th>
+                    <td><?php print $model->barangay_id ?></td>
+                </tr>
+                <tr>
+                    <th>Office</th>
+                    <td><?php print $model->office_id ?></td>
+                </tr>
+                <tr>
+                    <th>Citizenship</th>
+                    <td><?php print $model->citizenship_id ?></td>
+                </tr>
+                <tr>
+                    <th>Branch</th>
+                    <td><?php print $model->branch_id ?></td>
+                </tr>
+                <tr>
+                    <th>Occupation</th>
+                    <td><?php print $model->occupation_id ?></td>
+                </tr>
+                <tr>
+                    <th>Department</th>
+                    <td><?php print $model->department_id ?></td>
+                </tr>
+                <tr>
+                    <th>Manager</th>
+                    <td><?php print $model->manager_id ?></td>
+                </tr>
+                <tr>
+                    <th>Location</th>
+                    <td><?php print $model->location_id ?></td>
+                </tr>
+                <tr>
+                    <th>Is Agent</th>
+                    <td><?php print $model->isAgent ?></td>
+                </tr>
+                <tr>
+                    <th>Is Active</th>
+                    <td><?php print $model->isActive ?></td>
+                </tr>
+            </table>
         </div>
     </div>
 </div>

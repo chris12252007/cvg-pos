@@ -289,7 +289,7 @@ Yii::app()->clientScript->registerScript("javascript", "
                             <select id="authorizationUserAccount" class="select2" onchange="setCheckCASByUserAccount()">
                                 <option></option>
 <?php foreach ($user_account['rows'] as $user_account) { ?>
-                                                <option value="<?php echo $user_account['account_id']; ?>"><?php echo $user_account['user_account'] . ' - ' . ucwords($user_account['first_name']) . ' ' . ucwords($user_account['last_name']) . ' (' . ucwords($user_account['account_type']) . ')'; ?></option>
+                                                                        <option value="<?php echo $user_account['account_id']; ?>"><?php echo $user_account['user_account'] . ' - ' . ucwords($user_account['first_name']) . ' ' . ucwords($user_account['last_name']) . ' (' . ucwords($user_account['account_type']) . ')'; ?></option>
 <?php } ?>
                             </select>
                         </label>
@@ -300,7 +300,7 @@ Yii::app()->clientScript->registerScript("javascript", "
                             <select id="authorizationSource" class="select2" onchange="setCheckCASByUserAccount()">
                                 <option></option>
 <?php foreach ($source['rows'] as $source) { ?>
-                                                <option value="<?php echo $source['transaction_source_id']; ?>"><?php echo ucwords($source['transaction_source_title']); ?></option>
+                                                                        <option value="<?php echo $source['transaction_source_id']; ?>"><?php echo ucwords($source['transaction_source_title']); ?></option>
 <?php } ?>
                             </select>
                         </label>
@@ -310,9 +310,9 @@ Yii::app()->clientScript->registerScript("javascript", "
                         <div class="row">
                             <div class="col col-12" style="height: 200px; width: 97%; overflow-y: scroll;">
 <?php foreach ($status['rows'] as $status) { ?>
-                                                <label class="checkbox">
-                                                    <input type="checkbox" class='cas2' value="<?php echo $status['transaction_status_id'] ?>">
-                                                    <i></i><?php echo ucwords($status['transaction_status_title']); ?></label>
+                                                                        <label class="checkbox">
+                                                                            <input type="checkbox" class='cas2' value="<?php echo $status['transaction_status_id'] ?>">
+                                                                            <i></i><?php echo ucwords($status['transaction_status_title']); ?></label>
 <?php } ?>                                      
                             </div>
                         </div>

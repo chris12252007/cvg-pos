@@ -5,7 +5,6 @@ class ControllersController extends DealerController {
      * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
      * using two-column layout. See 'protected/views/layouts/column2.php'.
      */
-    //public $layout='//layouts/column2';
 
     /**
      * @var CActiveRecord the currently loaded data model instance.
@@ -30,8 +29,8 @@ class ControllersController extends DealerController {
     public function accessRules()
     {
         return array(
-            array('allow', // allow all users to perform 'index' and 'view' actions
-                'actions' => array('create', 'view', 'update', 'delete', 'admin'),
+            array('allow', // allow authenticated user to perform 'create' and 'update' actions
+                'actions' => array('create', 'update', 'delete', 'admin', 'view'),
                 'users' => array('@'),
             ),
             array('deny', // deny all users
@@ -65,10 +64,10 @@ class ControllersController extends DealerController {
             $model->attributes = $_POST['Controllers'];
             $model->created_at = Settings::get_DateTime();
             $model->updated_at = Settings::get_DateTime();
-            $model->is_deleted = Utilities::NO;
+
             if ($model->validate()) {
                 $model->save();
-                Utilities::set_Flash(Utilities::FLASH_SUCCESS, "New Controllers successfully created");
+                Utilities::set_Flash(Utilities::FLASH_SUCCESS, 'New Controllers Successfully Created.');
                 $this->redirect(array('view', 'id' => $model->id));
             } else {
                 Utilities::set_Flash(Utilities::FLASH_ERROR, Utilities::get_ModelErrors($model->errors));
@@ -79,11 +78,6 @@ class ControllersController extends DealerController {
         $this->render('create', array(
             'model' => $model,
         ));
-    }
-
-    public function gotoCreate()
-    {
-        $this->redirect($this->createUrl('controller/create'));
     }
 
     /**
@@ -100,13 +94,14 @@ class ControllersController extends DealerController {
         if (isset($_POST['Controllers'])) {
             $model->attributes = $_POST['Controllers'];
             $model->updated_at = Settings::get_DateTime();
+
             if ($model->validate()) {
                 $model->save();
                 Utilities::set_Flash(Utilities::FLASH_SUCCESS, 'Controllers Successfully Updated');
+                $this->redirect(array('view', 'id' => $model->id));
             } else {
                 Utilities::set_Flash(Utilities::FLASH_ERROR, Utilities::get_ModelErrors($model->errors));
             }
-            $this->redirect(array('view', 'id' => $model->id));
         }
 
         $this->render('update', array(
@@ -120,7 +115,8 @@ class ControllersController extends DealerController {
      */
     public function actionDelete()
     {
-        $model = new Controllers();
+        $model = new Controllers;
+
         if (Yii::app()->request->isPostRequest) {
             // we only allow deletion via POST request
             $model = Utilities::model_getByID($model, $_GET['id']);
@@ -149,6 +145,8 @@ class ControllersController extends DealerController {
      */
     public function actionAdmin()
     {
+        unset($_SESSION[$_SESSION['lastSession']]);
+        Utilities::setMenuActive_Siteadmin(Settings::get_ControllerID(), 'Controllers::tbl()', Settings::get_ActionID());
         $model = new Controllers('search');
         $model->unsetAttributes();  // clear any default values
         if (isset($_GET['Controllers']))
@@ -185,6 +183,11 @@ class ControllersController extends DealerController {
             echo CActiveForm::validate($model);
             Yii::app()->end();
         }
+    }
+
+    public function gotoCreate()
+    {
+        $this->redirect($this->createUrl('controllers/create'));
     }
 
 }

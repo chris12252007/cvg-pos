@@ -32,9 +32,9 @@
             </label>
         </div>
         <div class="col col-4">
-                <label>
-                    <?php echo CHtml::activeLabelEx($model, 'Email'); ?>
-                </label>
+            <label>
+                <?php echo CHtml::activeLabelEx($model, 'Email'); ?>
+            </label>
             <label class="input"><i class="icon-prepend minia-icon-book"></i>
                 <?php echo CHtml::activeTextField($model, 'email', array('placeholder' => 'Email')); ?>
                 <b class="tooltip tooltip-bottom-left">
@@ -44,17 +44,17 @@
         </div>
 
         <div class="col col-4">
-                <label>
-                    <?php echo CHtml::activeLabelEx($model, 'New Password'); ?>
-                </label>
+            <label>
+                <?php echo CHtml::activeLabelEx($model, 'New Password'); ?>
+            </label>
             <label class="input"><i class="icon-prepend minia-icon-book"></i>
                 <?php echo CHtml::activePasswordField($model, 'new_password', array('placeholder' => 'Password')); ?>
             </label>
         </div>
         <div class="col col-4">
-                <label>
-                    <?php echo CHtml::activeLabelEx($model, 'Confirm Password'); ?>
-                </label>
+            <label>
+                <?php echo CHtml::activeLabelEx($model, 'Confirm Password'); ?>
+            </label>
             <label class="input"><i class="icon-prepend minia-icon-book"></i>
                 <?php echo CHtml::activePasswordField($model, 'confirm_password', array('placeholder' => 'Confirm Password')); ?>
             </label>

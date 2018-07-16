@@ -35,8 +35,7 @@
  * @property integer $is_active
  * @property integer $is_deleted
  */
-class Employees extends CActiveRecord
-{
+class Employees extends CActiveRecord {
 
     protected $oldAttributes;
 
@@ -395,7 +394,7 @@ class Employees extends CActiveRecord
 
         $mi = substr($mname, 0, 1);
 
-        return $fname ;
+        return $fname;
     }
 
     function getIsDeleted()
@@ -502,8 +501,8 @@ class Employees extends CActiveRecord
 
     public function getFullname()
     {
-        $fullname = Settings::setCapitalAll($this->lastname).', '.  Settings::setCapitalFirst( $this->firstname).' '. Settings::setCapitalFirst(substr($this->middlename, 0,1)).'.';
-        
+        $fullname = Settings::setCapitalAll($this->lastname) . ', ' . Settings::setCapitalFirst($this->firstname) . ' ' . Settings::setCapitalFirst(substr($this->middlename, 0, 1)) . '.';
+
         return $fullname;
     }
 

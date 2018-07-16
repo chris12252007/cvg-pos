@@ -5,7 +5,6 @@ class ActionsController extends DealerController {
      * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
      * using two-column layout. See 'protected/views/layouts/column2.php'.
      */
-    //public $layout='//layouts/column2';
 
     /**
      * @var CActiveRecord the currently loaded data model instance.
@@ -30,8 +29,8 @@ class ActionsController extends DealerController {
     public function accessRules()
     {
         return array(
-            array('allow', // allow all users to perform 'index' and 'view' actions
-                'actions' => array('create', 'view', 'update', 'delete', 'admin'),
+            array('allow', // allow authenticated user to perform 'create' and 'update' actions
+                'actions' => array('create', 'update', 'delete', 'admin', 'view'),
                 'users' => array('@'),
             ),
             array('deny', // deny all users
@@ -65,24 +64,20 @@ class ActionsController extends DealerController {
             $model->attributes = $_POST['Actions'];
             $model->created_at = Settings::get_DateTime();
             $model->updated_at = Settings::get_DateTime();
-            $model->is_deleted = Utilities::NO;
+
             if ($model->validate()) {
                 $model->save();
-                Utilities::set_Flash(Utilities::FLASH_SUCCESS, "New Actions successfully created");
+                Utilities::set_Flash(Utilities::FLASH_SUCCESS, 'New Actions Successfully Created.');
                 $this->redirect(array('view', 'id' => $model->id));
             } else {
-                Utiliities::set_Flash(Utilities::FLASH_ERROR, Utilities::get_ModelErrors($model->errors));
+                Utilities::set_Flash(Utilities::FLASH_ERROR, Utilities::get_ModelErrors($model->errors));
+                $this->gotoCreate();
             }
         }
 
         $this->render('create', array(
             'model' => $model,
         ));
-    }
-
-    public function gotoCreate()
-    {
-        $this->redirect($this->createUrl('actions/create'));
     }
 
     /**
@@ -99,13 +94,14 @@ class ActionsController extends DealerController {
         if (isset($_POST['Actions'])) {
             $model->attributes = $_POST['Actions'];
             $model->updated_at = Settings::get_DateTime();
+
             if ($model->validate()) {
                 $model->save();
                 Utilities::set_Flash(Utilities::FLASH_SUCCESS, 'Actions Successfully Updated');
+                $this->redirect(array('view', 'id' => $model->id));
             } else {
                 Utilities::set_Flash(Utilities::FLASH_ERROR, Utilities::get_ModelErrors($model->errors));
             }
-            $this->redirect(array('view', 'id' => $model->id));
         }
 
         $this->render('update', array(
@@ -119,7 +115,8 @@ class ActionsController extends DealerController {
      */
     public function actionDelete()
     {
-        $model = new Actions();
+        $model = new Actions;
+
         if (Yii::app()->request->isPostRequest) {
             // we only allow deletion via POST request
             $model = Utilities::model_getByID($model, $_GET['id']);
@@ -148,6 +145,8 @@ class ActionsController extends DealerController {
      */
     public function actionAdmin()
     {
+        unset($_SESSION[$_SESSION['lastSession']]);
+        Utilities::setMenuActive_Siteadmin(Settings::get_ControllerID(), 'Actions::tbl()', Settings::get_ActionID());
         $model = new Actions('search');
         $model->unsetAttributes();  // clear any default values
         if (isset($_GET['Actions']))
@@ -184,6 +183,11 @@ class ActionsController extends DealerController {
             echo CActiveForm::validate($model);
             Yii::app()->end();
         }
+    }
+
+    public function gotoCreate()
+    {
+        $this->redirect($this->createUrl('actions/create'));
     }
 
 }

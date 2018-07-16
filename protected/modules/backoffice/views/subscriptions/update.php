@@ -1,10 +1,8 @@
-<div class="col-lg-12">
-    <div class="metronicUpdate">
-        <header>
-            <span><i class="icomoon-icon-pencil-2"></i>Update - Subscriptions</span>
-            <?php print CHtml::link('<i class="brocco-icon-plus"></i>', $this->createUrl('Subscriptions/create'), array('class' => 'btn-back', 'data-tooltip' => 'create')); ?>
-            <?php print CHtml::link('View/Search', $this->createUrl('Subscriptions/admin'), array('class' => 'btn-back')); ?>
-        </header>
-        <?php echo $this->renderPartial('_formUpdate', array('model' => $model)); ?>
+<div class="col-md-6">
+    <div class="box box-primary">
+        <div class="box-header with-border">
+            <h3 class="box-title">Update</h3>
+        </div>
+        <?php print $this->renderPartial('_formUpdate', array('model' => $model)); ?>
     </div>
 </div>

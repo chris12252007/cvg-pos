@@ -57,8 +57,8 @@ class SalariesController extends SiteadminController {
     {
         $model = new Salaries;
 
-// Uncomment the following line if AJAX validation is needed
-// $this->performAjaxValidation($model);
+        // Uncomment the following line if AJAX validation is needed
+        // $this->performAjaxValidation($model);
 
         if (isset($_POST['Salaries'])) {
             $model->attributes = $_POST['Salaries'];
@@ -88,8 +88,8 @@ class SalariesController extends SiteadminController {
     {
         $model = $this->loadModel();
 
-// Uncomment the following line if AJAX validation is needed
-// $this->performAjaxValidation($model);
+        // Uncomment the following line if AJAX validation is needed
+        // $this->performAjaxValidation($model);
 
         if (isset($_POST['Salaries'])) {
             $model->attributes = $_POST['Salaries'];
@@ -118,11 +118,11 @@ class SalariesController extends SiteadminController {
         $model = new Salaries;
 
         if (Yii::app()->request->isPostRequest) {
-// we only allow deletion via POST request
+            // we only allow deletion via POST request
             $model = Utilities::model_getByID($model, $_GET['id']);
             $model->is_deleted = Utilities::YES;
             $model->save();
-// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
+            // if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
             if (!isset($_GET['ajax']))
                 $this->redirect(array('index'));
         } else
@@ -187,7 +187,7 @@ class SalariesController extends SiteadminController {
 
     public function gotoCreate()
     {
-        $this->redirect($this->createUrl('Salaries/create'));
+        $this->redirect($this->createUrl('salaries/create'));
     }
 
 }

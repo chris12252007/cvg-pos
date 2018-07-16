@@ -35,7 +35,7 @@
                             </tr>
 <!--                                <tr>
                                 <th style="text-align: left;"> Password:</th>
-                                <td> <?php //echo $model->pword_hash   ?></td>
+                                <td> <?php //echo $model->pword_hash           ?></td>
                             </tr>-->
                             <tr>
                                 <th style="text-align: left;"> Account Type:</th>

@@ -1,46 +1,21 @@
-<?php print CHtml::beginForm('', 'POST', array('class' => 'smart-form')); ?>
-<fieldset>
-    <div class ="row">
-        <div class ="col-lg-3">
-            <?php echo CHtml::activeLabelEx($model, 'created_at'); ?>
-            <label class="input"><i class="icon-prepend minia-icon-book"></i>
-                <?php echo CHtml::activeTextField($model, 'created_at'); ?>
-            </label>
-        </div>
-        <div class ="col-lg-3">
-            <?php echo CHtml::activeLabelEx($model, 'updated_at'); ?>
-            <label class="input"><i class="icon-prepend minia-icon-book"></i>
-                <?php echo CHtml::activeTextField($model, 'updated_at'); ?>
-            </label>
-        </div>
-        <div class ="col-lg-3">
-            <?php echo CHtml::activeLabelEx($model, 'name'); ?>
-            <label class="input"><i class="icon-prepend minia-icon-book"></i>
-                <?php echo CHtml::activeTextField($model, 'name'); ?>
-            </label>
-        </div>
-        <div class ="col-lg-3">
-            <?php echo CHtml::activeLabelEx($model, 'details'); ?>
-            <label class="input"><i class="icon-prepend minia-icon-book"></i>
-                <?php echo CHtml::activeTextField($model, 'details'); ?>
-            </label>
-        </div>
-        <div class ="col-lg-3">
-            <?php echo CHtml::activeLabelEx($model, 'is_sync'); ?>
-            <label class="input"><i class="icon-prepend minia-icon-book"></i>
-                <?php echo CHtml::activeTextField($model, 'is_sync'); ?>
-            </label>
-        </div>
-        <div class ="col-lg-3">
-            <?php echo CHtml::activeLabelEx($model, 'is_deleted'); ?>
-            <label class="input"><i class="icon-prepend minia-icon-book"></i>
-                <?php echo CHtml::activeTextField($model, 'is_deleted'); ?>
-            </label>
-        </div>
+<?php print CHtml::beginForm('', 'POST', array('role' => 'form')); ?>
+<div class="box-body">
+    <div class="form-group">
+        <?php print CHtml::activeLabelEx($model, 'name'); ?>
+        <?php print CHtml::activeTextField($model, 'name', array('class' => 'form-control', 'placeholder' => '')); ?>
     </div>
-    <div class="footer-button">
-        <?php echo CHtml::link('Back', $this->createUrl('Subscriptions/admin'), array('class' => 'btn btn-danger btn-sm')); ?>
-        <?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save', array('class' => 'btn btn-sm btn-success')); ?>
+    <div class="form-group">
+        <?php print CHtml::activeLabelEx($model, 'details'); ?>
+        <?php print CHtml::activeTextField($model, 'details', array('class' => 'form-control', 'placeholder' => '')); ?>
     </div>
-</fieldset>
+    <div class="form-group">
+        <?php print CHtml::activeLabelEx($model, 'is_sync'); ?>
+        <?php print CHtml::activeTextField($model, 'is_sync', array('class' => 'form-control', 'placeholder' => '')); ?>
+    </div>
+</div>
+
+<div class="box-footer">
+    <?php print CHtml::link('Back', $this->createUrl('subscriptions/admin'), array('class' => 'btn btn-default')); ?>
+    <?php print CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save', array('class' => 'btn btn-primary pull-right')); ?>
+</div>
 <?php print CHtml::endForm(); ?>

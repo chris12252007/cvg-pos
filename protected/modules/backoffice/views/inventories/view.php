@@ -1,122 +1,77 @@
-<div class="col-lg-12">
-    <div class="metronicView">
-        <header>
-            <span><i class="minia-icon-search"></i>View - Inventories</span>
-            <?php print CHtml::link('<i class="brocco-icon-plus"></i>', $this->createUrl('Inventories/create'), array('class' => 'btn-back', 'data-tooltip' => 'create')); ?>
-            <?php print CHtml::link('View/Search', $this->createUrl('Inventories/admin'), array('class' => 'btn-back', 'data-tooltip' => 'manage')); ?>
-        </header>
-        <div class ="row">
-            <ul class = "col-lg-6 unstyled">
-
-                <li>
-                    <span class='icon12 typ-icon-arrow-right'></span>
-                    id:
-                    <strong> <?php echo $model->id ?></strong>
-                </li> 
-
-                <li>
-                    <span class='icon12 typ-icon-arrow-right'></span>
-                    created_at:
-                    <strong> <?php echo $model->created_at ?></strong>
-                </li> 
-
-                <li>
-                    <span class='icon12 typ-icon-arrow-right'></span>
-                    updated_at:
-                    <strong> <?php echo $model->updated_at ?></strong>
-                </li> 
-
-                <li>
-                    <span class='icon12 typ-icon-arrow-right'></span>
-                    branch_id:
-                    <strong> <?php echo $model->branch_id ?></strong>
-                </li> 
-
-                <li>
-                    <span class='icon12 typ-icon-arrow-right'></span>
-                    client_id:
-                    <strong> <?php echo $model->client_id ?></strong>
-                </li> 
-
-                <li>
-                    <span class='icon12 typ-icon-arrow-right'></span>
-                    name:
-                    <strong> <?php echo $model->name ?></strong>
-                </li> 
-
-                <li>
-                    <span class='icon12 typ-icon-arrow-right'></span>
-                    bar_code:
-                    <strong> <?php echo $model->bar_code ?></strong>
-                </li> 
-
-                <li>
-                    <span class='icon12 typ-icon-arrow-right'></span>
-                    category_id:
-                    <strong> <?php echo $model->category_id ?></strong>
-                </li> 
-
-                <li>
-                    <span class='icon12 typ-icon-arrow-right'></span>
-                    price:
-                    <strong> <?php echo $model->price ?></strong>
-                </li> 
-
-                <li>
-                    <span class='icon12 typ-icon-arrow-right'></span>
-                    cost:
-                    <strong> <?php echo $model->cost ?></strong>
-                </li> 
-
-                <li>
-                    <span class='icon12 typ-icon-arrow-right'></span>
-                    tax:
-                    <strong> <?php echo $model->tax ?></strong>
-                </li> 
-
-                <li>
-                    <span class='icon12 typ-icon-arrow-right'></span>
-                    margin:
-                    <strong> <?php echo $model->margin ?></strong>
-                </li> 
-
-                <li>
-                    <span class='icon12 typ-icon-arrow-right'></span>
-                    qty_stock:
-                    <strong> <?php echo $model->qty_stock ?></strong>
-                </li> 
-
-                <li>
-                    <span class='icon12 typ-icon-arrow-right'></span>
-                    qty_reorder:
-                    <strong> <?php echo $model->qty_reorder ?></strong>
-                </li> 
-
-                <li>
-                    <span class='icon12 typ-icon-arrow-right'></span>
-                    file_path:
-                    <strong> <?php echo $model->file_path ?></strong>
-                </li> 
-
-                <li>
-                    <span class='icon12 typ-icon-arrow-right'></span>
-                    file_pics:
-                    <strong> <?php echo $model->file_pics ?></strong>
-                </li> 
-
-                <li>
-                    <span class='icon12 typ-icon-arrow-right'></span>
-                    is_sync:
-                    <strong> <?php echo $model->is_sync ?></strong>
-                </li> 
-
-                <li>
-                    <span class='icon12 typ-icon-arrow-right'></span>
-                    is_deleted:
-                    <strong> <?php echo $model->is_deleted ?></strong>
-                </li> 
-
-            </ul>
+<div class="col-md-6">
+    <div class="box box-primary">
+        <div class="box-header with-border">
+            <h3 class="box-title">View</h3>
+            <?php echo CHtml::link('<i class="fa fa-plus"></i>', $this->createUrl('inventories/create'), array('class' => 'btn btn-xs btn-success pull-right', 'data-toggle' => 'tooltip', 'title' => 'Create')); ?>
+            <?php echo CHtml::link('<i class="fa fa-arrow-left"></i>', $this->createUrl('inventories/admin'), array('class' => 'btn btn-xs btn-primary pull-right', 'data-toggle' => 'tooltip', 'title' => 'Back', 'style' => 'margin-right: 5px;')); ?>
+        </div>
+        <div class="box-body">
+            <table class="table table-bordered">
+                <tr>
+                    <th>Date Created</th>
+                    <td><?php echo Settings::setDateTimeStandard($model->created_at) ?></td>
+                </tr>
+                <tr>
+                    <th>Last Modified</th>
+                    <td><?php echo Settings::setDateTimeStandard($model->updated_at) ?></td>
+                </tr>
+                <tr>
+                    <th>branch_id</th>
+                    <td><?php print $model->branch_id ?></td>
+                </tr>
+                <tr>
+                    <th>client_id</th>
+                    <td><?php print $model->client_id ?></td>
+                </tr>
+                <tr>
+                    <th>name</th>
+                    <td><?php print $model->name ?></td>
+                </tr>
+                <tr>
+                    <th>bar_code</th>
+                    <td><?php print $model->bar_code ?></td>
+                </tr>
+                <tr>
+                    <th>category_id</th>
+                    <td><?php print $model->category_id ?></td>
+                </tr>
+                <tr>
+                    <th>price</th>
+                    <td><?php print $model->price ?></td>
+                </tr>
+                <tr>
+                    <th>cost</th>
+                    <td><?php print $model->cost ?></td>
+                </tr>
+                <tr>
+                    <th>tax</th>
+                    <td><?php print $model->tax ?></td>
+                </tr>
+                <tr>
+                    <th>margin</th>
+                    <td><?php print $model->margin ?></td>
+                </tr>
+                <tr>
+                    <th>qty_stock</th>
+                    <td><?php print $model->qty_stock ?></td>
+                </tr>
+                <tr>
+                    <th>qty_reorder</th>
+                    <td><?php print $model->qty_reorder ?></td>
+                </tr>
+                <tr>
+                    <th>file_path</th>
+                    <td><?php print $model->file_path ?></td>
+                </tr>
+                <tr>
+                    <th>file_pics</th>
+                    <td><?php print $model->file_pics ?></td>
+                </tr>
+                <tr>
+                    <th>is_sync</th>
+                    <td><?php print $model->is_sync ?></td>
+                </tr>
+            </table>
         </div>
     </div>
 </div>

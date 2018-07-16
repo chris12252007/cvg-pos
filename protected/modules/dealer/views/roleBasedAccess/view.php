@@ -1,72 +1,57 @@
-<br/>
-<!-- NEW COL START -->
-<article class="col-sm-12 col-md-12 col-lg-6">
-
-    <!-- Widget ID (each widget will need unique ID)-->
-    <div class="jarviswidget jarviswidget-color-blueDark" id="wid-id-4" data-widget-colorbutton="false" data-widget-editbutton="false" data-widget-custombutton="false">
-        <header>
-            <span class="widget-icon"> <i class="fa fa-edit"></i> </span>
-            <h2>View - Role Based Access</h2>
-        </header>
-
-        <div class="modal-content">
-            <!--<div class="widget-footer smart-form" style="text-align: center;padding-bottom: 20px;">-->
-            <div class="smart-form" style="text-align: center;padding-bottom: 10px;">
-                <?php print CHtml::link('<i class="fa fa-plus-circle">' . ' Create New</i>', $this->createUrl('roleBasedAccess/create'), array('class' => 'btn btn-success btn-sm', 'style' => 'width: 150px;', 'id' => 'btnPayment')); ?>
-                <?php print CHtml::link('<i class="fa fa-cubes">' . ' Manage</i>', $this->createUrl('roleBasedAccess/admin'), array('class' => 'btn btn-primary btn-sm', 'style' => 'width: 150px;', 'id' => 'btnPayment')); ?>
-            </div>
-
-            <?php $this->widget('Flashes'); ?>
-            <div class="widget-body">
-                <div class="table-responsive">
-                    <table class="table table-bordered">
-                        <thead>
-                            <tr>
-                                <th>Module</th>
-                                <td><?php echo $model->modules->name ?></td>
-                            </tr>
-                            <tr>
-                                <th>Role</th>
-                                <td><?php echo $model->roles->name ?></td>
-                            </tr>
-                            <tr>
-                                <th>Controller</th>
-                                <td><?php echo $model->controllers->name ?></td>
-                            </tr>
-                            <tr>
-                                <th>Controller Name</th>
-                                <td><?php echo $model->controller_name ?></td>
-                            </tr>
-                            <tr>
-                                <th>Action</th>
-                                <td><?php echo $model->actions->name ?></td>
-                            </tr>
-                            <tr>
-                                <th>Action Name</th>
-                                <td><?php echo $model->action_name ?></td>
-                            </tr>
-                            <tr>
-                                <th>Date Created</th>
-                                <td><?php echo date("M-d-Y h:m ", strtotime($model->created_at)) ?></td>
-                            </tr>
-                            <tr>
-                                <th>Last Modified</th>
-                                <td><?php echo date("M-d-Y h:m ", strtotime($model->updated_at)) ?></td>
-                            </tr>
-                            <tr>
-                                <th>Is Accesible</th>
-                                <td><?php echo $model->isAccesible ?></td>
-                            </tr>
-                            <tr>
-                                <th>Is Deleted</th>
-                                <td><?php echo $model->isDeleted ?></td>
-                            </tr>
-                        </thead>
-                    </table>
-                </div>
-            </div>
-            <!-- end widget content -->
+<div class="col-md-6">
+    <div class="box box-primary">
+        <div class="box-header with-border">
+            <h3 class="box-title">View</h3>
+            <?php echo CHtml::link('<i class="fa fa-plus"></i>', $this->createUrl('roleBasedAccess/create'), array('class' => 'btn btn-xs btn-success pull-right', 'data-toggle' => 'tooltip', 'title' => 'Create')); ?>
+            <?php echo CHtml::link('<i class="fa fa-arrow-left"></i>', $this->createUrl('roleBasedAccess/admin'), array('class' => 'btn btn-xs btn-primary pull-right', 'data-toggle' => 'tooltip', 'title' => 'Back', 'style' => 'margin-right: 5px;')); ?>
+        </div>
+        <div class="box-body">
+            <table class="table table-bordered">
+                <tr>
+                    <th>Date Created</th>
+                    <td><?php echo Settings::setDateTimeStandard($model->created_at) ?></td>
+                </tr>
+                <tr>
+                    <th>Last Modified</th>
+                    <td><?php echo Settings::setDateTimeStandard($model->updated_at) ?></td>
+                </tr>
+                <tr>
+                    <th>menu_id</th>
+                    <td><?php print $model->menu_id ?></td>
+                </tr>
+                <tr>
+                    <th>module_id</th>
+                    <td><?php print $model->module_id ?></td>
+                </tr>
+                <tr>
+                    <th>user_id</th>
+                    <td><?php print $model->user_id ?></td>
+                </tr>
+                <tr>
+                    <th>controller_id</th>
+                    <td><?php print $model->controller_id ?></td>
+                </tr>
+                <tr>
+                    <th>controller_name</th>
+                    <td><?php print $model->controller_name ?></td>
+                </tr>
+                <tr>
+                    <th>action_id</th>
+                    <td><?php print $model->action_id ?></td>
+                </tr>
+                <tr>
+                    <th>action_name</th>
+                    <td><?php print $model->action_name ?></td>
+                </tr>
+                <tr>
+                    <th>is_accesible</th>
+                    <td><?php print $model->is_accesible ?></td>
+                </tr>
+                <tr>
+                    <th>parent_id</th>
+                    <td><?php print $model->parent_id ?></td>
+                </tr>
+            </table>
         </div>
     </div>
-    <!-- end widget div -->
-</article>
+</div>

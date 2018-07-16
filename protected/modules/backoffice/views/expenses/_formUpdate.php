@@ -1,82 +1,41 @@
-<?php print CHtml::beginForm('', 'POST', array('class' => 'smart-form')); ?>
-<fieldset>
-    <div class ="row">
-        <div class ="col-lg-3">
-            <?php echo CHtml::activeLabelEx($model, 'created_at'); ?>
-            <label class="input"><i class="icon-prepend minia-icon-book"></i>
-                <?php echo CHtml::activeTextField($model, 'created_at'); ?>
-            </label>
-        </div>
-        <div class ="col-lg-3">
-            <?php echo CHtml::activeLabelEx($model, 'updated_at'); ?>
-            <label class="input"><i class="icon-prepend minia-icon-book"></i>
-                <?php echo CHtml::activeTextField($model, 'updated_at'); ?>
-            </label>
-        </div>
-        <div class ="col-lg-3">
-            <?php echo CHtml::activeLabelEx($model, 'date'); ?>
-            <label class="input"><i class="icon-prepend minia-icon-book"></i>
-                <?php echo CHtml::activeTextField($model, 'date'); ?>
-            </label>
-        </div>
-        <div class ="col-lg-3">
-            <?php echo CHtml::activeLabelEx($model, 'ref_no'); ?>
-            <label class="input"><i class="icon-prepend minia-icon-book"></i>
-                <?php echo CHtml::activeTextField($model, 'ref_no'); ?>
-            </label>
-        </div>
-        <div class ="col-lg-3">
-            <?php echo CHtml::activeLabelEx($model, 'branch_id'); ?>
-            <label class="input"><i class="icon-prepend minia-icon-book"></i>
-                <?php echo CHtml::activeTextField($model, 'branch_id'); ?>
-            </label>
-        </div>
-        <div class ="col-lg-3">
-            <?php echo CHtml::activeLabelEx($model, 'client_id'); ?>
-            <label class="input"><i class="icon-prepend minia-icon-book"></i>
-                <?php echo CHtml::activeTextField($model, 'client_id'); ?>
-            </label>
-        </div>
-        <div class ="col-lg-3">
-            <?php echo CHtml::activeLabelEx($model, 'expenses_type_id'); ?>
-            <label class="input"><i class="icon-prepend minia-icon-book"></i>
-                <?php echo CHtml::activeTextField($model, 'expenses_type_id'); ?>
-            </label>
-        </div>
-        <div class ="col-lg-3">
-            <?php echo CHtml::activeLabelEx($model, 'title'); ?>
-            <label class="input"><i class="icon-prepend minia-icon-book"></i>
-                <?php echo CHtml::activeTextField($model, 'title'); ?>
-            </label>
-        </div>
-        <div class ="col-lg-3">
-            <?php echo CHtml::activeLabelEx($model, 'amount'); ?>
-            <label class="input"><i class="icon-prepend minia-icon-book"></i>
-                <?php echo CHtml::activeTextField($model, 'amount'); ?>
-            </label>
-        </div>
-        <div class ="col-lg-3">
-            <?php echo CHtml::activeLabelEx($model, 'remarks'); ?>
-            <label class="input"><i class="icon-prepend minia-icon-book"></i>
-                <?php echo CHtml::activeTextField($model, 'remarks'); ?>
-            </label>
-        </div>
-        <div class ="col-lg-3">
-            <?php echo CHtml::activeLabelEx($model, 'is_sync'); ?>
-            <label class="input"><i class="icon-prepend minia-icon-book"></i>
-                <?php echo CHtml::activeTextField($model, 'is_sync'); ?>
-            </label>
-        </div>
-        <div class ="col-lg-3">
-            <?php echo CHtml::activeLabelEx($model, 'is_deleted'); ?>
-            <label class="input"><i class="icon-prepend minia-icon-book"></i>
-                <?php echo CHtml::activeTextField($model, 'is_deleted'); ?>
-            </label>
-        </div>
+<?php print CHtml::beginForm('', 'POST', array('role' => 'form')); ?>
+<div class="box-body">
+    <div class="form-group">
+        <?php print CHtml::activeLabelEx($model, 'date'); ?>
+        <?php print CHtml::activeTextField($model, 'date', array('class' => 'form-control', 'placeholder' => '')); ?>
     </div>
-    <div class="footer-button">
-        <?php echo CHtml::link('Back', $this->createUrl('Expenses/admin'), array('class' => 'btn btn-danger btn-sm')); ?>
-        <?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save', array('class' => 'btn btn-sm btn-success')); ?>
+    <div class="form-group">
+        <?php print CHtml::activeLabelEx($model, 'ref_no'); ?>
+        <?php print CHtml::activeTextField($model, 'ref_no', array('class' => 'form-control', 'placeholder' => '')); ?>
     </div>
-</fieldset>
+    <div class="form-group">
+        <?php print CHtml::activeLabelEx($model, 'branch_id'); ?>
+        <?php print CHtml::activeDropDownList($model, 'branch_id', CHtml::listData(Branches::model_getAllData_byDeleted(Utilities::NO), 'id', 'name'), array('class' => 'form-control', 'prompt' => 'Choose One')); ?>
+    </div>
+    <div class="form-group">
+        <?php print CHtml::activeLabelEx($model, 'client_id'); ?>
+        <?php print CHtml::activeDropDownList($model, 'client_id', CHtml::listData(Clients::model_getAllData_byDeleted(Utilities::NO), 'id', 'fullName'), array('class' => 'form-control', 'prompt' => 'Choose One')); ?>
+    </div>
+    <div class="form-group">
+        <?php print CHtml::activeLabelEx($model, 'expenses_type_id'); ?>
+        <?php print CHtml::activeTextField($model, 'expenses_type_id', array('class' => 'form-control', 'placeholder' => '')); ?>
+    </div>
+    <div class="form-group">
+        <?php print CHtml::activeLabelEx($model, 'title'); ?>
+        <?php print CHtml::activeTextField($model, 'title', array('class' => 'form-control', 'placeholder' => '')); ?>
+    </div>
+    <div class="form-group">
+        <?php print CHtml::activeLabelEx($model, 'amount'); ?>
+        <?php print CHtml::activeTextField($model, 'amount', array('class' => 'form-control', 'placeholder' => '')); ?>
+    </div>
+    <div class="form-group">
+        <?php print CHtml::activeLabelEx($model, 'remarks'); ?>
+        <?php print CHtml::activeTextField($model, 'remarks', array('class' => 'form-control', 'placeholder' => '')); ?>
+    </div>
+</div>
+
+<div class="box-footer">
+    <?php print CHtml::link('Back', $this->createUrl('expenses/admin'), array('class' => 'btn btn-default')); ?>
+    <?php print CHtml::submitButton($model->isNewRecord ? 'Save' : 'Update', array('class' => 'btn btn-primary pull-right')); ?>
+</div>
 <?php print CHtml::endForm(); ?>

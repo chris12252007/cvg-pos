@@ -169,7 +169,7 @@ CREATE TABLE `clients` (
   `created_at` DATETIME NOT NULL,
   `updated_at` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
   `branch_id` INT(11) NOT NULL DEFAULT 0 COMMENT 'refd to brnaches.id',
-  `client_id` INT(11) NOT NULL DEFAULT 0 COMMENT 'refd to clients.id',
+  `deale_id` INT(11) NOT NULL DEFAULT 0 COMMENT 'refd to dealers.id',
   `firstname` VARCHAR(50) DEFAULT NULL,
   `middlename` VARCHAR(50) DEFAULT NULL,
   `lastname` VARCHAR(50) DEFAULT NULL,
@@ -440,3 +440,4 @@ CREATE TABLE `Dealers` (
 
 
 /*[11:58:12 AM][999 ms]*/ ALTER TABLE `migo_live`.`clients` DROP COLUMN `client_id`, ADD COLUMN `dealer_id` INT(11) NULL COMMENT 'refd to dealers.id' AFTER `branch_id`; 
+/*[11:58:12 AM][999 ms]*/ ALTER TABLE clients DROP COLUMN client_id, ADD COLUMN dealer_id INT(11) NULL COMMENT 'refd to dealers.id' AFTER branch_id;

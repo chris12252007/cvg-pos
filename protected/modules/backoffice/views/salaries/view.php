@@ -1,116 +1,73 @@
-<div class="col-lg-12">
-    <div class="metronicView">
-        <header>
-            <span><i class="minia-icon-search"></i>View - Salaries</span>
-            <?php print CHtml::link('<i class="brocco-icon-plus"></i>', $this->createUrl('Salaries/create'), array('class' => 'btn-back', 'data-tooltip' => 'create')); ?>
-            <?php print CHtml::link('View/Search', $this->createUrl('Salaries/admin'), array('class' => 'btn-back', 'data-tooltip' => 'manage')); ?>
-        </header>
-        <div class ="row">
-            <ul class = "col-lg-6 unstyled">
-
-                <li>
-                    <span class='icon12 typ-icon-arrow-right'></span>
-                    id:
-                    <strong> <?php echo $model->id ?></strong>
-                </li> 
-
-                <li>
-                    <span class='icon12 typ-icon-arrow-right'></span>
-                    created_at:
-                    <strong> <?php echo $model->created_at ?></strong>
-                </li> 
-
-                <li>
-                    <span class='icon12 typ-icon-arrow-right'></span>
-                    updated_at:
-                    <strong> <?php echo $model->updated_at ?></strong>
-                </li> 
-
-                <li>
-                    <span class='icon12 typ-icon-arrow-right'></span>
-                    date_released:
-                    <strong> <?php echo $model->date_released ?></strong>
-                </li> 
-
-                <li>
-                    <span class='icon12 typ-icon-arrow-right'></span>
-                    date_from:
-                    <strong> <?php echo $model->date_from ?></strong>
-                </li> 
-
-                <li>
-                    <span class='icon12 typ-icon-arrow-right'></span>
-                    date_to:
-                    <strong> <?php echo $model->date_to ?></strong>
-                </li> 
-
-                <li>
-                    <span class='icon12 typ-icon-arrow-right'></span>
-                    emp_id:
-                    <strong> <?php echo $model->emp_id ?></strong>
-                </li> 
-
-                <li>
-                    <span class='icon12 typ-icon-arrow-right'></span>
-                    branch_id:
-                    <strong> <?php echo $model->branch_id ?></strong>
-                </li> 
-
-                <li>
-                    <span class='icon12 typ-icon-arrow-right'></span>
-                    client_id:
-                    <strong> <?php echo $model->client_id ?></strong>
-                </li> 
-
-                <li>
-                    <span class='icon12 typ-icon-arrow-right'></span>
-                    expenses_type_id:
-                    <strong> <?php echo $model->expenses_type_id ?></strong>
-                </li> 
-
-                <li>
-                    <span class='icon12 typ-icon-arrow-right'></span>
-                    title:
-                    <strong> <?php echo $model->title ?></strong>
-                </li> 
-
-                <li>
-                    <span class='icon12 typ-icon-arrow-right'></span>
-                    amount:
-                    <strong> <?php echo $model->amount ?></strong>
-                </li> 
-
-                <li>
-                    <span class='icon12 typ-icon-arrow-right'></span>
-                    remarks:
-                    <strong> <?php echo $model->remarks ?></strong>
-                </li> 
-
-                <li>
-                    <span class='icon12 typ-icon-arrow-right'></span>
-                    account_no:
-                    <strong> <?php echo $model->account_no ?></strong>
-                </li> 
-
-                <li>
-                    <span class='icon12 typ-icon-arrow-right'></span>
-                    bank_id:
-                    <strong> <?php echo $model->bank_id ?></strong>
-                </li> 
-
-                <li>
-                    <span class='icon12 typ-icon-arrow-right'></span>
-                    is_sync:
-                    <strong> <?php echo $model->is_sync ?></strong>
-                </li> 
-
-                <li>
-                    <span class='icon12 typ-icon-arrow-right'></span>
-                    is_deleted:
-                    <strong> <?php echo $model->is_deleted ?></strong>
-                </li> 
-
-            </ul>
+<div class="col-md-6">
+    <div class="box box-primary">
+        <div class="box-header with-border">
+            <h3 class="box-title">View</h3>
+            <?php echo CHtml::link('<i class="fa fa-plus"></i>', $this->createUrl('salaries/create'), array('class' => 'btn btn-xs btn-success pull-right', 'data-toggle' => 'tooltip', 'title' => 'Create')); ?>
+            <?php echo CHtml::link('<i class="fa fa-arrow-left"></i>', $this->createUrl('salaries/admin'), array('class' => 'btn btn-xs btn-primary pull-right', 'data-toggle' => 'tooltip', 'title' => 'Back', 'style' => 'margin-right: 5px;')); ?>
+        </div>
+        <div class="box-body">
+            <table class="table table-bordered">
+                <tr>
+                    <th>Date Created</th>
+                    <td><?php echo Settings::setDateTimeStandard($model->created_at) ?></td>
+                </tr>
+                <tr>
+                    <th>Last Modified</th>
+                    <td><?php echo Settings::setDateTimeStandard($model->updated_at) ?></td>
+                </tr>
+                <tr>
+                    <th>date_released</th>
+                    <td><?php print $model->date_released ?></td>
+                </tr>
+                <tr>
+                    <th>date_from</th>
+                    <td><?php print $model->date_from ?></td>
+                </tr>
+                <tr>
+                    <th>date_to</th>
+                    <td><?php print $model->date_to ?></td>
+                </tr>
+                <tr>
+                    <th>emp_id</th>
+                    <td><?php print $model->emp_id ?></td>
+                </tr>
+                <tr>
+                    <th>branch_id</th>
+                    <td><?php print $model->branch_id ?></td>
+                </tr>
+                <tr>
+                    <th>client_id</th>
+                    <td><?php print $model->client_id ?></td>
+                </tr>
+                <tr>
+                    <th>expenses_type_id</th>
+                    <td><?php print $model->expenses_type_id ?></td>
+                </tr>
+                <tr>
+                    <th>title</th>
+                    <td><?php print $model->title ?></td>
+                </tr>
+                <tr>
+                    <th>amount</th>
+                    <td><?php print $model->amount ?></td>
+                </tr>
+                <tr>
+                    <th>remarks</th>
+                    <td><?php print $model->remarks ?></td>
+                </tr>
+                <tr>
+                    <th>account_no</th>
+                    <td><?php print $model->account_no ?></td>
+                </tr>
+                <tr>
+                    <th>bank_id</th>
+                    <td><?php print $model->bank_id ?></td>
+                </tr>
+                <tr>
+                    <th>is_sync</th>
+                    <td><?php print $model->is_sync ?></td>
+                </tr>
+            </table>
         </div>
     </div>
 </div>

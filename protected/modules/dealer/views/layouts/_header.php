@@ -203,7 +203,7 @@
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         <img src="<?php print Settings::get_baseUrl(); ?>/adminlte/dist/img/user2-160x160.jpg" class="user-image" alt="User Image"/>
                         <span class="hidden-xs">
-                            <?php print Employees::sql_getFirstName(Settings::get_EmployeeID())?>
+                            <?php print Employees::sql_getFirstName(Settings::get_EmployeeID()) ?>
                         </span>
                     </a>
                     <ul class="dropdown-menu">

@@ -7,5 +7,5 @@ class DefaultController extends DealerController {
         Utilities::setMenuActive_Siteadmin(Settings::get_ControllerID(), Settings::get_ActionID());
         $this->render('index');
     }
-    
+
 }

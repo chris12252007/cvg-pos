@@ -1,134 +1,85 @@
-<div class="col-lg-12">
-    <div class="metronicView">
-        <header>
-            <span><i class="minia-icon-search"></i>View - PosPaymentHeaders</span>
-            <?php print CHtml::link('<i class="brocco-icon-plus"></i>', $this->createUrl('PosPaymentHeaders/create'), array('class' => 'btn-back', 'data-tooltip' => 'create')); ?>
-            <?php print CHtml::link('View/Search', $this->createUrl('PosPaymentHeaders/admin'), array('class' => 'btn-back', 'data-tooltip' => 'manage')); ?>
-        </header>
-        <div class ="row">
-            <ul class = "col-lg-6 unstyled">
-
-                <li>
-                    <span class='icon12 typ-icon-arrow-right'></span>
-                    id:
-                    <strong> <?php echo $model->id ?></strong>
-                </li> 
-
-                <li>
-                    <span class='icon12 typ-icon-arrow-right'></span>
-                    created_at:
-                    <strong> <?php echo $model->created_at ?></strong>
-                </li> 
-
-                <li>
-                    <span class='icon12 typ-icon-arrow-right'></span>
-                    updated_at:
-                    <strong> <?php echo $model->updated_at ?></strong>
-                </li> 
-
-                <li>
-                    <span class='icon12 typ-icon-arrow-right'></span>
-                    date:
-                    <strong> <?php echo $model->date ?></strong>
-                </li> 
-
-                <li>
-                    <span class='icon12 typ-icon-arrow-right'></span>
-                    payment_type_id:
-                    <strong> <?php echo $model->payment_type_id ?></strong>
-                </li> 
-
-                <li>
-                    <span class='icon12 typ-icon-arrow-right'></span>
-                    ref_no:
-                    <strong> <?php echo $model->ref_no ?></strong>
-                </li> 
-
-                <li>
-                    <span class='icon12 typ-icon-arrow-right'></span>
-                    or_no:
-                    <strong> <?php echo $model->or_no ?></strong>
-                </li> 
-
-                <li>
-                    <span class='icon12 typ-icon-arrow-right'></span>
-                    branch_id:
-                    <strong> <?php echo $model->branch_id ?></strong>
-                </li> 
-
-                <li>
-                    <span class='icon12 typ-icon-arrow-right'></span>
-                    client_id:
-                    <strong> <?php echo $model->client_id ?></strong>
-                </li> 
-
-                <li>
-                    <span class='icon12 typ-icon-arrow-right'></span>
-                    employee_id:
-                    <strong> <?php echo $model->employee_id ?></strong>
-                </li> 
-
-                <li>
-                    <span class='icon12 typ-icon-arrow-right'></span>
-                    customer_id:
-                    <strong> <?php echo $model->customer_id ?></strong>
-                </li> 
-
-                <li>
-                    <span class='icon12 typ-icon-arrow-right'></span>
-                    quantity:
-                    <strong> <?php echo $model->quantity ?></strong>
-                </li> 
-
-                <li>
-                    <span class='icon12 typ-icon-arrow-right'></span>
-                    payable:
-                    <strong> <?php echo $model->payable ?></strong>
-                </li> 
-
-                <li>
-                    <span class='icon12 typ-icon-arrow-right'></span>
-                    amount:
-                    <strong> <?php echo $model->amount ?></strong>
-                </li> 
-
-                <li>
-                    <span class='icon12 typ-icon-arrow-right'></span>
-                    discount:
-                    <strong> <?php echo $model->discount ?></strong>
-                </li> 
-
-                <li>
-                    <span class='icon12 typ-icon-arrow-right'></span>
-                    tax:
-                    <strong> <?php echo $model->tax ?></strong>
-                </li> 
-
-                <li>
-                    <span class='icon12 typ-icon-arrow-right'></span>
-                    amount_net:
-                    <strong> <?php echo $model->amount_net ?></strong>
-                </li> 
-
-                <li>
-                    <span class='icon12 typ-icon-arrow-right'></span>
-                    is_email_sent:
-                    <strong> <?php echo $model->is_email_sent ?></strong>
-                </li> 
-
-                <li>
-                    <span class='icon12 typ-icon-arrow-right'></span>
-                    is_sync:
-                    <strong> <?php echo $model->is_sync ?></strong>
-                </li> 
-
-                <li>
-                    <span class='icon12 typ-icon-arrow-right'></span>
-                    is_deleted:
-                    <strong> <?php echo $model->is_deleted ?></strong>
-                </li> 
-
-            </ul>
+<div class="col-md-6">
+    <div class="box box-primary">
+        <div class="box-header with-border">
+            <h3 class="box-title">View</h3>
+            <?php echo CHtml::link('<i class="fa fa-plus"></i>', $this->createUrl('posPaymentHeaders/create'), array('class' => 'btn btn-xs btn-success pull-right', 'data-toggle' => 'tooltip', 'title' => 'Create')); ?>
+            <?php echo CHtml::link('<i class="fa fa-arrow-left"></i>', $this->createUrl('posPaymentHeaders/admin'), array('class' => 'btn btn-xs btn-primary pull-right', 'data-toggle' => 'tooltip', 'title' => 'Back', 'style' => 'margin-right: 5px;')); ?>
+        </div>
+        <div class="box-body">
+            <table class="table table-bordered">
+                <tr>
+                    <th>Date Created</th>
+                    <td><?php echo Settings::setDateTimeStandard($model->created_at) ?></td>
+                </tr>
+                <tr>
+                    <th>Last Modified</th>
+                    <td><?php echo Settings::setDateTimeStandard($model->updated_at) ?></td>
+                </tr>
+                <tr>
+                    <th>date</th>
+                    <td><?php print $model->date ?></td>
+                </tr>
+                <tr>
+                    <th>payment_type_id</th>
+                    <td><?php print $model->payment_type_id ?></td>
+                </tr>
+                <tr>
+                    <th>ref_no</th>
+                    <td><?php print $model->ref_no ?></td>
+                </tr>
+                <tr>
+                    <th>or_no</th>
+                    <td><?php print $model->or_no ?></td>
+                </tr>
+                <tr>
+                    <th>branch_id</th>
+                    <td><?php print $model->branch_id ?></td>
+                </tr>
+                <tr>
+                    <th>client_id</th>
+                    <td><?php print $model->client_id ?></td>
+                </tr>
+                <tr>
+                    <th>employee_id</th>
+                    <td><?php print $model->employee_id ?></td>
+                </tr>
+                <tr>
+                    <th>customer_id</th>
+                    <td><?php print $model->customer_id ?></td>
+                </tr>
+                <tr>
+                    <th>quantity</th>
+                    <td><?php print $model->quantity ?></td>
+                </tr>
+                <tr>
+                    <th>payable</th>
+                    <td><?php print $model->payable ?></td>
+                </tr>
+                <tr>
+                    <th>amount</th>
+                    <td><?php print $model->amount ?></td>
+                </tr>
+                <tr>
+                    <th>discount</th>
+                    <td><?php print $model->discount ?></td>
+                </tr>
+                <tr>
+                    <th>tax</th>
+                    <td><?php print $model->tax ?></td>
+                </tr>
+                <tr>
+                    <th>amount_net</th>
+                    <td><?php print $model->amount_net ?></td>
+                </tr>
+                <tr>
+                    <th>is_email_sent</th>
+                    <td><?php print $model->is_email_sent ?></td>
+                </tr>
+                <tr>
+                    <th>is_sync</th>
+                    <td><?php print $model->is_sync ?></td>
+                </tr>
+            </table>
         </div>
     </div>
 </div>

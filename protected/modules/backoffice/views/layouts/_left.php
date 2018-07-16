@@ -7,7 +7,7 @@
                 <img src="<?php print Settings::get_baseUrl(); ?>/adminlte/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image" />
             </div>
             <div class="pull-left info">
-                <p><?php print Settings::get_Username() ?></p>
+                <p><?php print Employees::sql_getFirstName(Settings::get_EmployeeID()) ?></p>
 
                 <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
             </div>
@@ -34,11 +34,10 @@
             $menus = RoleBasedAccess::model_getParentUserID(Utilities::NO, Settings::get_UserID(), Utilities::YES, $model->role);
         }
         ?>
-        <?php
-        foreach ($menus as $menus):
-            ?>
-            <ul class="sidebar-menu">
-                <li>
+
+        <ul class="sidebar-menu tree" data-widget="tree">
+            <?php foreach ($menus as $menus): ?>
+                <li class="treeview">
                     <?php if ($menus->menus->is_url == Utilities::YES): ?>
                         <?php if ($menus->menus->params): ?>
                             <?php $params = "?" . $menus->menus->params; ?>
@@ -71,7 +70,7 @@
                                     <?php $liClass = str_replace("'", "", $subMenu1->menus->li_class); ?>
                                     <?php $liClassArr = explode("::", $subMenu1->menus->li_class); ?>
                                     <?php $menuClass = $subMenu1->menus->li_class; ?>
-                                    <li class="treeview">
+                                    <li class="">
                                         <a href="#"><i class ="fa fa-user"></i><span class="menu-item-parent"><?php print $subMenu1->menus->name ?></span></a>
 
                                         <ul class="treeview-menu">        
@@ -105,7 +104,7 @@
                                                     <?php $liClass = str_replace("'", "", $subMenu2->menus->li_class); ?>
                                                     <?php $liClassArr = explode("::", $subMenu2->menus->li_class); ?>
                                                     <?php $menuClass = $subMenu2->menus->li_class; ?>
-                                                    <li class="treeview">
+                                                    <li class="">
                                                         <?php
                                                         if ($paramsArr[1] != "") {
                                                             print CHtml::link('<i class ="fa fa-circle-o"></i>' . $subMenu2->menus->name, $this->createUrl($subMenu2->menus->controller_name . '/' . $subMenu2->menus->action_name, array($paramsArr[0] => ($paramsArr != NULL) ? $paramsArr[1] : "")), array('onclick' => 'setSessionData(this.href)'));
@@ -133,7 +132,7 @@
                                                                     <?php $params2Arr = null; ?>
                                                                 <?php endif; ?>
 
-                                                                <li class="treeview">
+                                                                <li class="">
                                                                     <?php
                                                                     if ($paramsArr[1] != "") {
                                                                         print CHtml::link('<i class ="fa fa-circle-o"></i>' . $subMenu3->menus->name, $this->createUrl($subMenu3->menus->controller_name . '/' . $subMenu3->menus->action_name, array($params2Arr[0] => ($params2Arr != NULL) ? $params2Arr[1] : "")), array('onclick' => 'setSessionData(this.href)'));
@@ -141,7 +140,7 @@
                                                                         print CHtml::link('<i class ="fa fa-circle-o"></i>' . $subMenu3->menus->name, $this->createUrl($subMenu3->menus->controller_name . '/' . $subMenu3->menus->action_name), array('onclick' => 'setSessionData(this.href)'));
                                                                     }
                                                                     ?>
-                                                                    <?php // print CHtml::link('<i class ="minia-icon-file-add"></i>' . $subMenu3->menus->name, $this->createUrl($subMenu3->menus->controller_name . '/' . $subMenu3->menus->action_name, array($params2Arr[0] => ($params2Arr[1]) ? $params2Arr[1] : "")), array('onclick' => 'setSessionData(this.href)'));  ?>
+                                                                    <?php // print CHtml::link('<i class ="minia-icon-file-add"></i>' . $subMenu3->menus->name, $this->createUrl($subMenu3->menus->controller_name . '/' . $subMenu3->menus->action_name, array($params2Arr[0] => ($params2Arr[1]) ? $params2Arr[1] : "")), array('onclick' => 'setSessionData(this.href)')); ?>
                                                                 </li>  
                                                             <?php endforeach; ?>
                                                         </ul>
@@ -156,9 +155,72 @@
                     <?php endif; ?>
                 </li>
             </ul>
-            <?php
-        endforeach;
-        ?>
+        <?php endforeach; ?>
     </section>
     <!-- /.sidebar -->
 </aside>
+
+<script>
+    $(document).ready(function () {
+        var defaultHref = 'http://localhost:8080/elsts/index.php?r=siteadmin/default/index';
+        var sessionHref = retrieveSessionDataUrl();
+
+        loc = (sessionHref == '') ? defaultHref : sessionHref;
+        newloc = retrieveCurrentURL()
+        $('ul a').filter(function () {
+            if (loc == newloc) {
+                return this.href == newloc;
+            } else {
+                if (this.href == loc) {
+                    return this.href == loc;
+                } else {
+                    return this.href == newloc;
+                }
+            }
+        }).parent().addClass('active');
+
+        var countActive = $('li.active').length;
+
+        if (countActive > 1) {
+            $('ul a').filter(function () {
+                return this.href == loc;
+            }).parent().removeClass('active');
+            $('ul a').filter(function () {
+                return this.href == newloc;
+            }).parent().addClass('active');
+        }
+    });
+
+    function setSessionData(val) {
+        loc = escape(val);
+        $.ajax({
+            type: 'GET',
+            url: '?r=siteadmin/settings/setSessionData',
+            data: 'fieldID=' + 'url' + '&value=' + loc + '&controllerID=' + 'Settings',
+            success: function (data) {
+            }
+        });
+    }
+
+    function retrieveSessionDataUrl() {
+        var result = "";
+        $.ajax({
+            type: 'POST',
+            url: '?r=siteadmin/settings/retrieveSessionDataUrl',
+            dataType: "html",
+            async: false,
+            success: function (data) {
+                result = data;
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                alert("get session failed " + errorThrown);
+            }
+        });
+
+        return result;
+    }
+
+    function retrieveCurrentURL() {
+        return '<?php print $_SERVER['REQUEST_SCHEME'] . '://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'] ?>';
+    }
+</script>

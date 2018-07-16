@@ -1,41 +1,17 @@
-<?php $this->renderPartial('/layouts/js/_regionsToBarangays'); ?>
-<!-- widget div-->
-<div>
-    <!-- widget edit box -->
-    <div class="jarviswidget-editbox">
-        <!-- This area used as dropdown edit box -->
+<?php print CHtml::beginForm('', 'POST', array('role' => 'form')); ?>
+<div class="box-body">
+    <div class="form-group">
+        <?php print CHtml::activeLabelEx($model, 'name'); ?>
+        <?php print CHtml::activeTextField($model, 'name', array('class' => 'form-control', 'placeholder' => '')); ?>
     </div>
-    <!-- end widget edit box -->
-
-    <!-- widget content -->
-    <div class="widget-body no-padding">
-
-        <!--<form class="smart-form">-->
-        <?php print CHtml::beginForm('', 'POST', array('class' => 'smart-form')); ?>
-        <?php $this->widget('Flashes'); ?>
-
-        <fieldset>
-            <section>
-                <label>
-                    <?php echo CHtml::activeLabelEx($model, 'name'); ?>
-                </label>
-                <label class="input"><i class="icon-prepend fa fa-book"></i>
-                    <?php echo CHtml::activeTextField($model, 'name', array('size' => 60, 'maxlength' => 255, 'placeholder' => '')); ?>
-                    <b class="tooltip tooltip-bottom-left">
-                        Name
-                    </b> 
-                </label>
-            </section>
-            <div class="widget-footer smart-form">
-                <?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save', array('class' => 'btn btn-sm btn-success')); ?>
-            </div>
-        </fieldset>
-
-        <?php print CHtml::endForm(); ?>
-        <!--</form>-->
-
+    <div class="form-group">
+        <?php print CHtml::activeLabelEx($model, 'module_id'); ?>
+        <?php print CHtml::activeDropDownList($model, 'module_id', CHtml::listData(Modules::model_getData_byIsDeleted(Utilities::NO), 'id', 'name'), array('class' => 'form-control', 'prompt' => 'Choose One')); ?>
     </div>
-    <!-- end widget content -->
-
 </div>
 
+<div class="box-footer">
+    <?php print CHtml::link('Back', $this->createUrl('roles/admin'), array('class' => 'btn btn-default')); ?>
+    <?php print CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save', array('class' => 'btn btn-primary pull-right')); ?>
+</div>
+<?php print CHtml::endForm(); ?>

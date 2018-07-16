@@ -37,7 +37,7 @@
                 </section>
                 <section class="col col-6">
                     <label class="input"><i class="icon-prepend glyphicon glyphicon-user"></i>
-                        <?php echo CHtml::activeTextField($modelUpdate, 'username',array('placeholder'=>'Username')); ?>
+                        <?php echo CHtml::activeTextField($modelUpdate, 'username', array('placeholder' => 'Username')); ?>
                         <b class="tooltip tooltip-bottom-left">
                             Username
                         </b> 
@@ -48,7 +48,7 @@
             <div class="row">
                 <section class="col col-6">
                     <label class="input"><i class="icon-prepend fa fa-envelope"></i>
-                        <?php echo CHtml::activeTextField($modelUpdate, 'email',array('placeholder'=>'Email')); ?>
+                        <?php echo CHtml::activeTextField($modelUpdate, 'email', array('placeholder' => 'Email')); ?>
                         <b class="tooltip tooltip-bottom-left">
                             Email
                         </b> 
@@ -63,11 +63,11 @@
                     </label>
                 </section>
             </div>
-            
+
             <div class="row">
                 <section class="col col-6">
                     <label class="input"><i class="icon-prepend fa fa-unlock-alt"></i>
-                        <?php echo CHtml::activePasswordField($modelUpdate, 'new_password',array('placeholder'=>'New Password')); ?>
+                        <?php echo CHtml::activePasswordField($modelUpdate, 'new_password', array('placeholder' => 'New Password')); ?>
                         <b class="tooltip tooltip-bottom-left">
                             Password
                         </b> 
@@ -75,16 +75,16 @@
                 </section>
                 <section class="col col-6">
                     <label class="input"><i class="icon-prepend fa fa-lock"></i>
-                        <?php echo CHtml::activePasswordField($modelUpdate, 'repeat_password',array('placeholder'=>'Repeat Password')); ?>
+                        <?php echo CHtml::activePasswordField($modelUpdate, 'repeat_password', array('placeholder' => 'Repeat Password')); ?>
                         <b class="tooltip tooltip-bottom-left">
                             Confirm Password
                         </b> 
                     </label>
                 </section>
             </div>
-            
+
             <div class="widget-footer smart-form">
-                <?php echo CHtml::link('<i class="fa fa-times">'.' Cancel</i>', $this->createUrl('users/admin'), array('class' => 'btn btn-sm btn-danger', 'style' => 'width: 70px;')); ?>
+                <?php echo CHtml::link('<i class="fa fa-times">' . ' Cancel</i>', $this->createUrl('users/admin'), array('class' => 'btn btn-sm btn-danger', 'style' => 'width: 70px;')); ?>
                 <?php echo CHtml::submitButton($modelUpdate->isNewRecord ? 'Update' : 'Update', array('class' => 'btn btn-sm btn-success', 'style' => 'width: 60px;')); ?>
             </div>
 

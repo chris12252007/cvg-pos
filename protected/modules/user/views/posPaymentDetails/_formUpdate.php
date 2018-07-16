@@ -1,64 +1,33 @@
-<?php print CHtml::beginForm('', 'POST', array('class' => 'smart-form')); ?>
-<fieldset>
-    <div class ="row">
-        <div class ="col-lg-3">
-            <?php echo CHtml::activeLabelEx($model, 'created_at'); ?>
-            <label class="input"><i class="icon-prepend minia-icon-book"></i>
-                <?php echo CHtml::activeTextField($model, 'created_at'); ?>
-            </label>
-        </div>
-        <div class ="col-lg-3">
-            <?php echo CHtml::activeLabelEx($model, 'updated_at'); ?>
-            <label class="input"><i class="icon-prepend minia-icon-book"></i>
-                <?php echo CHtml::activeTextField($model, 'updated_at'); ?>
-            </label>
-        </div>
-        <div class ="col-lg-3">
-            <?php echo CHtml::activeLabelEx($model, 'header_id'); ?>
-            <label class="input"><i class="icon-prepend minia-icon-book"></i>
-                <?php echo CHtml::activeTextField($model, 'header_id'); ?>
-            </label>
-        </div>
-        <div class ="col-lg-3">
-            <?php echo CHtml::activeLabelEx($model, 'transaction_id'); ?>
-            <label class="input"><i class="icon-prepend minia-icon-book"></i>
-                <?php echo CHtml::activeTextField($model, 'transaction_id'); ?>
-            </label>
-        </div>
-        <div class ="col-lg-3">
-            <?php echo CHtml::activeLabelEx($model, 'inventory_id'); ?>
-            <label class="input"><i class="icon-prepend minia-icon-book"></i>
-                <?php echo CHtml::activeTextField($model, 'inventory_id'); ?>
-            </label>
-        </div>
-        <div class ="col-lg-3">
-            <?php echo CHtml::activeLabelEx($model, 'price'); ?>
-            <label class="input"><i class="icon-prepend minia-icon-book"></i>
-                <?php echo CHtml::activeTextField($model, 'price'); ?>
-            </label>
-        </div>
-        <div class ="col-lg-3">
-            <?php echo CHtml::activeLabelEx($model, 'amount_paid'); ?>
-            <label class="input"><i class="icon-prepend minia-icon-book"></i>
-                <?php echo CHtml::activeTextField($model, 'amount_paid'); ?>
-            </label>
-        </div>
-        <div class ="col-lg-3">
-            <?php echo CHtml::activeLabelEx($model, 'is_sync'); ?>
-            <label class="input"><i class="icon-prepend minia-icon-book"></i>
-                <?php echo CHtml::activeTextField($model, 'is_sync'); ?>
-            </label>
-        </div>
-        <div class ="col-lg-3">
-            <?php echo CHtml::activeLabelEx($model, 'is_deleted'); ?>
-            <label class="input"><i class="icon-prepend minia-icon-book"></i>
-                <?php echo CHtml::activeTextField($model, 'is_deleted'); ?>
-            </label>
-        </div>
+<?php print CHtml::beginForm('', 'POST', array('role' => 'form')); ?>
+<div class="box-body">
+    <div class="form-group">
+        <?php print CHtml::activeLabelEx($model, 'header_id'); ?>
+        <?php print CHtml::activeTextField($model, 'header_id', array('class' => 'form-control', 'placeholder' => '')); ?>
     </div>
-    <div class="footer-button">
-        <?php echo CHtml::link('Back', $this->createUrl('PosPaymentDetails/admin'), array('class' => 'btn btn-danger btn-sm')); ?>
-        <?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save', array('class' => 'btn btn-sm btn-success')); ?>
+    <div class="form-group">
+        <?php print CHtml::activeLabelEx($model, 'transaction_id'); ?>
+        <?php print CHtml::activeTextField($model, 'transaction_id', array('class' => 'form-control', 'placeholder' => '')); ?>
     </div>
-</fieldset>
+    <div class="form-group">
+        <?php print CHtml::activeLabelEx($model, 'inventory_id'); ?>
+        <?php print CHtml::activeTextField($model, 'inventory_id', array('class' => 'form-control', 'placeholder' => '')); ?>
+    </div>
+    <div class="form-group">
+        <?php print CHtml::activeLabelEx($model, 'price'); ?>
+        <?php print CHtml::activeTextField($model, 'price', array('class' => 'form-control', 'placeholder' => '')); ?>
+    </div>
+    <div class="form-group">
+        <?php print CHtml::activeLabelEx($model, 'amount_paid'); ?>
+        <?php print CHtml::activeTextField($model, 'amount_paid', array('class' => 'form-control', 'placeholder' => '')); ?>
+    </div>
+    <div class="form-group">
+        <?php print CHtml::activeLabelEx($model, 'is_sync'); ?>
+        <?php print CHtml::activeTextField($model, 'is_sync', array('class' => 'form-control', 'placeholder' => '')); ?>
+    </div>
+</div>
+
+<div class="box-footer">
+    <?php print CHtml::link('Back', $this->createUrl('posPaymentDetails/admin'), array('class' => 'btn btn-default')); ?>
+    <?php print CHtml::submitButton($model->isNewRecord ? 'Save' : 'Update', array('class' => 'btn btn-primary pull-right')); ?>
+</div>
 <?php print CHtml::endForm(); ?>

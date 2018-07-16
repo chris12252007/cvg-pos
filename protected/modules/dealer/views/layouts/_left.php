@@ -7,7 +7,7 @@
                 <img src="<?php print Settings::get_baseUrl(); ?>/adminlte/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image" />
             </div>
             <div class="pull-left info">
-                <p><?php print Employees::sql_getFirstName(Settings::get_EmployeeID())?></p>
+                <p><?php print Employees::sql_getFirstName(Settings::get_EmployeeID()) ?></p>
 
                 <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
             </div>
@@ -24,7 +24,7 @@
         <!-- /.search form -->  
         <?php
         $model = Utilities::model_getByID(Users::model(), Settings::get_UserID());
-        $role  = Utilities::model_getByID(Roles::model(), $model->role);
+        $role = Utilities::model_getByID(Roles::model(), $model->role);
 
         if ($model->is_override_useraccess == Utilities::YES) {
 
@@ -34,9 +34,9 @@
             $menus = RoleBasedAccess::model_getParentUserID(Utilities::NO, Settings::get_UserID(), Utilities::YES, $model->role);
         }
         ?>
-       
+
         <ul class="sidebar-menu tree" data-widget="tree">
-             <?php foreach ($menus as $menus): ?>
+            <?php foreach ($menus as $menus): ?>
                 <li class="treeview">
                     <?php if ($menus->menus->is_url == Utilities::YES): ?>
                         <?php if ($menus->menus->params): ?>
@@ -155,7 +155,7 @@
                     <?php endif; ?>
                 </li>
             </ul>
-            <?php endforeach;?>
+        <?php endforeach; ?>
     </section>
     <!-- /.sidebar -->
 </aside>

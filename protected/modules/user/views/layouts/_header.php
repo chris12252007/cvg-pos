@@ -1,10 +1,10 @@
 <header class="main-header">
     <!-- Logo -->
-    <a href="http://localhost:8080/elsts/index.php?r=siteadmin/default/index" class="logo"><b>ELS</b> Admin</a>
+    <a href="http://localhost:8080/elsts/index.php?r=siteadmin/default/index" class="logo"><b>Ãdmin</b> LTE</a>
     <!-- Header Navbar: style can be found in header.less -->
     <nav class="navbar navbar-static-top" role="navigation">
         <!-- Sidebar toggle button-->
-        <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+        <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
             <span class="sr-only">Toggle navigation</span>
         </a>
         <!-- Navbar Right Menu -->
@@ -203,7 +203,7 @@
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         <img src="<?php print Settings::get_baseUrl(); ?>/adminlte/dist/img/user2-160x160.jpg" class="user-image" alt="User Image"/>
                         <span class="hidden-xs">
-                            <?php print Settings::get_Username() ?>
+                            <?php print Employees::sql_getFirstName(Settings::get_EmployeeID()) ?>
                         </span>
                     </a>
                     <ul class="dropdown-menu">
