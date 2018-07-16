@@ -220,13 +220,207 @@ public static function model($className=__CLASS__)
 return parent::model($className);
 }
 
-public static function model_getAllData_byDeleted($isDeleted)
-{
-return self::model()->findAll('is_deleted = :isDeleted', array(':isDeleted' => $isDeleted));
-}
+    public static function model_getAllData_byDeleted($isDeleted)
+    {
+        $crit = new CDbCriteria();
+        $crit->condition = 'is_deleted = :isDeleted';
+        $crit->params = array(':isDeleted' => Utilities::NO);
+//        $crit->order = 'lastname asc';
+        return self::model()->findAll($crit);
+    }
 
-function getIsDeleted()
-{
-return Utilities::get_ActiveSelect($this->is_deleted);
-}
+    public function getLnameFname()
+    {
+        return $this->lastname . ', ' . $this->firstname;
+    }
+
+    public function getCodeStandardName()
+    {
+        return $this->employee_no . ' - ' . $this->lnameFname;
+    }
+
+    public static function sql_getDeptID_byID($id)
+    {
+        $cnn = Utilities::createConnection();
+        $sql = 'select department_id from ' . self::tbl() . ' where id = :employeeID limit 1';
+        $command = $cnn->createCommand($sql);
+        $command->bindValue(':employeeID', $id, PDO::PARAM_INT);
+        return $command->queryScalar();
+    }
+
+    public static function sql_getEmpNo_byID($id)
+    {
+        $cnn = Utilities::createConnection();
+        $sql = 'select employee_no from ' . self::tbl() . ' where id = :employeeID limit 1';
+        $command = $cnn->createCommand($sql);
+        $command->bindValue(':employeeID', $id, PDO::PARAM_INT);
+
+        $empNo = $command->queryScalar();
+        return ($empNo) ? $empNo : 0;
+    }
+
+    public static function sql_getLocationID_byID($id)
+    {
+        $cnn = Utilities::createConnection();
+        $sql = 'select location_id from ' . self::tbl() . ' where id = :employeeID limit 1';
+        $command = $cnn->createCommand($sql);
+        $command->bindValue(':employeeID', $id, PDO::PARAM_INT);
+        return $command->queryScalar();
+    }
+
+    public static function sql_getFullName($id)
+    {
+        $cnn = Utilities::createConnection();
+        $sql = 'select firstname from ' . self::tbl() . ' where id = :emp_id limit 1';
+        $command = $cnn->createCommand($sql);
+        $command->bindValue(':emp_id', $id, PDO::PARAM_INT);
+        $fname = $command->queryScalar();
+
+        $sql = 'select middlename from ' . self::tbl() . ' where id = :emp_id limit 1';
+        $command = $cnn->createCommand($sql);
+        $command->bindValue(':emp_id', $id, PDO::PARAM_INT);
+        $mname = $command->queryScalar();
+
+        $sql = 'select lastname from ' . self::tbl() . ' where id = :emp_id limit 1';
+        $command = $cnn->createCommand($sql);
+        $command->bindValue(':emp_id', $id, PDO::PARAM_INT);
+        $lname = $command->queryScalar();
+
+        $mi = substr($mname, 0, 1);
+
+        return $fname . ' ' . $mi . '. ' . $lname;
+    }
+
+    public static function sql_getFirstName($id)
+    {
+        $cnn = Utilities::createConnection();
+        $sql = 'select firstname from ' . self::tbl() . ' where id = :emp_id limit 1';
+        $command = $cnn->createCommand($sql);
+        $command->bindValue(':emp_id', $id, PDO::PARAM_INT);
+        $fname = $command->queryScalar();
+
+        $sql = 'select middlename from ' . self::tbl() . ' where id = :emp_id limit 1';
+        $command = $cnn->createCommand($sql);
+        $command->bindValue(':emp_id', $id, PDO::PARAM_INT);
+        $mname = $command->queryScalar();
+
+        $sql = 'select lastname from ' . self::tbl() . ' where id = :emp_id limit 1';
+        $command = $cnn->createCommand($sql);
+        $command->bindValue(':emp_id', $id, PDO::PARAM_INT);
+        $lname = $command->queryScalar();
+
+        $mi = substr($mname, 0, 1);
+
+        return $fname ;
+    }
+
+    function getIsDeleted()
+    {
+        return Utilities::get_ActiveSelect($this->is_deleted);
+    }
+
+    public function getIsActive()
+    {
+        if ($this->is_active == Utilities::YES) {
+            $color = 'label-primary';
+        } else {
+            $color = 'label-danger';
+        }
+        return '<div class="label label-table ' . $color . ' " style="border-radius: none !important; font-size: 10px; text-align: center; font-weight: bold; text-transform: uppercase; padding: 2px 8px !important;"><span">' . Utilities::get_ActiveStatus($this->is_active) . '</span></div>';
+    }
+
+    function getCivilStatus()
+    {
+        return $this->getActiveSelectCivilStatus($this->civil_status_id);
+    }
+
+    public static function getActiveSelectCivilStatus($id = null)
+    {
+        $status = array(1 => 'Single', 2 => 'Married', 3 => 'Widowed');
+        if (is_null($id))
+            return $status;
+        else
+            return $status[$id];
+    }
+
+    public static function generateEmployeeNo()
+    {
+        $customerNum = Settings::model_getValue_byID(Settings::CONFIG_CUSTOMER_NO_LENGTH)->value;
+        $custID = self::getLastInsertedEmpNo() + 1;
+        return sprintf("%0" . $customerNum . "d", $custID);
+    }
+
+    public function getLastInsertedEmpNo()
+    {
+        $cnn = Utilities::createConnection();
+        $sql = 'SELECT employee_no FROM ' . self::tbl() . ' ORDER BY id DESC limit 1';
+        $command = $cnn->createCommand($sql);
+        return $command->queryScalar();
+    }
+
+    public function addRecord()
+    {
+        $model = new Employees();
+        $model->created_at = $this->created_at;
+        $model->updated_at = $this->updated_at;
+        $model->employee_no = $this->employee_no;
+        $model->firstname = $this->firstname;
+        $model->middlename = $this->middlename;
+        $model->lastname = $this->lastname;
+        $model->mobile = $this->mobile;
+        $model->phone = $this->phone;
+        $model->email = $this->email;
+        $model->birthdate = $this->birthdate;
+        $model->civil_status_id = $this->civil_status_id;
+        $model->address1 = $this->address1;
+        $model->address2 = $this->address2;
+        $model->region_id = $this->region_id;
+        $model->province_id = $this->province_id;
+        $model->municipality_id = $this->municipality_id;
+        $model->barangay_id = $this->barangay_id;
+        $model->office_id = $this->office_id;
+        $model->citizenship_id = $this->citizenship_id;
+        $model->branch_id = $this->branch_id;
+        $model->contact_person_id = $this->contact_person_id;
+        $model->occupation_id = $this->occupation_id;
+        $model->department_id = $this->department_id;
+        $model->manager_id = $this->manager_id;
+        $model->location_id = $this->location_id;
+        $model->is_active = $this->is_active;
+        $model->is_deleted = $this->is_deleted;
+
+        if ($model->validate()) {
+            $model->save();
+            $message[0] = $model->id;
+            $message[1] = 'Employee Successfully Created.';
+        } else {
+            $message[0] = 0;
+            $message[1] = Utilities::get_ModelErrors($model->errors);
+        }
+
+        return $message;
+    }
+
+    public static function model_getAllData_bySalesAgent($isAgent)
+    {
+        return self::model()->findAll('is_agent = :isAgent', array(':isAgent' => $isAgent));
+    }
+
+    public function getIsAgent()
+    {
+        if ($this->is_agent == Utilities::YES) {
+            $color = 'label-primary';
+        } else {
+            $color = 'label-danger';
+        }
+        return '<div class="label label-table ' . $color . ' " style="border-radius: none !important; font-size: 10px; text-align: center; font-weight: bold; text-transform: uppercase; padding: 2px 8px !important;"><span">' . Utilities::get_ActiveSelect($this->is_agent) . '</span></div>';
+    }
+
+    public function getFullname()
+    {
+        $fullname = $this->firstname . " " . $this->middlename . " " . $this->lastname;
+
+        return $fullname;
+    }
+
 }
