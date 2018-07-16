@@ -18,8 +18,7 @@
  * @property integer $parent_id
  * @property integer $is_deleted
  */
-class UserBasedAccess extends CActiveRecord
-{
+class UserBasedAccess extends CActiveRecord {
 
     protected $oldAttributes;
 
@@ -45,8 +44,7 @@ class UserBasedAccess extends CActiveRecord
 
         $changedArray = array_diff_assoc($this->attributes, $this->oldAttributes);
 
-        foreach ($changedArray as $key => $value)
-        {
+        foreach ($changedArray as $key => $value) {
             if (strcmp($key, 'updated_at'))
                 AuditTrails::newRecord(AuditTrails::TRANS_TYPE_UPDATE, self::tbl(), $key, $this->attributes['id'], $this->oldAttributes[$key], $value, Settings::get_UserID(), Settings::get_EmployeeID());
         }
@@ -287,7 +285,7 @@ class UserBasedAccess extends CActiveRecord
 
     public static function model_getByUserID_menuID($menuID, $userID, $isDeleted)
     {
-        return self::model()->findAll(' menu_id = :menuID AND user_id = :userID AND is_deleted =:isDeleted', array(':menuID' => $menuID,':userID' => $userID, ':isDeleted' =>$isDeleted));
+        return self::model()->findAll(' menu_id = :menuID AND user_id = :userID AND is_deleted =:isDeleted', array(':menuID' => $menuID, ':userID' => $userID, ':isDeleted' => $isDeleted));
     }
 
 }

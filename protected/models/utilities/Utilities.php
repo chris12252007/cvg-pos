@@ -1,7 +1,6 @@
 <?php
 
-class Utilities
-{
+class Utilities {
 
     const YES = 1;
     const NO = 0;
@@ -118,10 +117,8 @@ class Utilities
     public static function get_ModelErrors($modelErrors)
     {
         $errorMsg = NULL;
-        foreach ($modelErrors as $modelErrors)
-        {
-            foreach ($modelErrors as $messages)
-            {
+        foreach ($modelErrors as $modelErrors) {
+            foreach ($modelErrors as $messages) {
                 $errorMsg .= $messages . '<br />';
             }
         }
@@ -201,14 +198,13 @@ class Utilities
 
     public static function setMenuActive_Siteadmin($menu, $action = null)
     {
-       
+        
     }
 
     public static function generateRandomNumbers($length)
     {
         $max = 0;
-        for ($x = 0; $x < $length; $x++)
-        {
+        for ($x = 0; $x < $length; $x++) {
             $max .= '9';
         }
         $studentNo = rand(1, $max);
@@ -218,8 +214,7 @@ class Utilities
         if ($studentNoLength != $length) {
 
             $lenDiff = $length - $studentNoLength;
-            for ($x = 0; $x < $lenDiff; $x++)
-            {
+            for ($x = 0; $x < $lenDiff; $x++) {
                 $zeroes .= '0';
             }
             $studentNo = $zeroes . $studentNo;
@@ -266,8 +261,7 @@ class Utilities
         $randNos = rand($min, $max);
 
         $zeroes = 0;
-        for ($x = 0; $x < $len; $x++)
-        {
+        for ($x = 0; $x < $len; $x++) {
             $zeroes .= $zeroes;
         }
         $diffLen = $len - strlen($randNos);
@@ -278,8 +272,7 @@ class Utilities
     {
         $codeLen = strlen($codeInt);
 
-        for ($x = 0; $x < $length; $x++)
-        {
+        for ($x = 0; $x < $length; $x++) {
             $code .= '0';
         }
         $code = substr($code, 0, ($length - $codeLen));

@@ -1,6 +1,6 @@
 <?php
 
-class RoleBasedAccessController extends SiteAdminController {
+class RoleBasedAccessController extends SiteadminController {
     /**
      * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
      * using two-column layout. See 'protected/views/layouts/column2.php'.
@@ -29,8 +29,8 @@ class RoleBasedAccessController extends SiteAdminController {
     public function accessRules()
     {
         return array(
-            array('allow', // allow all users to perform 'index' and 'view' actions
-                'actions' => array('create', 'admin', 'view', 'update', 'delete'),
+            array('allow', // allow authenticated user to perform 'create' and 'update' actions
+                'actions' => array('create', 'update', 'delete', 'admin', 'view'),
                 'users' => array('@'),
             ),
             array('deny', // deny all users
@@ -64,11 +64,10 @@ class RoleBasedAccessController extends SiteAdminController {
             $model->attributes = $_POST['RoleBasedAccess'];
             $model->created_at = Settings::get_DateTime();
             $model->updated_at = Settings::get_DateTime();
-            $model->is_deleted = Utilities::NO;
 
             if ($model->validate()) {
                 $model->save();
-                Utilities::set_Flash(Utilities::FLASH_SUCCESS, "New Role Based Access successfully created");
+                Utilities::set_Flash(Utilities::FLASH_SUCCESS, 'New RoleBasedAccess Successfully Created.');
                 $this->redirect(array('view', 'id' => $model->id));
             } else {
                 Utilities::set_Flash(Utilities::FLASH_ERROR, Utilities::get_ModelErrors($model->errors));
@@ -79,11 +78,6 @@ class RoleBasedAccessController extends SiteAdminController {
         $this->render('create', array(
             'model' => $model,
         ));
-    }
-
-    public function gotoCreate()
-    {
-        $this->redirect($this->createUrl('roleBasedAccess/create'));
     }
 
     /**
@@ -103,11 +97,11 @@ class RoleBasedAccessController extends SiteAdminController {
 
             if ($model->validate()) {
                 $model->save();
-                Utilities::set_Flash(Utilities::FLASH_SUCCESS, 'Role Based Access Successfully Updated');
+                Utilities::set_Flash(Utilities::FLASH_SUCCESS, 'RoleBasedAccess Successfully Updated');
+                $this->redirect(array('view', 'id' => $model->id));
             } else {
                 Utilities::set_Flash(Utilities::FLASH_ERROR, Utilities::get_ModelErrors($model->errors));
             }
-            $this->redirect(array('view', 'id' => $model->id));
         }
 
         $this->render('update', array(
@@ -151,9 +145,10 @@ class RoleBasedAccessController extends SiteAdminController {
      */
     public function actionAdmin()
     {
+        unset($_SESSION[$_SESSION['lastSession']]);
+        Utilities::setMenuActive_Siteadmin(Settings::get_ControllerID(), 'RoleBasedAccess::tbl()', Settings::get_ActionID());
         $model = new RoleBasedAccess('search');
         $model->unsetAttributes();  // clear any default values
-        Utilities::setMenuActive_SiteAdmin(Settings::get_ControllerID(), Settings::get_ActionID());
         if (isset($_GET['RoleBasedAccess']))
             $model->attributes = $_GET['RoleBasedAccess'];
         $model->is_deleted = Utilities::NO;
@@ -188,6 +183,11 @@ class RoleBasedAccessController extends SiteAdminController {
             echo CActiveForm::validate($model);
             Yii::app()->end();
         }
+    }
+
+    public function gotoCreate()
+    {
+        $this->redirect($this->createUrl('roleBasedAccess/create'));
     }
 
 }

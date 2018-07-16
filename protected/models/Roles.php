@@ -13,7 +13,7 @@
 class Roles extends CActiveRecord {
 
     protected $oldAttributes;
-    
+
     const ROLE_ADMINISTRATOR = 1;
     const ROLE_STOCKCUSTODIAN = 2;
     const ROLE_PURCHASING = 3;
@@ -23,7 +23,6 @@ class Roles extends CActiveRecord {
     const ROLE_COST_ACCOUNTANT = 7;
     const CREDIT_AND_COLLECTION = 8;
     const ROLE_SALES_ADMIN = 9;
-    
 
     /**
      * @return string the associated database table name
@@ -87,6 +86,7 @@ class Roles extends CActiveRecord {
         // NOTE: you may need to adjust the relation name and the related
         // class name for the relations automatically generated below.
         return array(
+            'modules' => array(self::BELONGS_TO, 'Modules', 'module_id'),
         );
     }
 

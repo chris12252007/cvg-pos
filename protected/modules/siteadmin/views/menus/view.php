@@ -1,53 +1,53 @@
-<div class="col-lg-4">
-    <div class="metronicView">
-        <header>
-            <span><i class="minia-icon-search"></i>View - Menus</span>
-            <?php print CHtml::link('<i class="brocco-icon-plus"></i>', $this->createUrl('menus/create'), array('class' => 'btn-back', 'data-tooltip' => 'Create')); ?>
-            <?php print CHtml::link('View/Search', $this->createUrl('menus/admin'), array('class' => 'btn-back')); ?>
-        </header>
-        <div class ="row">
-            <ul class = "col-lg-12 unstyled">
-                <li>
-                    <span class="icon12 typ-icon-arrow-right"></span>
-                    Date Created
-                    <strong> <?php echo $model->created_at ?></strong>
-                </li> 
-                <li>
-                    <span class="icon12 typ-icon-arrow-right"></span>
-                    Last Modified
-                    <strong> <?php echo $model->updated_at ?></strong>
-                </li> 
-                <li>
-                    <span class="icon12 typ-icon-arrow-right"></span>
-                    Name
-                    <strong> <?php echo $model->name ?></strong>
-                </li> 
-                <li>
-                    <span class="icon12 typ-icon-arrow-right"></span>
-                    Modules
-                    <strong> <?php echo $model->modules->name ?></strong>
-                </li> 
-                <li>
-                    <span class="icon12 typ-icon-arrow-right"></span>
-                    Controllers
-                    <strong> <?php echo $model->controllers->name ?></strong>
-                </li> 
-                <li>
-                    <span class="icon12 typ-icon-arrow-right"></span>
-                    Action
-                    <strong> <?php echo $model->actions->name ?></strong>
-                </li> 
-                <li>
-                    <span class="icon12 typ-icon-arrow-right"></span>
-                    Parent
-                    <strong> <?php echo $model->is_parent ?></strong>
-                </li> 
-                <li>
-                    <span class="icon12 typ-icon-arrow-right"></span>
-                    Url
-                    <strong> <?php echo $model->is_url ?></strong>
-                </li> 
-            </ul>
+<div class="col-md-6">
+    <div class="box box-primary">
+        <div class="box-header with-border">
+            <h3 class="box-title">View</h3>
+            <?php echo CHtml::link('<i class="fa fa-plus"></i>', $this->createUrl('menus/create'), array('class' => 'btn btn-xs btn-success pull-right', 'data-toggle' => 'tooltip', 'title' => 'Create')); ?>
+            <?php echo CHtml::link('<i class="fa fa-arrow-left"></i>', $this->createUrl('menus/admin'), array('class' => 'btn btn-xs btn-primary pull-right', 'data-toggle' => 'tooltip', 'title' => 'Back', 'style' => 'margin-right: 5px;')); ?>
+        </div>
+        <div class="box-body">
+            <table class="table table-bordered">
+                <tr>
+                    <th>Date Created</th>
+                    <td><?php echo Settings::setDateTimeStandard($model->created_at) ?></td>
+                </tr>
+                <tr>
+                    <th>Last Modified</th>
+                    <td><?php echo Settings::setDateTimeStandard($model->updated_at) ?></td>
+                </tr>
+                <tr>
+                    <th>Parent</th>
+                    <td><?php print $model->menus->name ?></td>
+                </tr>
+                <tr>
+                    <th>Name</th>
+                    <td><?php print $model->name ?></td>
+                </tr>
+                <tr>
+                    <th>Module</th>
+                    <td><?php print $model->modules->name ?></td>
+                </tr>
+                <tr>
+                    <th>Controller</th>
+                    <td><?php print $model->controller_name ?></td>
+                </tr>
+                <tr>
+                    <th>Action</th>
+                    <td><?php print $model->action_name ?></td>
+                </tr>
+                <tr>
+                    <th>Is Main Menu</th>
+                    <td><?php print $model->isMainMenu ?></td>
+                </tr>
+                <tr>
+                    <th>Is Url</th>
+                    <td><?php print $model->isUrl ?></td>
+                </tr>
+                <tr>
+                    <th>Orders</th>
+                    <td><?php print $model->orders ?></td>
+                </tr>
+            </table>
         </div>
     </div>
 </div>

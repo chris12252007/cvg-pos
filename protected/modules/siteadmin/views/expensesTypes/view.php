@@ -1,50 +1,29 @@
-<div class="col-lg-12">
-    <div class="metronicView">
-        <header>
-            <span><i class="minia-icon-search"></i>View - ExpensesTypes</span>
-            <?php print CHtml::link('<i class="brocco-icon-plus"></i>',$this->createUrl('ExpensesTypes/create'), array('class' => 'btn-back', 'data-tooltip' => 'create')); ?>
-            <?php print CHtml::link('View/Search', $this->createUrl('ExpensesTypes/admin'), array('class' => 'btn-back', 'data-tooltip' => 'manage')); ?>
-             </header>
-        <div class ="row">
-           <ul class = "col-lg-6 unstyled">
-                
-                        <li>
-                            <span class='icon12 typ-icon-arrow-right'></span>
-                            id:
-                            <strong> <?php echo $model->id?></strong>
-                        </li> 
-                        
-                        <li>
-                            <span class='icon12 typ-icon-arrow-right'></span>
-                            created_at:
-                            <strong> <?php echo $model->created_at?></strong>
-                        </li> 
-                        
-                        <li>
-                            <span class='icon12 typ-icon-arrow-right'></span>
-                            updated_at:
-                            <strong> <?php echo $model->updated_at?></strong>
-                        </li> 
-                        
-                        <li>
-                            <span class='icon12 typ-icon-arrow-right'></span>
-                            name:
-                            <strong> <?php echo $model->name?></strong>
-                        </li> 
-                        
-                        <li>
-                            <span class='icon12 typ-icon-arrow-right'></span>
-                            is_sync:
-                            <strong> <?php echo $model->is_sync?></strong>
-                        </li> 
-                        
-                        <li>
-                            <span class='icon12 typ-icon-arrow-right'></span>
-                            is_deleted:
-                            <strong> <?php echo $model->is_deleted?></strong>
-                        </li> 
-                            
-            </ul>
+<div class="col-md-6">
+    <div class="box box-primary">
+        <div class="box-header with-border">
+            <h3 class="box-title">View</h3>
+            <?php echo CHtml::link('<i class="fa fa-plus"></i>', $this->createUrl('expensesTypes/create'), array('class' => 'btn btn-xs btn-success pull-right', 'data-toggle' => 'tooltip', 'title' => 'Create')); ?>
+            <?php echo CHtml::link('<i class="fa fa-arrow-left"></i>', $this->createUrl('expensesTypes/admin'), array('class' => 'btn btn-xs btn-primary pull-right', 'data-toggle' => 'tooltip', 'title' => 'Back', 'style' => 'margin-right: 5px;')); ?>
+        </div>
+        <div class="box-body">
+            <table class="table table-bordered">
+                <tr>
+                    <th>Date Created</th>
+                    <td><?php echo Settings::setDateTimeStandard($model->created_at) ?></td>
+                </tr>
+                <tr>
+                    <th>Last Modified</th>
+                    <td><?php echo Settings::setDateTimeStandard($model->updated_at) ?></td>
+                </tr>
+                <tr>
+                    <th>Name</th>
+                    <td><?php print $model->name ?></td>
+                </tr>
+                <tr>
+                    <th>Is Sync</th>
+                    <td><?php print $model->is_sync ?></td>
+                </tr>
+            </table>
         </div>
     </div>
 </div>

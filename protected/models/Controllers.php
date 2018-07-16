@@ -172,4 +172,15 @@ class Controllers extends CActiveRecord {
         return Utilities::get_ActiveSelect($this->is_deleted);
     }
 
+    public static function sql_getName($id)
+    {
+        $cnn = Utilities::createConnection();
+        $sql = 'select name from ' . self::tbl() . ' where id = :id limit 1';
+        $command = $cnn->createCommand($sql);
+        $command->bindValue(':id', $id, PDO::PARAM_INT);
+        $name = $command->queryScalar();
+
+        return $name;
+    }
+
 }

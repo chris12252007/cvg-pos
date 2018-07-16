@@ -8,7 +8,6 @@
  * @property string $created_at
  * @property string $updated_at
  * @property integer $module_id
- * @property integer $role_id
  * @property integer $controller_id
  * @property string $controller_name
  * @property integer $action_id
@@ -65,12 +64,12 @@ class RoleBasedAccess extends CActiveRecord {
         // will receive user inputs.
         return array(
             array('created_at, controller_name, action_name', 'required'),
-            array('module_id, role_id, controller_id, action_id, is_accesible, is_deleted', 'numerical', 'integerOnly' => true),
+            array('module_id, controller_id, action_id, is_accesible, is_deleted', 'numerical', 'integerOnly' => true),
             array('controller_name, action_name', 'length', 'max' => 100),
             array('updated_at', 'safe'),
             // The following rule is used by search().
             // Please remove those attributes that should not be searched.
-            array('id, created_at, updated_at, module_id, role_id, controller_id, controller_name, action_id, action_name, is_accesible, is_deleted', 'safe', 'on' => 'search'),
+            array('id, created_at, updated_at, module_id, controller_id, controller_name, action_id, action_name, is_accesible, is_deleted', 'safe', 'on' => 'search'),
         );
     }
 
@@ -84,7 +83,6 @@ class RoleBasedAccess extends CActiveRecord {
         return array(
             'modules' => array(self::BELONGS_TO, 'Modules', 'module_id'),
             'menus' => array(self::BELONGS_TO, 'Menus', 'menu_id'),
-            'roles' => array(self::BELONGS_TO, 'Roles', 'role_id'),
             'controllers' => array(self::BELONGS_TO, 'Controllers', 'controller_id'),
             'actions' => array(self::BELONGS_TO, 'Actions', 'action_id'),
         );
@@ -100,7 +98,6 @@ class RoleBasedAccess extends CActiveRecord {
             'created_at' => 'Date Created',
             'updated_at' => 'Last Modified',
             'module_id' => 'Module',
-            'role_id' => 'Role',
             'controller_id' => 'Controller',
             'controller_name' => 'Controller Name',
             'action_id' => 'Action',
@@ -135,8 +132,6 @@ class RoleBasedAccess extends CActiveRecord {
         $criteria->compare('updated_at', $this->updated_at, true);
 
         $criteria->compare('module_id', $this->module_id);
-
-        $criteria->compare('role_id', $this->role_id);
 
         $criteria->compare('controller_id', $this->controller_id);
 
@@ -219,12 +214,12 @@ class RoleBasedAccess extends CActiveRecord {
         return Utilities::get_ActiveSelect($this->is_accesible);
     }
 
-    public static function model_getChildrenByParentIDUserID($parentID, $userID, $isAccesible, $roleID)
+    public static function model_getChildrenByParentIDUserID($parentID, $userID, $isAccesible)
     {
         return self::model()->findAll('parent_id = :parentID AND user_id =:userID AND is_accesible=:isAccesible ', array(':parentID' => $parentID, ':userID' => $userID, ':isAccesible' => $isAccesible));
     }
 
-    public static function model_getParentUserID($parentID, $userID, $isAccesible, $roleID)
+    public static function model_getParentUserID($parentID, $userID, $isAccesible)
     {
         return self::model()->findAll('parent_id = :parentID AND user_id =:userID AND is_accesible=:isAccesible', array(':parentID' => $parentID, ':userID' => $userID, ':isAccesible' => $isAccesible));
     }

@@ -33,8 +33,7 @@
  * @property string $total_expenses
  * @property integer $is_deleted
  */
-class RawData extends CActiveRecord
-{
+class RawData extends CActiveRecord {
 
     /**
      * @return string the associated database table name

@@ -1,11 +1,10 @@
 <?php
 
-class ModulesController extends SiteAdminController {
+class ModulesController extends SiteadminController {
     /**
      * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
      * using two-column layout. See 'protected/views/layouts/column2.php'.
      */
-    //public $layout='//layouts/column2';
 
     /**
      * @var CActiveRecord the currently loaded data model instance.
@@ -30,8 +29,8 @@ class ModulesController extends SiteAdminController {
     public function accessRules()
     {
         return array(
-            array('allow', // allow all users to perform 'index' and 'view' actions
-                'actions' => array('create', 'view', 'update', 'delete', 'admin'),
+            array('allow', // allow authenticated user to perform 'create' and 'update' actions
+                'actions' => array('create', 'update', 'delete', 'admin', 'view'),
                 'users' => array('@'),
             ),
             array('deny', // deny all users
@@ -65,10 +64,10 @@ class ModulesController extends SiteAdminController {
             $model->attributes = $_POST['Modules'];
             $model->created_at = Settings::get_DateTime();
             $model->updated_at = Settings::get_DateTime();
-            $model->is_deleted = Utilities::NO;
+
             if ($model->validate()) {
                 $model->save();
-                Utilities::set_Flash(Utilities::FLASH_SUCCESS, "New Modules successfully created");
+                Utilities::set_Flash(Utilities::FLASH_SUCCESS, 'New Modules Successfully Created.');
                 $this->redirect(array('view', 'id' => $model->id));
             } else {
                 Utilities::set_Flash(Utilities::FLASH_ERROR, Utilities::get_ModelErrors($model->errors));
@@ -79,11 +78,6 @@ class ModulesController extends SiteAdminController {
         $this->render('create', array(
             'model' => $model,
         ));
-    }
-
-    public function gotoCreate()
-    {
-        $this->redirect($this->createUrl('modules/create'));
     }
 
     /**
@@ -100,13 +94,14 @@ class ModulesController extends SiteAdminController {
         if (isset($_POST['Modules'])) {
             $model->attributes = $_POST['Modules'];
             $model->updated_at = Settings::get_DateTime();
+
             if ($model->validate()) {
                 $model->save();
                 Utilities::set_Flash(Utilities::FLASH_SUCCESS, 'Modules Successfully Updated');
+                $this->redirect(array('view', 'id' => $model->id));
             } else {
                 Utilities::set_Flash(Utilities::FLASH_ERROR, Utilities::get_ModelErrors($model->errors));
             }
-            $this->redirect(array('view', 'id' => $model->id));
         }
 
         $this->render('update', array(
@@ -120,7 +115,8 @@ class ModulesController extends SiteAdminController {
      */
     public function actionDelete()
     {
-        $model = new Modules();
+        $model = new Modules;
+
         if (Yii::app()->request->isPostRequest) {
             // we only allow deletion via POST request
             $model = Utilities::model_getByID($model, $_GET['id']);
@@ -149,10 +145,13 @@ class ModulesController extends SiteAdminController {
      */
     public function actionAdmin()
     {
+        unset($_SESSION[$_SESSION['lastSession']]);
+        Utilities::setMenuActive_Siteadmin(Settings::get_ControllerID(), 'Modules::tbl()', Settings::get_ActionID());
         $model = new Modules('search');
         $model->unsetAttributes();  // clear any default values
         if (isset($_GET['Modules']))
             $model->attributes = $_GET['Modules'];
+        $model->is_deleted = Utilities::NO;
 
         $this->render('admin', array(
             'model' => $model,
@@ -184,6 +183,11 @@ class ModulesController extends SiteAdminController {
             echo CActiveForm::validate($model);
             Yii::app()->end();
         }
+    }
+
+    public function gotoCreate()
+    {
+        $this->redirect($this->createUrl('modules/create'));
     }
 
 }

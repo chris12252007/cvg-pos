@@ -35,11 +35,11 @@
                 console.log(data);
                 var x = [result];
 
-              
-                        newbranches.set({
-                            Branches: x
-                        });
-              
+
+                newbranches.set({
+                    Branches: x
+                });
+
                 alert("Records Successfully Sync!");
             }
         });
@@ -103,7 +103,6 @@
                                 'style' => 'width: 10%;'
                             ),
                         ),
-             
                         array(
                             'name' => 'branch',
                             'value' => '$data->branch',

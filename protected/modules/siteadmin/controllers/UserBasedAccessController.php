@@ -1,6 +1,6 @@
 <?php
 
-class UserBasedAccessController extends Controller {
+class UserBasedAccessController extends SiteadminController {
     /**
      * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
      * using two-column layout. See 'protected/views/layouts/column2.php'.
@@ -29,8 +29,8 @@ class UserBasedAccessController extends Controller {
     public function accessRules()
     {
         return array(
-            array('allow', // allow all users to perform 'index' and 'view' actions
-                'actions' => array('create', 'admin', 'view', 'update', 'delete'),
+            array('allow', // allow authenticated user to perform 'create' and 'update' actions
+                'actions' => array('create', 'update', 'delete', 'admin', 'view'),
                 'users' => array('@'),
             ),
             array('deny', // deny all users
@@ -64,11 +64,10 @@ class UserBasedAccessController extends Controller {
             $model->attributes = $_POST['UserBasedAccess'];
             $model->created_at = Settings::get_DateTime();
             $model->updated_at = Settings::get_DateTime();
-            $model->is_deleted = Utilities::NO;
 
             if ($model->validate()) {
                 $model->save();
-                Utilities::set_Flash(Utilities::FLASH_SUCCESS, "New User Based Access successfully created");
+                Utilities::set_Flash(Utilities::FLASH_SUCCESS, 'New UserBasedAccess Successfully Created.');
                 $this->redirect(array('view', 'id' => $model->id));
             } else {
                 Utilities::set_Flash(Utilities::FLASH_ERROR, Utilities::get_ModelErrors($model->errors));
@@ -79,11 +78,6 @@ class UserBasedAccessController extends Controller {
         $this->render('create', array(
             'model' => $model,
         ));
-    }
-
-    public function gotoCreate()
-    {
-        $this->redirect($this->createUrl('userBasedAccess/create'));
     }
 
     /**
@@ -103,11 +97,11 @@ class UserBasedAccessController extends Controller {
 
             if ($model->validate()) {
                 $model->save();
-                Utilities::set_Flash(Utilities::FLASH_SUCCESS, 'User Based Access Successfully Updated');
+                Utilities::set_Flash(Utilities::FLASH_SUCCESS, 'UserBasedAccess Successfully Updated');
+                $this->redirect(array('view', 'id' => $model->id));
             } else {
                 Utilities::set_Flash(Utilities::FLASH_ERROR, Utilities::get_ModelErrors($model->errors));
             }
-            $this->redirect(array('view', 'id' => $model->id));
         }
 
         $this->render('update', array(
@@ -128,7 +122,6 @@ class UserBasedAccessController extends Controller {
             $model = Utilities::model_getByID($model, $_GET['id']);
             $model->is_deleted = Utilities::YES;
             $model->save();
-
             // if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
             if (!isset($_GET['ajax']))
                 $this->redirect(array('index'));
@@ -152,9 +145,10 @@ class UserBasedAccessController extends Controller {
      */
     public function actionAdmin()
     {
+        unset($_SESSION[$_SESSION['lastSession']]);
+        Utilities::setMenuActive_Siteadmin(Settings::get_ControllerID(), 'UserBasedAccess::tbl()', Settings::get_ActionID());
         $model = new UserBasedAccess('search');
         $model->unsetAttributes();  // clear any default values
-        Utilities::setMenuActive_SiteAdmin(Settings::get_ControllerID(), Settings::get_ActionID());
         if (isset($_GET['UserBasedAccess']))
             $model->attributes = $_GET['UserBasedAccess'];
         $model->is_deleted = Utilities::NO;
@@ -189,6 +183,11 @@ class UserBasedAccessController extends Controller {
             echo CActiveForm::validate($model);
             Yii::app()->end();
         }
+    }
+
+    public function gotoCreate()
+    {
+        $this->redirect($this->createUrl('userBasedAccess/create'));
     }
 
 }

@@ -1,11 +1,10 @@
 <?php
 
-class MenusController extends SiteAdminController {
+class MenusController extends SiteadminController {
     /**
      * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
      * using two-column layout. See 'protected/views/layouts/column2.php'.
      */
-    //public $layout='//layouts/column2';
 
     /**
      * @var CActiveRecord the currently loaded data model instance.
@@ -30,8 +29,8 @@ class MenusController extends SiteAdminController {
     public function accessRules()
     {
         return array(
-            array('allow', // allow all users to perform 'index' and 'view' actions
-                'actions' => array('create', 'view', 'update', 'delete', 'admin', 'getData'),
+            array('allow', // allow authenticated user to perform 'create' and 'update' actions
+                'actions' => array('create', 'update', 'delete', 'admin', 'view', 'getData'),
                 'users' => array('@'),
             ),
             array('deny', // deny all users
@@ -65,10 +64,12 @@ class MenusController extends SiteAdminController {
             $model->attributes = $_POST['Menus'];
             $model->created_at = Settings::get_DateTime();
             $model->updated_at = Settings::get_DateTime();
-            $model->is_deleted = Utilities::NO;
+            $model->controller_name = Controllers::sql_getName($_POST['controller_id']);
+            $model->action_name = Actions::sql_getName($_POST['action_id']);
+
             if ($model->validate()) {
                 $model->save();
-                Utilities::set_Flash(Utilities::FLASH_SUCCESS, "New Menus successfully created");
+                Utilities::set_Flash(Utilities::FLASH_SUCCESS, 'New Menus Successfully Created.');
                 $this->redirect(array('view', 'id' => $model->id));
             } else {
                 Utilities::set_Flash(Utilities::FLASH_ERROR, Utilities::get_ModelErrors($model->errors));
@@ -79,11 +80,6 @@ class MenusController extends SiteAdminController {
         $this->render('create', array(
             'model' => $model,
         ));
-    }
-
-    public function gotoCreate()
-    {
-        $this->redirect($this->createUrl('menus/create'));
     }
 
     /**
@@ -100,13 +96,14 @@ class MenusController extends SiteAdminController {
         if (isset($_POST['Menus'])) {
             $model->attributes = $_POST['Menus'];
             $model->updated_at = Settings::get_DateTime();
+
             if ($model->validate()) {
                 $model->save();
                 Utilities::set_Flash(Utilities::FLASH_SUCCESS, 'Menus Successfully Updated');
+                $this->redirect(array('view', 'id' => $model->id));
             } else {
                 Utilities::set_Flash(Utilities::FLASH_ERROR, Utilities::get_ModelErrors($model->errors));
             }
-            $this->redirect(array('view', 'id' => $model->id));
         }
 
         $this->render('update', array(
@@ -120,7 +117,8 @@ class MenusController extends SiteAdminController {
      */
     public function actionDelete()
     {
-        $model = new Menus();
+        $model = new Menus;
+
         if (Yii::app()->request->isPostRequest) {
             // we only allow deletion via POST request
             $model = Utilities::model_getByID($model, $_GET['id']);
@@ -149,6 +147,8 @@ class MenusController extends SiteAdminController {
      */
     public function actionAdmin()
     {
+        unset($_SESSION[$_SESSION['lastSession']]);
+        Utilities::setMenuActive_Siteadmin(Settings::get_ControllerID(), 'Menus::tbl()', Settings::get_ActionID());
         $model = new Menus('search');
         $model->unsetAttributes();  // clear any default values
         if (isset($_GET['Menus']))
@@ -185,6 +185,11 @@ class MenusController extends SiteAdminController {
             echo CActiveForm::validate($model);
             Yii::app()->end();
         }
+    }
+
+    public function gotoCreate()
+    {
+        $this->redirect($this->createUrl('menus/create'));
     }
 
     public function actionGetData()

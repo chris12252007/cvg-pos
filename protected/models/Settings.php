@@ -12,8 +12,7 @@
  * @property string $description
  * @property integer $is_display
  */
-class Settings extends CActiveRecord
-{
+class Settings extends CActiveRecord {
 
     protected $oldAttributes;
 
@@ -360,8 +359,7 @@ class Settings extends CActiveRecord
         $code = null;
         $codeStr = null;
         $date = date('Ym');
-        for ($x = 0; $x < $length; $x++)
-        {
+        for ($x = 0; $x < $length; $x++) {
             $code[$x] = rand(0, 9);
             $codeStr .= $code[$x];
         }
@@ -413,11 +411,12 @@ class Settings extends CActiveRecord
         $model = new Users();
         $employees = new Employees();
         $id = Settings::get_UserID();
-        
+
         $model = Utilities::model_getByID($model, $id);
         $employees = Utilities::model_getByID($employees, $model->emp_id);
         return $employees->fullname;
     }
+
     public static function get_ModuleID()
     {
         return Yii::app()->controller->module->id;
