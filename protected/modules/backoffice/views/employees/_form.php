@@ -30,7 +30,7 @@
     </div>
     <div class="form-group">
         <?php print CHtml::activeLabelEx($model, 'birthdate'); ?>
-        <?php print CHtml::activeTextField($model, 'birthdate', array('class' => 'form-control', 'placeholder' => '')); ?>
+        <?php print CHtml::activeTextField($model, 'birthdate', array('class' => 'form-control datepicker', 'placeholder' => '')); ?>
     </div>
     <div class="form-group">
         <?php print CHtml::activeLabelEx($model, 'civil_status_id'); ?>

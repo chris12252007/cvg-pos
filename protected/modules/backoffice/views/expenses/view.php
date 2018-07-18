@@ -16,40 +16,36 @@
                     <td><?php echo Settings::setDateTimeStandard($model->updated_at) ?></td>
                 </tr>
                 <tr>
-                    <th>date</th>
+                    <th>Date</th>
                     <td><?php print $model->date ?></td>
                 </tr>
                 <tr>
-                    <th>ref_no</th>
+                    <th>Ref No.</th>
                     <td><?php print $model->ref_no ?></td>
                 </tr>
                 <tr>
-                    <th>branch_id</th>
-                    <td><?php print $model->branch_id ?></td>
+                    <th>Branch</th>
+                    <td><?php print $model->branches->name ?></td>
                 </tr>
                 <tr>
-                    <th>client_id</th>
-                    <td><?php print $model->client_id ?></td>
+                    <th>Client</th>
+                    <td><?php print $model->clients->fullName ?></td>
                 </tr>
                 <tr>
-                    <th>expenses_type_id</th>
-                    <td><?php print $model->expenses_type_id ?></td>
+                    <th>Expenses Type</th>
+                    <td><?php print $model->expensesTypes->name ?></td>
                 </tr>
                 <tr>
-                    <th>title</th>
+                    <th>Title</th>
                     <td><?php print $model->title ?></td>
                 </tr>
                 <tr>
-                    <th>amount</th>
+                    <th>Amount</th>
                     <td><?php print $model->amount ?></td>
                 </tr>
                 <tr>
-                    <th>remarks</th>
+                    <th>Remarks</th>
                     <td><?php print $model->remarks ?></td>
-                </tr>
-                <tr>
-                    <th>is_sync</th>
-                    <td><?php print $model->is_sync ?></td>
                 </tr>
             </table>
         </div>

@@ -68,8 +68,8 @@ Yii::app()->clientScript->registerScript("javascript", "
                         ),
                     ),
                     array(
-                        'name' => 'layalty_type_id',
-                        'value' => '$data->layalty_type_id',
+                        'name' => 'loyalty_type_id',
+                        'value' => '$data->loyalty_type_id',
                         'headerHtmlOptions' => array(
                             'style' => 'width: 10%;'
                         ),

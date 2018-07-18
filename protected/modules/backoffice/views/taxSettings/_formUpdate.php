@@ -9,8 +9,8 @@
         <?php print CHtml::activeTextField($model, 'branch_id', array('class' => 'form-control', 'placeholder' => '')); ?>
     </div>
     <div class="form-group">
-        <?php print CHtml::activeLabelEx($model, 'layalty_type_id'); ?>
-        <?php print CHtml::activeTextField($model, 'layalty_type_id', array('class' => 'form-control', 'placeholder' => '')); ?>
+        <?php print CHtml::activeLabelEx($model, 'loyalty_type_id'); ?>
+        <?php print CHtml::activeTextField($model, 'loyalty_type_id', array('class' => 'form-control', 'placeholder' => '')); ?>
     </div>
     <div class="form-group">
         <?php print CHtml::activeLabelEx($model, 'name'); ?>

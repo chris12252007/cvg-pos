@@ -30,7 +30,14 @@ class ServicesController extends SiteadminController {
     {
         return array(
             array('allow', // allow authenticated user to perform 'create' and 'update' actions
-                'actions' => array('create', 'update', 'delete', 'admin', 'view'),
+                'actions' => array(
+                    'create',
+                    'update',
+                    'delete',
+                    'admin',
+                    'view',
+                    'addPhotoSubmit'
+                ),
                 'users' => array('@'),
             ),
             array('deny', // deny all users
@@ -65,7 +72,18 @@ class ServicesController extends SiteadminController {
             $model->created_at = Settings::get_DateTime();
             $model->updated_at = Settings::get_DateTime();
 
+            //For Image Upload
+            $fileExtension = pathinfo($_SESSION[Services::tbl()]['filename'], PATHINFO_EXTENSION);
+            $newFilename = Settings::setLowerlAll(str_replace(' ', '_', $model->name)) . "." . $fileExtension;
+
+            $model->file_path = 'images/services/';
+            $model->file_pics = $newFilename;
+
             if ($model->validate()) {
+                $source = YiiBase::getPathOfAlias('webroot') . '/' . $_SESSION[Services::tbl()]['path'] . "/" . $_SESSION[Services::tbl()]['filename'];
+                $destination = YiiBase::getPathOfAlias('webroot') . '/' . $model->file_path . $newFilename;
+                rename($source, $destination);
+                
                 $model->save();
                 Utilities::set_Flash(Utilities::FLASH_SUCCESS, 'New Services Successfully Created.');
                 $this->redirect(array('view', 'id' => $model->id));
@@ -95,7 +113,22 @@ class ServicesController extends SiteadminController {
             $model->attributes = $_POST['Services'];
             $model->updated_at = Settings::get_DateTime();
 
+            //For Image Upload
+            $fileExtension = pathinfo($_SESSION[Services::tbl()]['filename'], PATHINFO_EXTENSION);
+            if ($fileExtension != NULL) {
+                $newFilename = Settings::setLowerlAll(str_replace(' ', '_', $model->name)) . "." . $fileExtension;
+            } else {
+                $newFilename = $model->file_pics;
+            }
+
+            $model->file_path = 'images/services/';
+            $model->file_pics = $newFilename;
+
             if ($model->validate()) {
+                $source = YiiBase::getPathOfAlias('webroot') . '/' . $_SESSION[Services::tbl()]['path'] . "/" . $_SESSION[Services::tbl()]['filename'];
+                $destination = YiiBase::getPathOfAlias('webroot') . '/' . $model->file_path . $newFilename;
+                rename($source, $destination);
+                
                 $model->save();
                 Utilities::set_Flash(Utilities::FLASH_SUCCESS, 'Services Successfully Updated');
                 $this->redirect(array('view', 'id' => $model->id));
@@ -145,6 +178,7 @@ class ServicesController extends SiteadminController {
      */
     public function actionAdmin()
     {
+        Utilities::clearSessions(Services::tbl());
         unset($_SESSION[$_SESSION['lastSession']]);
         Utilities::setMenuActive_Siteadmin(Settings::get_ControllerID(), 'Services::tbl()', Settings::get_ActionID());
         $model = new Services('search');
@@ -188,6 +222,23 @@ class ServicesController extends SiteadminController {
     public function gotoCreate()
     {
         $this->redirect($this->createUrl('services/create'));
+    }
+
+    public function actionAddPhotoSubmit()
+    {
+        Yii::import("ext.EAjaxUpload.qqFileUploader");
+
+        $path = 'images/services/tmp';
+        $_SESSION[Services::tbl()]['path'] = $path;
+        $allowedExtensions = array("jpg", "jpeg", "png"); //array("jpg","jpeg","gif","exe","mov" and etc...
+        $sizeLimit = 10 * 1024 * 1024; // maximum file size in bytes
+        $uploader = new qqFileUploader($allowedExtensions, $sizeLimit);
+        $result = $uploader->handleUpload($path . '/');
+        $return = htmlspecialchars(json_encode($result), ENT_NOQUOTES);
+        $fileName = $result['filename']; //GETTING FILE NAME
+        $_SESSION[Services::tbl()]['filename'] = $fileName;
+
+        echo $return; // it's array           
     }
 
 }

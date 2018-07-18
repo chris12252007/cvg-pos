@@ -57,21 +57,14 @@ Yii::app()->clientScript->registerScript("javascript", "
                         'name' => 'name',
                         'value' => '$data->name',
                         'headerHtmlOptions' => array(
-                            'style' => 'width: 10%;'
+                            'style' => 'width: 30%;'
                         ),
                     ),
                     array(
                         'name' => 'details',
                         'value' => '$data->details',
                         'headerHtmlOptions' => array(
-                            'style' => 'width: 10%;'
-                        ),
-                    ),
-                    array(
-                        'name' => 'is_sync',
-                        'value' => '$data->is_sync',
-                        'headerHtmlOptions' => array(
-                            'style' => 'width: 10%;'
+                            'style' => 'width: 50%;'
                         ),
                     ),
                     array(

@@ -124,27 +124,6 @@ Yii::app()->clientScript->registerScript("javascript", "
                         ),
                     ),
                     array(
-                        'name' => 'account_no',
-                        'value' => '$data->account_no',
-                        'headerHtmlOptions' => array(
-                            'style' => 'width: 10%;'
-                        ),
-                    ),
-                    array(
-                        'name' => 'bank_id',
-                        'value' => '$data->bank_id',
-                        'headerHtmlOptions' => array(
-                            'style' => 'width: 10%;'
-                        ),
-                    ),
-                    array(
-                        'name' => 'is_sync',
-                        'value' => '$data->is_sync',
-                        'headerHtmlOptions' => array(
-                            'style' => 'width: 10%;'
-                        ),
-                    ),
-                    array(
                         'class' => 'CButtonColumn',
                         'header' => 'Action',
                         'template' => '{view}{update}{delete}',

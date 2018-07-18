@@ -9,7 +9,7 @@
  * @property string $updated_at
  * @property integer $client_id
  * @property integer $branch_id
- * @property integer $layalty_type_id
+ * @property integer $loyalty_type_id
  * @property string $value
  * @property integer $is_sync
  * @property integer $is_deleted
@@ -48,12 +48,12 @@ class LoyaltySettings extends CActiveRecord {
         // will receive user inputs.
         return array(
             array('created_at', 'required'),
-            array('client_id, branch_id, layalty_type_id, is_sync, is_deleted', 'numerical', 'integerOnly' => true),
+            array('client_id, branch_id, loyalty_type_id, is_sync, is_deleted', 'numerical', 'integerOnly' => true),
             array('value', 'length', 'max' => 12),
             array('updated_at', 'safe'),
             // The following rule is used by search().
             // Please remove those attributes that should not be searched.
-            array('id, created_at, updated_at, client_id, branch_id, layalty_type_id, value, is_sync, is_deleted', 'safe', 'on' => 'search'),
+            array('id, created_at, updated_at, client_id, branch_id, loyalty_type_id, value, is_sync, is_deleted', 'safe', 'on' => 'search'),
         );
     }
 
@@ -65,6 +65,9 @@ class LoyaltySettings extends CActiveRecord {
         // NOTE: you may need to adjust the relation name and the related
         // class name for the relations automatically generated below.
         return array(
+            'clients' => array(self::BELONGS_TO, 'Clients', 'client_id'),
+            'branches' => array(self::BELONGS_TO, 'Branches', 'branch_id'),
+            'loyaltyTypes' => array(self::BELONGS_TO, 'LoyaltyTypes', 'loyalty_type_id'),
         );
     }
 
@@ -79,7 +82,7 @@ class LoyaltySettings extends CActiveRecord {
             'updated_at' => 'Last Modified',
             'client_id' => 'Client',
             'branch_id' => 'Branch',
-            'layalty_type_id' => 'Layalty Type',
+            'loyalty_type_id' => 'Loyalty Type',
             'value' => 'Value',
             'is_sync' => 'Is Sync',
             'is_deleted' => 'Is Deleted',
@@ -114,7 +117,7 @@ class LoyaltySettings extends CActiveRecord {
 
         $criteria->compare('branch_id', $this->branch_id);
 
-        $criteria->compare('layalty_type_id', $this->layalty_type_id);
+        $criteria->compare('loyalty_type_id', $this->loyalty_type_id);
 
         $criteria->compare('value', $this->value, true);
 

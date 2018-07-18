@@ -2,31 +2,31 @@
 <div class="box-body">
     <div class="form-group">
         <?php print CHtml::activeLabelEx($model, 'date_released'); ?>
-        <?php print CHtml::activeTextField($model, 'date_released', array('class' => 'form-control', 'placeholder' => '')); ?>
+        <?php print CHtml::activeTextField($model, 'date_released', array('class' => 'form-control datepicker', 'placeholder' => '')); ?>
     </div>
     <div class="form-group">
         <?php print CHtml::activeLabelEx($model, 'date_from'); ?>
-        <?php print CHtml::activeTextField($model, 'date_from', array('class' => 'form-control', 'placeholder' => '')); ?>
+        <?php print CHtml::activeTextField($model, 'date_from', array('class' => 'form-control datepicker', 'placeholder' => '')); ?>
     </div>
     <div class="form-group">
         <?php print CHtml::activeLabelEx($model, 'date_to'); ?>
-        <?php print CHtml::activeTextField($model, 'date_to', array('class' => 'form-control', 'placeholder' => '')); ?>
+        <?php print CHtml::activeTextField($model, 'date_to', array('class' => 'form-control datepicker', 'placeholder' => '')); ?>
     </div>
     <div class="form-group">
         <?php print CHtml::activeLabelEx($model, 'emp_id'); ?>
-        <?php print CHtml::activeTextField($model, 'emp_id', array('class' => 'form-control', 'placeholder' => '')); ?>
+        <?php print CHtml::activeDropDownList($model, 'emp_id', CHtml::listData(Employees::model_getAllData_byDeleted(Utilities::NO), 'id', 'fullName'), array('class' => 'form-control', 'promp' => 'Choose One')); ?>
     </div>
     <div class="form-group">
         <?php print CHtml::activeLabelEx($model, 'branch_id'); ?>
-        <?php print CHtml::activeTextField($model, 'branch_id', array('class' => 'form-control', 'placeholder' => '')); ?>
+        <?php print CHtml::activeDropDownList($model, 'branch_id', CHtml::listData(Branches::model_getAllData_byDeleted(Utilities::NO), 'id', 'name'), array('class' => 'form-control', 'promp' => 'Choose One')); ?>
     </div>
     <div class="form-group">
         <?php print CHtml::activeLabelEx($model, 'client_id'); ?>
-        <?php print CHtml::activeTextField($model, 'client_id', array('class' => 'form-control', 'placeholder' => '')); ?>
+        <?php print CHtml::activeDropDownList($model, 'client_id', CHtml::listData(Clients::model_getAllData_byDeleted(Utilities::NO), 'id', 'fullName'), array('class' => 'form-control', 'promp' => 'Choose One')); ?>
     </div>
     <div class="form-group">
         <?php print CHtml::activeLabelEx($model, 'expenses_type_id'); ?>
-        <?php print CHtml::activeTextField($model, 'expenses_type_id', array('class' => 'form-control', 'placeholder' => '')); ?>
+        <?php print CHtml::activeDropDownList($model, 'expenses_type_id', CHtml::listData(ExpensesTypes::model_getAllData_byDeleted(Utilities::NO), 'id', 'name'), array('class' => 'form-control', 'promp' => 'Choose One')); ?>
     </div>
     <div class="form-group">
         <?php print CHtml::activeLabelEx($model, 'title'); ?>
@@ -47,10 +47,6 @@
     <div class="form-group">
         <?php print CHtml::activeLabelEx($model, 'bank_id'); ?>
         <?php print CHtml::activeTextField($model, 'bank_id', array('class' => 'form-control', 'placeholder' => '')); ?>
-    </div>
-    <div class="form-group">
-        <?php print CHtml::activeLabelEx($model, 'is_sync'); ?>
-        <?php print CHtml::activeTextField($model, 'is_sync', array('class' => 'form-control', 'placeholder' => '')); ?>
     </div>
 </div>
 

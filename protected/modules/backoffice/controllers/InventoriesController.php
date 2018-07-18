@@ -30,7 +30,14 @@ class InventoriesController extends SiteadminController {
     {
         return array(
             array('allow', // allow authenticated user to perform 'create' and 'update' actions
-                'actions' => array('create', 'update', 'delete', 'admin', 'view'),
+                'actions' => array(
+                    'create',
+                    'update',
+                    'delete',
+                    'admin',
+                    'view',
+                    'addPhotoSubmit'
+                ),
                 'users' => array('@'),
             ),
             array('deny', // deny all users
@@ -65,7 +72,18 @@ class InventoriesController extends SiteadminController {
             $model->created_at = Settings::get_DateTime();
             $model->updated_at = Settings::get_DateTime();
 
+            //For Image Upload
+            $fileExtension = pathinfo($_SESSION[Inventories::tbl()]['filename'], PATHINFO_EXTENSION);
+            $newFilename = Settings::setLowerlAll(str_replace(' ', '_', $model->name)) . "." . $fileExtension;
+
+            $model->file_path = 'images/inventories/';
+            $model->file_pics = $newFilename;
+
             if ($model->validate()) {
+                $source = YiiBase::getPathOfAlias('webroot') . '/' . $_SESSION[Inventories::tbl()]['path'] . "/" . $_SESSION[Inventories::tbl()]['filename'];
+                $destination = YiiBase::getPathOfAlias('webroot') . '/' . $model->file_path . $newFilename;
+                rename($source, $destination);
+
                 $model->save();
                 Utilities::set_Flash(Utilities::FLASH_SUCCESS, 'New Inventories Successfully Created.');
                 $this->redirect(array('view', 'id' => $model->id));
@@ -95,7 +113,22 @@ class InventoriesController extends SiteadminController {
             $model->attributes = $_POST['Inventories'];
             $model->updated_at = Settings::get_DateTime();
 
+            //For Image Upload
+            $fileExtension = pathinfo($_SESSION[Inventories::tbl()]['filename'], PATHINFO_EXTENSION);
+            if ($fileExtension != NULL) {
+                $newFilename = Settings::setLowerlAll(str_replace(' ', '_', $model->name)) . "." . $fileExtension;
+            } else {
+                $newFilename = $model->file_pics;
+            }
+
+            $model->file_path = 'images/inventories/';
+            $model->file_pics = $newFilename;
+
             if ($model->validate()) {
+                $source = YiiBase::getPathOfAlias('webroot') . '/' . $_SESSION[Inventories::tbl()]['path'] . "/" . $_SESSION[Inventories::tbl()]['filename'];
+                $destination = YiiBase::getPathOfAlias('webroot') . '/' . $model->file_path . $newFilename;
+                rename($source, $destination);
+
                 $model->save();
                 Utilities::set_Flash(Utilities::FLASH_SUCCESS, 'Inventories Successfully Updated');
                 $this->redirect(array('view', 'id' => $model->id));
@@ -145,6 +178,7 @@ class InventoriesController extends SiteadminController {
      */
     public function actionAdmin()
     {
+        Utilities::clearSessions(Inventories::tbl());
         unset($_SESSION[$_SESSION['lastSession']]);
         Utilities::setMenuActive_Siteadmin(Settings::get_ControllerID(), 'Inventories::tbl()', Settings::get_ActionID());
         $model = new Inventories('search');
@@ -188,6 +222,23 @@ class InventoriesController extends SiteadminController {
     public function gotoCreate()
     {
         $this->redirect($this->createUrl('inventories/create'));
+    }
+
+    public function actionAddPhotoSubmit()
+    {
+        Yii::import("ext.EAjaxUpload.qqFileUploader");
+
+        $path = 'images/inventories/tmp';
+        $_SESSION[Inventories::tbl()]['path'] = $path;
+        $allowedExtensions = array("jpg", "jpeg", "png"); //array("jpg","jpeg","gif","exe","mov" and etc...
+        $sizeLimit = 10 * 1024 * 1024; // maximum file size in bytes
+        $uploader = new qqFileUploader($allowedExtensions, $sizeLimit);
+        $result = $uploader->handleUpload($path . '/');
+        $return = htmlspecialchars(json_encode($result), ENT_NOQUOTES);
+        $fileName = $result['filename']; //GETTING FILE NAME
+        $_SESSION[Inventories::tbl()]['filename'] = $fileName;
+
+        echo $return; // it's array           
     }
 
 }

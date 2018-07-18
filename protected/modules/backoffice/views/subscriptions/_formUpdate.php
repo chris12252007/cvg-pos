@@ -6,11 +6,7 @@
     </div>
     <div class="form-group">
         <?php print CHtml::activeLabelEx($model, 'details'); ?>
-        <?php print CHtml::activeTextField($model, 'details', array('class' => 'form-control', 'placeholder' => '')); ?>
-    </div>
-    <div class="form-group">
-        <?php print CHtml::activeLabelEx($model, 'is_sync'); ?>
-        <?php print CHtml::activeTextField($model, 'is_sync', array('class' => 'form-control', 'placeholder' => '')); ?>
+        <?php print CHtml::activeTextArea($model, 'details', array('rows' => 3, 'class' => 'form-control', 'placeholder' => '')); ?>
     </div>
 </div>
 

@@ -48,8 +48,8 @@ class Expenses extends CActiveRecord {
      */
     public function rules()
     {
-// NOTE: you should only define rules for those attributes that
-// will receive user inputs.
+        // NOTE: you should only define rules for those attributes that
+        // will receive user inputs.
         return array(
             array('created_at, date, ref_no, title, remarks', 'required'),
             array('branch_id, client_id, expenses_type_id, is_sync, is_deleted', 'numerical', 'integerOnly' => true),
@@ -57,8 +57,8 @@ class Expenses extends CActiveRecord {
             array('amount', 'length', 'max' => 12),
             array('remarks', 'length', 'max' => 500),
             array('updated_at', 'safe'),
-// The following rule is used by search().
-// Please remove those attributes that should not be searched.
+            // The following rule is used by search().
+            // Please remove those attributes that should not be searched.
             array('id, created_at, updated_at, date, ref_no, branch_id, client_id, expenses_type_id, title, amount, remarks, is_sync, is_deleted', 'safe', 'on' => 'search'),
         );
     }
@@ -68,9 +68,12 @@ class Expenses extends CActiveRecord {
      */
     public function relations()
     {
-// NOTE: you may need to adjust the relation name and the related
-// class name for the relations automatically generated below.
+        // NOTE: you may need to adjust the relation name and the related
+        // class name for the relations automatically generated below.
         return array(
+            'clients' => array(self::BELONGS_TO, 'Clients', 'client_id'),
+            'branches' => array(self::BELONGS_TO, 'Branches', 'branch_id'),
+            'expensesTypes' => array(self::BELONGS_TO, 'ExpensesTypes', 'expenses_type_id'),
         );
     }
 
@@ -109,8 +112,8 @@ class Expenses extends CActiveRecord {
      */
     public function search()
     {
-// Warning: Please modify the following code to remove attributes that
-// should not be searched.
+        // Warning: Please modify the following code to remove attributes that
+        // should not be searched.
 
         $criteria = new CDbCriteria;
 

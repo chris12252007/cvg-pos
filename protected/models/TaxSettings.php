@@ -9,7 +9,7 @@
  * @property string $updated_at
  * @property integer $client_id
  * @property integer $branch_id
- * @property integer $layalty_type_id
+ * @property integer $loyalty_type_id
  * @property string $name
  * @property string $precentage
  * @property integer $tax_type_id
@@ -51,13 +51,13 @@ class TaxSettings extends CActiveRecord {
         // will receive user inputs.
         return array(
             array('created_at', 'required'),
-            array('client_id, branch_id, layalty_type_id, tax_type_id, tax_option_id, is_sync, is_deleted', 'numerical', 'integerOnly' => true),
+            array('client_id, branch_id, loyalty_type_id, tax_type_id, tax_option_id, is_sync, is_deleted', 'numerical', 'integerOnly' => true),
             array('name', 'length', 'max' => 100),
             array('precentage', 'length', 'max' => 12),
             array('updated_at', 'safe'),
             // The following rule is used by search().
             // Please remove those attributes that should not be searched.
-            array('id, created_at, updated_at, client_id, branch_id, layalty_type_id, name, precentage, tax_type_id, tax_option_id, is_sync, is_deleted', 'safe', 'on' => 'search'),
+            array('id, created_at, updated_at, client_id, branch_id, loyalty_type_id, name, precentage, tax_type_id, tax_option_id, is_sync, is_deleted', 'safe', 'on' => 'search'),
         );
     }
 
@@ -83,7 +83,7 @@ class TaxSettings extends CActiveRecord {
             'updated_at' => 'Last Modified',
             'client_id' => 'Client',
             'branch_id' => 'Branch',
-            'layalty_type_id' => 'Layalty Type',
+            'loyalty_type_id' => 'Loyalty Type',
             'name' => 'Name',
             'precentage' => 'Precentage',
             'tax_type_id' => 'Tax Type',
@@ -121,7 +121,7 @@ class TaxSettings extends CActiveRecord {
 
         $criteria->compare('branch_id', $this->branch_id);
 
-        $criteria->compare('layalty_type_id', $this->layalty_type_id);
+        $criteria->compare('loyalty_type_id', $this->loyalty_type_id);
 
         $criteria->compare('name', $this->name, true);
 

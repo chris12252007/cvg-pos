@@ -57,47 +57,26 @@ Yii::app()->clientScript->registerScript("javascript", "
                         'name' => 'branch_id',
                         'value' => '$data->branch_id',
                         'headerHtmlOptions' => array(
-                            'style' => 'width: 10%;'
+                            'style' => 'width: 20%;'
                         ),
                     ),
                     array(
                         'name' => 'name',
                         'value' => '$data->name',
                         'headerHtmlOptions' => array(
-                            'style' => 'width: 10%;'
+                            'style' => 'width: 30%;'
                         ),
                     ),
                     array(
                         'name' => 'service_type_id',
                         'value' => '$data->service_type_id',
                         'headerHtmlOptions' => array(
-                            'style' => 'width: 10%;'
+                            'style' => 'width: 20%;'
                         ),
                     ),
                     array(
                         'name' => 'amount',
                         'value' => '$data->amount',
-                        'headerHtmlOptions' => array(
-                            'style' => 'width: 10%;'
-                        ),
-                    ),
-                    array(
-                        'name' => 'file_path',
-                        'value' => '$data->file_path',
-                        'headerHtmlOptions' => array(
-                            'style' => 'width: 10%;'
-                        ),
-                    ),
-                    array(
-                        'name' => 'file_pics',
-                        'value' => '$data->file_pics',
-                        'headerHtmlOptions' => array(
-                            'style' => 'width: 10%;'
-                        ),
-                    ),
-                    array(
-                        'name' => 'is_sync',
-                        'value' => '$data->is_sync',
                         'headerHtmlOptions' => array(
                             'style' => 'width: 10%;'
                         ),

@@ -16,24 +16,20 @@
                     <td><?php echo Settings::setDateTimeStandard($model->updated_at) ?></td>
                 </tr>
                 <tr>
-                    <th>client_id</th>
-                    <td><?php print $model->client_id ?></td>
+                    <th>Client</th>
+                    <td><?php print $model->clients->fullName ?></td>
                 </tr>
                 <tr>
-                    <th>branch_id</th>
-                    <td><?php print $model->branch_id ?></td>
+                    <th>Branch</th>
+                    <td><?php print $model->branches->name ?></td>
                 </tr>
                 <tr>
-                    <th>layalty_type_id</th>
-                    <td><?php print $model->layalty_type_id ?></td>
+                    <th>Loyalty Type</th>
+                    <td><?php print $model->loyaltyTypes->name ?></td>
                 </tr>
                 <tr>
-                    <th>value</th>
+                    <th>Value</th>
                     <td><?php print $model->value ?></td>
-                </tr>
-                <tr>
-                    <th>is_sync</th>
-                    <td><?php print $model->is_sync ?></td>
                 </tr>
             </table>
         </div>

@@ -162,7 +162,7 @@
 
 <script>
     $(document).ready(function () {
-        var defaultHref = 'http://localhost:8080/elsts/index.php?r=dealer/default/index';
+        var defaultHref = 'http://localhost:8080/elsts/index.php?r=siteadmin/default/index';
         var sessionHref = retrieveSessionDataUrl();
 
         loc = (sessionHref == '') ? defaultHref : sessionHref;
@@ -195,7 +195,7 @@
         loc = escape(val);
         $.ajax({
             type: 'GET',
-            url: '?r=dealer/settings/setSessionData',
+            url: '?r=siteadmin/settings/setSessionData',
             data: 'fieldID=' + 'url' + '&value=' + loc + '&controllerID=' + 'Settings',
             success: function (data) {
             }
@@ -206,7 +206,7 @@
         var result = "";
         $.ajax({
             type: 'POST',
-            url: '?r=dealer/settings/retrieveSessionDataUrl',
+            url: '?r=siteadmin/settings/retrieveSessionDataUrl',
             dataType: "html",
             async: false,
             success: function (data) {

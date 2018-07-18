@@ -110,13 +110,6 @@ Yii::app()->clientScript->registerScript("javascript", "
                         ),
                     ),
                     array(
-                        'name' => 'margin',
-                        'value' => '$data->margin',
-                        'headerHtmlOptions' => array(
-                            'style' => 'width: 10%;'
-                        ),
-                    ),
-                    array(
                         'name' => 'qty_stock',
                         'value' => '$data->qty_stock',
                         'headerHtmlOptions' => array(
@@ -126,27 +119,6 @@ Yii::app()->clientScript->registerScript("javascript", "
                     array(
                         'name' => 'qty_reorder',
                         'value' => '$data->qty_reorder',
-                        'headerHtmlOptions' => array(
-                            'style' => 'width: 10%;'
-                        ),
-                    ),
-                    array(
-                        'name' => 'file_path',
-                        'value' => '$data->file_path',
-                        'headerHtmlOptions' => array(
-                            'style' => 'width: 10%;'
-                        ),
-                    ),
-                    array(
-                        'name' => 'file_pics',
-                        'value' => '$data->file_pics',
-                        'headerHtmlOptions' => array(
-                            'style' => 'width: 10%;'
-                        ),
-                    ),
-                    array(
-                        'name' => 'is_sync',
-                        'value' => '$data->is_sync',
                         'headerHtmlOptions' => array(
                             'style' => 'width: 10%;'
                         ),

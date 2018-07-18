@@ -24,8 +24,8 @@
                     <td><?php print $model->branch_id ?></td>
                 </tr>
                 <tr>
-                    <th>layalty_type_id</th>
-                    <td><?php print $model->layalty_type_id ?></td>
+                    <th>loyalty_type_id</th>
+                    <td><?php print $model->loyalty_type_id ?></td>
                 </tr>
                 <tr>
                     <th>name</th>

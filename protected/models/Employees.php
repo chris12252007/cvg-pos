@@ -115,11 +115,6 @@ class Employees extends CActiveRecord {
         // class name for the relations automatically generated below.
         return array(
             'departments' => array(self::BELONGS_TO, 'Departments', 'department_id'),
-            'propertiesRequisitionHeaders' => array(self::HAS_MANY, 'PropertiesRequisitionHeaders', 'emp_id'),
-            'propertiesIssuanceHeaders' => array(self::HAS_MANY, 'PropertiesIssuanceHeaders', 'emp_id'),
-            'suppliesRequisitionHeaders' => array(self::HAS_MANY, 'SuppliesRequisitionHeaders', 'emp_id'),
-            'suppliesIssuanceHeaders' => array(self::HAS_MANY, 'SuppliesIssuanceHeaders', 'emp_id'),
-            'suppliesRequisitionForpoHeadersPrepBy' => array(self::HAS_MANY, 'SuppliesRequisitionForpoHeaders', 'emp_id'),
             'regions' => array(self::BELONGS_TO, 'Regions', 'region_id'),
             'provinces' => array(self::BELONGS_TO, 'Provinces', 'province_id'),
             'municipalities' => array(self::BELONGS_TO, 'Municipalities', 'municipality_id'),
@@ -308,7 +303,7 @@ class Employees extends CActiveRecord {
         $crit = new CDbCriteria();
         $crit->condition = 'is_deleted = :isDeleted';
         $crit->params = array(':isDeleted' => Utilities::NO);
-//        $crit->order = 'lastname asc';
+        //        $crit->order = 'lastname asc';
         return self::model()->findAll($crit);
     }
 

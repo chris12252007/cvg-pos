@@ -6,6 +6,14 @@
             <?php echo CHtml::link('<i class="fa fa-arrow-left"></i>', $this->createUrl('services/admin'), array('class' => 'btn btn-xs btn-primary pull-right', 'data-toggle' => 'tooltip', 'title' => 'Back', 'style' => 'margin-right: 5px;')); ?>
         </div>
         <div class="box-body">
+            <div class="form-group" style="text-align: center;">
+                <?php print CHtml::activeLabelEx($model, 'Uploaded Image'); ?>
+                <div class="image-upload">
+                    <div class ="square-img">
+                        <?php print CHtml::image(Settings::get_baseUrl() . "/" . $model->file_path . "/" . $model->file_pics, "") ?>
+                    </div>
+                </div>
+            </div>
             <table class="table table-bordered">
                 <tr>
                     <th>Date Created</th>
@@ -16,32 +24,20 @@
                     <td><?php echo Settings::setDateTimeStandard($model->updated_at) ?></td>
                 </tr>
                 <tr>
-                    <th>branch_id</th>
+                    <th>Branch</th>
                     <td><?php print $model->branch_id ?></td>
                 </tr>
                 <tr>
-                    <th>name</th>
+                    <th>Name</th>
                     <td><?php print $model->name ?></td>
                 </tr>
                 <tr>
-                    <th>service_type_id</th>
+                    <th>Service Type</th>
                     <td><?php print $model->service_type_id ?></td>
                 </tr>
                 <tr>
-                    <th>amount</th>
+                    <th>Amount</th>
                     <td><?php print $model->amount ?></td>
-                </tr>
-                <tr>
-                    <th>file_path</th>
-                    <td><?php print $model->file_path ?></td>
-                </tr>
-                <tr>
-                    <th>file_pics</th>
-                    <td><?php print $model->file_pics ?></td>
-                </tr>
-                <tr>
-                    <th>is_sync</th>
-                    <td><?php print $model->is_sync ?></td>
                 </tr>
             </table>
         </div>

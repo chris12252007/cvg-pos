@@ -16,16 +16,12 @@
                     <td><?php echo Settings::setDateTimeStandard($model->updated_at) ?></td>
                 </tr>
                 <tr>
-                    <th>name</th>
+                    <th>Name</th>
                     <td><?php print $model->name ?></td>
                 </tr>
                 <tr>
-                    <th>details</th>
+                    <th>Details</th>
                     <td><?php print $model->details ?></td>
-                </tr>
-                <tr>
-                    <th>is_sync</th>
-                    <td><?php print $model->is_sync ?></td>
                 </tr>
             </table>
         </div>

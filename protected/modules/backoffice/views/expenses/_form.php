@@ -2,7 +2,7 @@
 <div class="box-body">
     <div class="form-group">
         <?php print CHtml::activeLabelEx($model, 'date'); ?>
-        <?php print CHtml::activeTextField($model, 'date', array('class' => 'form-control', 'placeholder' => '')); ?>
+        <?php print CHtml::activeTextField($model, 'date', array('class' => 'form-control datepicker', 'placeholder' => '')); ?>
     </div>
     <div class="form-group">
         <?php print CHtml::activeLabelEx($model, 'ref_no'); ?>
@@ -18,7 +18,7 @@
     </div>
     <div class="form-group">
         <?php print CHtml::activeLabelEx($model, 'expenses_type_id'); ?>
-        <?php print CHtml::activeTextField($model, 'expenses_type_id', array('class' => 'form-control', 'placeholder' => '')); ?>
+        <?php print CHtml::activeDropDownList($model, 'expenses_type_id', CHtml::listData(ExpensesTypes::model_getAllData_byDeleted(Utilities::NO), 'id', 'fullName'), array('class' => 'form-control', 'prompt' => 'Choose One')); ?>
     </div>
     <div class="form-group">
         <?php print CHtml::activeLabelEx($model, 'title'); ?>

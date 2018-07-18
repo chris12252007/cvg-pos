@@ -55,35 +55,31 @@ Yii::app()->clientScript->registerScript("javascript", "
                     ),
                     array(
                         'name' => 'client_id',
-                        'value' => '$data->client_id',
+                        'value' => '$data->clients->fullName',
+                        'filter' => $static + CHtml::listData(Clients::model_getAllData_byDeleted(Utilities::NO), 'id', 'fullName'),
                         'headerHtmlOptions' => array(
-                            'style' => 'width: 10%;'
+                            'style' => 'width: 30%;'
                         ),
                     ),
                     array(
                         'name' => 'branch_id',
-                        'value' => '$data->branch_id',
+                        'value' => '$data->branches->name',
+                        'filter' => $static + CHtml::listData(Branches::model_getAllData_byDeleted(Utilities::NO), 'id', 'name'),
                         'headerHtmlOptions' => array(
-                            'style' => 'width: 10%;'
+                            'style' => 'width: 20%;'
                         ),
                     ),
                     array(
-                        'name' => 'layalty_type_id',
-                        'value' => '$data->layalty_type_id',
+                        'name' => 'loyalty_type_id',
+                        'value' => '$data->loyalty_type_id',
+                        'filter' => $static + CHtml::listData(LoyaltyTypes::model_getAllData_byDeleted(Utilities::NO), 'id', 'name'),
                         'headerHtmlOptions' => array(
-                            'style' => 'width: 10%;'
+                            'style' => 'width: 20%;'
                         ),
                     ),
                     array(
                         'name' => 'value',
                         'value' => '$data->value',
-                        'headerHtmlOptions' => array(
-                            'style' => 'width: 10%;'
-                        ),
-                    ),
-                    array(
-                        'name' => 'is_sync',
-                        'value' => '$data->is_sync',
                         'headerHtmlOptions' => array(
                             'style' => 'width: 10%;'
                         ),
