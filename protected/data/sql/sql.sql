@@ -440,3 +440,7 @@ CREATE TABLE `Dealers` (
 
 
 /*[11:58:12 AM][999 ms]*/ ALTER TABLE `clients` DROP COLUMN `client_id`, ADD COLUMN `dealer_id` INT(11) NULL COMMENT 'refd to dealers.id' AFTER `branch_id`; 
+
+
+/*[12:16:04 PM][158 ms]*/ ALTER TABLE `loyalty_settings` CHANGE `layalty_type_id` `loyalty_type_id` INT(11) DEFAULT 0 NOT NULL COMMENT 'refd to loyalty_types.id'; 
+/*[1:53:09 PM][516 ms]*/ ALTER TABLE `tax_settings` CHANGE `layalty_type_id` `loyalty_type_id` INT(11) DEFAULT 0 NOT NULL COMMENT 'refd to loyalty_types.id'; 
