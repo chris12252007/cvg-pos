@@ -83,7 +83,7 @@ class ServicesController extends SiteadminController {
                 $source = YiiBase::getPathOfAlias('webroot') . '/' . $_SESSION[Services::tbl()]['path'] . "/" . $_SESSION[Services::tbl()]['filename'];
                 $destination = YiiBase::getPathOfAlias('webroot') . '/' . $model->file_path . $newFilename;
                 rename($source, $destination);
-                
+
                 $model->save();
                 Utilities::set_Flash(Utilities::FLASH_SUCCESS, 'New Services Successfully Created.');
                 $this->redirect(array('view', 'id' => $model->id));
@@ -128,7 +128,7 @@ class ServicesController extends SiteadminController {
                 $source = YiiBase::getPathOfAlias('webroot') . '/' . $_SESSION[Services::tbl()]['path'] . "/" . $_SESSION[Services::tbl()]['filename'];
                 $destination = YiiBase::getPathOfAlias('webroot') . '/' . $model->file_path . $newFilename;
                 rename($source, $destination);
-                
+
                 $model->save();
                 Utilities::set_Flash(Utilities::FLASH_SUCCESS, 'Services Successfully Updated');
                 $this->redirect(array('view', 'id' => $model->id));

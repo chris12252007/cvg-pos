@@ -1,0 +1,1 @@
+<li><?php print CHtml::link('<i class="fa fa-cubes"></i>Inventories', $this->createUrl('inventories/admin')); ?></li>

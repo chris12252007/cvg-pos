@@ -1,0 +1,1 @@
+<li><?php print CHtml::link('<i class="fa fa-users"></i>Customers', $this->createUrl('customers/admin')); ?></li>

@@ -162,7 +162,7 @@
 
 <script>
     $(document).ready(function () {
-        var defaultHref = 'http://localhost:8080/elsts/index.php?r=siteadmin/default/index';
+        var defaultHref = '<?php print Settings::get_baseUrl() . '/index.php?r=' . Settings::get_ModuleID() . '/default/index'; ?>';
         var sessionHref = retrieveSessionDataUrl();
 
         loc = (sessionHref == '') ? defaultHref : sessionHref;

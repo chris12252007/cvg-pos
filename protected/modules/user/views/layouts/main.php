@@ -52,10 +52,12 @@
         <link rel="stylesheet" href="<?php print Settings::get_baseUrl(); ?>/smartadmin/js/plugin/intl-tel-input-master/build/css/intlTelInput.css" />
         <link type="text/css" rel="stylesheet" href="<?php print Settings::get_baseUrl(); ?>/smartadmin/css/loadingOverlay/waitMe.css">
     </head>
-    <body class="hold-transition skin-blue sidebar-mini">
+    <!--<body class="hold-transition skin-blue sidebar-mini">-->
+
+    <body class="hold-transition skin-blue layout-top-nav">
         <div class="wrapper">
             <?php $this->renderPartial('/layouts/_header'); ?>
-            <?php $this->renderPartial('/layouts/_left'); ?>
+            <?php // $this->renderPartial('/layouts/_left'); ?>
             <div class="content-wrapper">
                 <section class="content-header">
                     <?php $this->renderPartial('/layouts/_ribbon'); ?>

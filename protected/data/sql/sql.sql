@@ -445,7 +445,42 @@ CREATE TABLE `Dealers` (
 /*[12:16:04 PM][158 ms]*/ ALTER TABLE `loyalty_settings` CHANGE `layalty_type_id` `loyalty_type_id` INT(11) DEFAULT 0 NOT NULL COMMENT 'refd to loyalty_types.id'; 
 /*[1:53:09 PM][516 ms]*/ ALTER TABLE `tax_settings` CHANGE `layalty_type_id` `loyalty_type_id` INT(11) DEFAULT 0 NOT NULL COMMENT 'refd to loyalty_types.id'; 
 
-/* chris 20180719 1040*/
+
+/* Christian 20180719 1131 */
+DROP TABLE IF EXISTS `civil_statuses`;
+CREATE TABLE `civil_statuses` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `created_at` DATETIME NOT NULL,
+  `updated_at` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
+  `name` VARCHAR(100) DEFAULT NULL,
+  `is_deleted` TINYINT(1) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`)
+) ENGINE=INNODB  DEFAULT CHARSET=utf8;
+
+DROP TABLE IF EXISTS `occupations`;
+CREATE TABLE `occupations` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `created_at` DATETIME NOT NULL,
+  `updated_at` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
+  `name` VARCHAR(100) DEFAULT NULL,
+  `is_deleted` TINYINT(1) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`)
+) ENGINE=INNODB  DEFAULT CHARSET=utf8;
+
+DROP TABLE IF EXISTS `banks`;
+CREATE TABLE `banks` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `created_at` DATETIME NOT NULL,
+  `updated_at` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
+  `name` VARCHAR(100) DEFAULT NULL,
+  `is_deleted` TINYINT(1) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`)
+) ENGINE=INNODB  DEFAULT CHARSET=utf8;
+
+/*[11:27:03 AM][1000 ms]*/ ALTER TABLE `clients` DROP COLUMN `branch_id`; 
+/*[11:28:00 AM][768 ms]*/ ALTER TABLE `dealers` DROP COLUMN `branch_id`, DROP COLUMN `client_id`; 
+
+-- chris 20180719 1147
 
 DROP TABLE IF EXISTS `menus`;
 
