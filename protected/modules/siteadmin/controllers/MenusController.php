@@ -64,8 +64,8 @@ class MenusController extends SiteadminController {
             $model->attributes = $_POST['Menus'];
             $model->created_at = Settings::get_DateTime();
             $model->updated_at = Settings::get_DateTime();
-            $model->controller_name = Controllers::sql_getName($_POST['controller_id']);
-            $model->action_name = Actions::sql_getName($_POST['action_id']);
+            $model->controller_name = Controllers::sql_getName($_POST['Menus']['controller_id']);
+            $model->action_name = Actions::sql_getName($_POST['Menus']['action_id']);
 
             if ($model->validate()) {
                 $model->save();
