@@ -444,3 +444,36 @@ CREATE TABLE `Dealers` (
 
 /*[12:16:04 PM][158 ms]*/ ALTER TABLE `loyalty_settings` CHANGE `layalty_type_id` `loyalty_type_id` INT(11) DEFAULT 0 NOT NULL COMMENT 'refd to loyalty_types.id'; 
 /*[1:53:09 PM][516 ms]*/ ALTER TABLE `tax_settings` CHANGE `layalty_type_id` `loyalty_type_id` INT(11) DEFAULT 0 NOT NULL COMMENT 'refd to loyalty_types.id'; 
+
+/* chris 20180719 1040*/
+
+DROP TABLE IF EXISTS `menus`;
+
+CREATE TABLE `menus` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `created_at` datetime NOT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `name` varchar(100) NOT NULL DEFAULT '',
+  `module_id` int(11) NOT NULL DEFAULT '0',
+  `is_main_menu` tinyint(1) NOT NULL DEFAULT '0',
+  `is_parent` tinyint(1) NOT NULL DEFAULT '0',
+  `parent_id` int(11) NOT NULL DEFAULT '0',
+  `is_url` tinyint(1) NOT NULL DEFAULT '0' COMMENT 'with url',
+  `controller_id` int(11) NOT NULL DEFAULT '0',
+  `controller_name` varchar(100) DEFAULT NULL,
+  `action_id` int(11) NOT NULL DEFAULT '0',
+  `action_name` varchar(100) DEFAULT NULL,
+  `params` varchar(255) DEFAULT NULL,
+  `orders` int(2) NOT NULL DEFAULT '0',
+  `li_class` varchar(100) DEFAULT NULL,
+  `i_class` varchar(100) DEFAULT NULL,
+  `span_class` varchar(100) DEFAULT NULL,
+  `link_class` varchar(100) DEFAULT NULL,
+  `is_deleted` tinyint(1) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
+
+/*Data for the table `menus` */
+
+insert  into `menus`(`id`,`created_at`,`updated_at`,`name`,`module_id`,`is_main_menu`,`is_parent`,`parent_id`,`is_url`,`controller_id`,`controller_name`,`action_id`,`action_name`,`params`,`orders`,`li_class`,`i_class`,`span_class`,`link_class`,`is_deleted`) values (1,'2017-11-05 02:46:13','2017-11-04 18:46:13','User Access',1,1,1,0,0,0,NULL,0,NULL,NULL,1,'treeview','fa fa-lg fa-fw fa-gear','menu-item-parent',NULL,0),(2,'2017-11-05 02:47:41','2017-11-04 18:47:41','User',1,0,1,1,0,0,NULL,0,NULL,NULL,1,'treeview-menu\"',NULL,NULL,NULL,0),(3,'2017-11-05 02:48:20','2017-11-04 18:48:20','Manage',1,0,0,2,1,0,'users',0,'admin',NULL,2,'treeview-menu\"',NULL,NULL,NULL,0),(4,'2017-11-05 02:50:36','2017-11-04 18:50:36','Change Password',1,0,0,2,1,0,'users',0,'changePassword',NULL,3,'treeview-menu\"',NULL,NULL,NULL,0);
+
