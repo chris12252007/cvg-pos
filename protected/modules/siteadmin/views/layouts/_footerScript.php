@@ -42,9 +42,10 @@
 <!-- Select2 -->
 <script src="<?php print Settings::get_baseUrl(); ?>/adminlte/bower_components/select2/dist/js/select2.full.min.js"></script>
 <script src="<?php print Settings::get_baseUrl(); ?>/adminlte/plugins/iCheck/icheck.min.js" type="text/javascript"></script>
-
+<script src="<?php print Settings::get_baseUrl(); ?>/smartadmin/js/alertify/alertify.min.js"></script>
+ 
 <script>
-    $(function () {
+   $(function () {
         $('.datepicker').datepicker({
             autoclose: true
         });

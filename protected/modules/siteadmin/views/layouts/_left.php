@@ -59,7 +59,7 @@
                         }
                         ?>
 
-                        <ul class="treeview-menu">                            
+                        <ul class="treeview-menu" >                            
                             <?php foreach ($subMenu1 as $subMenu1): ?>
                                 <?php if ($subMenu1->menus->params != ''): ?>
                                     <?php $paramsArr = explode("=", $subMenu1->menus->params); ?>
@@ -71,13 +71,7 @@
                                     <?php $liClassArr = explode("::", $subMenu1->menus->li_class); ?>
                                     <?php $menuClass = $subMenu1->menus->li_class; ?>
                                     <li class="">
-                                        <a href="#"><i class ="fa fa-user"></i><span class="menu-item-parent"><?php print $subMenu1->menus->name ?></span></a>
-
-                                        <ul class="treeview-menu">        
-                                            <li class="<?php print $subMenu1->menus->name ?>" >
-                                                <?php print CHtml::link('<i class ="fa fa-circle-o"></i>Manage', $this->createUrl($subMenu1->menus->controller_name . '/' . $subMenu1->menus->action_name), array('onclick' => 'setSessionData(this.href)')); ?>
-                                            </li>
-                                        </ul>
+                                        <?php print CHtml::link('<i class ="fa fa-circle-o"></i>'.$subMenu1->menus->name, $this->createUrl($subMenu1->menus->controller_name . '/' . $subMenu1->menus->action_name), array('onclick' => 'setSessionData(this.href)')); ?>
                                     </li>
                                 <?php else: ?>  
                                     <li class="treeview">
@@ -154,8 +148,8 @@
                         </ul> 
                     <?php endif; ?>
                 </li>
-            </ul>
-        <?php endforeach; ?>
+            <?php endforeach; ?>
+        </ul>
     </section>
     <!-- /.sidebar -->
 </aside>

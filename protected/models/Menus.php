@@ -202,7 +202,7 @@ class Menus extends CActiveRecord {
 
     public static function model_getData_byIsDeleted($isDeleted)
     {
-        return self::model()->findAll('is_deleted = :isDeleted', array(':isDeleted' => $isDeleted));
+        return self::model()->findAll('is_deleted = :isDeleted AND is_parent = :isParent', array(':isDeleted' => $isDeleted, ':isParent' => Utilities::YES));
     }
 
     public static function model_getRowData_byID($id)

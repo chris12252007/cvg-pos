@@ -46,7 +46,7 @@
         <link rel="stylesheet" type="text/css" media="screen" href="<?php print Settings::get_baseUrl(); ?>/css/flashes.css">
         <link rel="stylesheet" type="text/css" media="screen" href="<?php print Settings::get_baseUrl(); ?>/css/ajax-loader.css">
         <link rel="stylesheet" href="<?php print Settings::get_baseUrl(); ?>/css/icons.css" />
-        <link rel="stylesheet" href="<?php print Settings::get_baseUrl(); ?>/smartadmin/js/alertify/css/alertify.css" />
+        <!--<link rel="stylesheet" href="<?php print Settings::get_baseUrl(); ?>/smartadmin/css/smartadmin-production.min.css" />-->
         <link rel="stylesheet" href="<?php print Settings::get_baseUrl(); ?>/smartadmin/js/alertify/css/alertify.default.css" />
         <link rel="stylesheet" href="<?php print Settings::get_baseUrl(); ?>/smartadmin/js/alertify/css/alertify.core.css" />
         <link rel="stylesheet" href="<?php print Settings::get_baseUrl(); ?>/smartadmin/js/plugin/intl-tel-input-master/build/css/intlTelInput.css" />

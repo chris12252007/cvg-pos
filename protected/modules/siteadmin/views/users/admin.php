@@ -1,12 +1,20 @@
+<script type="text/javascript"> 
 
+    $(document).ready(function () {
+        $('.tree > ul').attr('role', 'tree').find('ul').attr('role', 'group');
+        $('.tree').find('li:has(ul)').addClass('parent_li').attr('role', 'treeitem').find(' > span').attr('title', 'Collapse this branch').on('click', function (e) {
+            var children = $(this).parent('li.parent_li').find(' > ul > li');
+            if (children.is(':visible')) {
+                children.hide('fast');
+                $(this).attr('title', 'Expand this branch').find(' > i').removeClass().addClass('fa fa-lg fa-plus-circle');
+            } else {
+                children.show('fast');
+                $(this).attr('title', 'Collapse this branch').find(' > i').removeClass().addClass('fa fa-lg fa-minus-circle');
+            }
+            e.stopPropagation();
+        });
 
-<?php
-Yii::app()->clientScript->registerScript("javascript", "
-       
-    $('select').select2({ width: 'resolve' });
-    $('.select2-hidden-accessible').attr('hidden', true);
-    $( 'input' ).addClass('form-control' );
-
+    });
     function reinstallDatePicker(id, data) {
             //use the same parameters that you had set in your widget else the datepicker will be refreshed by default
         $('.datePicker').datepicker(jQuery.extend({showMonthAfterYear:false},jQuery.datepicker.regional['ja'],{'dateFormat':'yy-mm-dd'}));
@@ -43,13 +51,18 @@ Yii::app()->clientScript->registerScript("javascript", "
         var chkArray = [];
         var unchkArray = [];
 
-        $('.mod:checked').each(function() {
+        $('.mod').each(function() {
+            if($(this).is(':checked')){
                 chkArray.push($(this).val());
+            }else{
+               
+                unchkArray.push($(this).val()); 
+            }
         });
 
-        $('.mod:unchecked').each(function() {
-                unchkArray.push($(this).val());
-        });
+//        $('input[type=checkbox]\\:unchecked').each(function() {
+//                unchkArray.push($(this).val());
+//        });
 
         var selected;
         selected = chkArray.join(',') + ',';
@@ -83,24 +96,6 @@ Yii::app()->clientScript->registerScript("javascript", "
         }
     }
 
-    ", 2);
-?>
-<script type="text/javascript">
-    $(document).ready(function () {
-        $('.tree > ul').attr('role', 'tree').find('ul').attr('role', 'group');
-        $('.tree').find('li:has(ul)').addClass('parent_li').attr('role', 'treeitem').find(' > span').attr('title', 'Collapse this branch').on('click', function (e) {
-            var children = $(this).parent('li.parent_li').find(' > ul > li');
-            if (children.is(':visible')) {
-                children.hide('fast');
-                $(this).attr('title', 'Expand this branch').find(' > i').removeClass().addClass('fa fa-lg fa-plus-circle');
-            } else {
-                children.show('fast');
-                $(this).attr('title', 'Collapse this branch').find(' > i').removeClass().addClass('fa fa-lg fa-minus-circle');
-            }
-            e.stopPropagation();
-        });
-
-    });
 </script>
 
 <style>
