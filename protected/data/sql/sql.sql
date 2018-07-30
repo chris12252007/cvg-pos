@@ -512,3 +512,7 @@ CREATE TABLE `menus` (
 
 insert  into `menus`(`id`,`created_at`,`updated_at`,`name`,`module_id`,`is_main_menu`,`is_parent`,`parent_id`,`is_url`,`controller_id`,`controller_name`,`action_id`,`action_name`,`params`,`orders`,`li_class`,`i_class`,`span_class`,`link_class`,`is_deleted`) values (1,'2017-11-05 02:46:13','2017-11-04 18:46:13','User Access',1,1,1,0,0,0,NULL,0,NULL,NULL,1,'treeview','fa fa-lg fa-fw fa-gear','menu-item-parent',NULL,0),(2,'2017-11-05 02:47:41','2017-11-04 18:47:41','User',1,0,1,1,0,0,NULL,0,NULL,NULL,1,'treeview-menu\"',NULL,NULL,NULL,0),(3,'2017-11-05 02:48:20','2017-11-04 18:48:20','Manage',1,0,0,2,1,0,'users',0,'admin',NULL,2,'treeview-menu\"',NULL,NULL,NULL,0),(4,'2017-11-05 02:50:36','2017-11-04 18:50:36','Change Password',1,0,0,2,1,0,'users',0,'changePassword',NULL,3,'treeview-menu\"',NULL,NULL,NULL,0);
 
+
+/*[1:41:34 PM][1659 ms]*/ ALTER TABLE `users` ADD COLUMN `client_id` INT(11) DEFAULT 0 NOT NULL COMMENT 'refd to clients.id' AFTER `emp_id`; 
+/*[1:51:34 PM][188 ms]*/ ALTER TABLE `loyalty_settings` CHANGE `layalty_type_id` `loyalty_type_id` INT(11) DEFAULT 0 NOT NULL COMMENT 'refd to loyalty_types.id'; 
+/*[1:53:26 PM][175 ms]*/ ALTER TABLE `tax_settings` CHANGE `layalty_type_id` `loyalty_type_id` INT(11) DEFAULT 0 NOT NULL COMMENT 'refd to loyalty_types.id'; 
