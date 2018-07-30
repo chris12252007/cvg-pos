@@ -18,13 +18,13 @@ Yii::app()->clientScript->registerScript("javascript", "
     <div class="box box-primary">
         <div class="box-header with-border">
             <h3 class="box-title">Manage</h3>
-            <?php echo CHtml::link('<i class="fa fa-plus"></i>', $this->createUrl('clients/create'), array('class' => 'btn btn-xs btn-success pull-right', 'data-toggle' => 'tooltip', 'title' => 'Create')); ?>
+            <?php echo CHtml::link('<i class="fa fa-plus"></i>', $this->createUrl('receiptSettings/create'), array('class' => 'btn btn-xs btn-success pull-right', 'data-toggle' => 'tooltip', 'title' => 'Create')); ?>
         </div>
         <div class="box-body">
             <?php $static = array('' => Yii::t('', 'All')); ?>
             <?php
             $this->widget('zii.widgets.grid.CGridView', array(
-                'id' => 'clients-grid',
+                'id' => 'receipt-settings-grid',
                 'dataProvider' => $model->search(),
                 'afterAjaxUpdate' => 'reinstallDatePicker',
                 'filter' => $model,
@@ -54,39 +54,40 @@ Yii::app()->clientScript->registerScript("javascript", "
                         ),
                     ),
                     array(
-                        'name' => 'dealer_id',
-                        'value' => '$data->dealers->fullName',
-                        'filter' => $static + CHtml::listData(Dealers::model_getAllData_byDeleted(Utilities::NO), 'id', 'fullName'),
+                        'name' => 'client_id',
+                        'value' => '$data->clients->fullName',
+                        'filter' => $static + CHtml::listData(Clients::model_getAllData_byDeleted(Utilities::NO), 'id', 'fullName'),
                         'headerHtmlOptions' => array(
-                            'style' => 'width: 30%;'
+                            'style' => 'width: 20%;'
                         ),
                     ),
                     array(
-                        'name' => 'firstname',
-                        'value' => '$data->firstname',
+                        'name' => 'branch_id',
+                        'value' => '$data->branches->name',
+                        'filter' => $static + CHtml::listData(Branches::model_getAllData_byDeleted(Utilities::NO), 'id', 'name'),
                         'headerHtmlOptions' => array(
-                            'style' => 'width: 10%;'
+                            'style' => 'width: 15%;'
                         ),
                     ),
                     array(
-                        'name' => 'middlename',
-                        'value' => '$data->middlename',
+                        'name' => 'header',
+                        'value' => '$data->header',
                         'headerHtmlOptions' => array(
-                            'style' => 'width: 10%;'
+                            'style' => 'width: 15%;'
                         ),
                     ),
                     array(
-                        'name' => 'lastname',
-                        'value' => '$data->lastname',
+                        'name' => 'message',
+                        'value' => '$data->message',
                         'headerHtmlOptions' => array(
-                            'style' => 'width: 10%;'
+                            'style' => 'width: 15%;'
                         ),
                     ),
                     array(
-                        'name' => 'company_name',
-                        'value' => '$data->company_name',
+                        'name' => 'footer',
+                        'value' => '$data->footer',
                         'headerHtmlOptions' => array(
-                            'style' => 'width: 10%;'
+                            'style' => 'width: 15%;'
                         ),
                     ),
                     array(

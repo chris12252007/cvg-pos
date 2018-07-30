@@ -54,18 +54,11 @@ Yii::app()->clientScript->registerScript("javascript", "
                         ),
                     ),
                     array(
-                        'name' => 'branch_id',
-                        'value' => '$data->branches->name',
-                        'filter' => $static + CHtml::listData(Branches::model_getAllData_byDeleted(Utilities::NO), 'id', 'name'),
-                        'headerHtmlOptions' => array(
-                            'style' => 'width: 10%;'
-                        ),
-                    ),
-                    array(
                         'name' => 'dealer_id',
-                        'value' => '$data->dealer_id',
+                        'value' => '$data->dealers->fullName',
+                        'filter' => $static + CHtml::listData(Dealers::model_getAllData_byDeleted(Utilities::NO), 'id', 'fullName'),
                         'headerHtmlOptions' => array(
-                            'style' => 'width: 10%;'
+                            'style' => 'width: 30%;'
                         ),
                     ),
                     array(
@@ -92,27 +85,6 @@ Yii::app()->clientScript->registerScript("javascript", "
                     array(
                         'name' => 'company_name',
                         'value' => '$data->company_name',
-                        'headerHtmlOptions' => array(
-                            'style' => 'width: 10%;'
-                        ),
-                    ),
-                    array(
-                        'name' => 'email',
-                        'value' => '$data->email',
-                        'headerHtmlOptions' => array(
-                            'style' => 'width: 10%;'
-                        ),
-                    ),
-                    array(
-                        'name' => 'mobile',
-                        'value' => '$data->mobile',
-                        'headerHtmlOptions' => array(
-                            'style' => 'width: 10%;'
-                        ),
-                    ),
-                    array(
-                        'name' => 'phone',
-                        'value' => '$data->phone',
                         'headerHtmlOptions' => array(
                             'style' => 'width: 10%;'
                         ),

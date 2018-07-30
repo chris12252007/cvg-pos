@@ -16,36 +16,32 @@
                     <td><?php echo Settings::setDateTimeStandard($model->updated_at) ?></td>
                 </tr>
                 <tr>
-                    <th>client_id</th>
-                    <td><?php print $model->client_id ?></td>
+                    <th>Client</th>
+                    <td><?php print $model->clients->fullName ?></td>
                 </tr>
                 <tr>
-                    <th>branch_id</th>
-                    <td><?php print $model->branch_id ?></td>
+                    <th>Branch</th>
+                    <td><?php print $model->branches->name ?></td>
                 </tr>
                 <tr>
-                    <th>loyalty_type_id</th>
-                    <td><?php print $model->loyalty_type_id ?></td>
+                    <th>Loyalty Type</th>
+                    <td><?php print $model->loyaltyTypes->name ?></td>
                 </tr>
                 <tr>
-                    <th>name</th>
+                    <th>Name</th>
                     <td><?php print $model->name ?></td>
                 </tr>
                 <tr>
-                    <th>precentage</th>
+                    <th>Precentage</th>
                     <td><?php print $model->precentage ?></td>
                 </tr>
                 <tr>
-                    <th>tax_type_id</th>
-                    <td><?php print $model->tax_type_id ?></td>
+                    <th>Tax Type</th>
+                    <td><?php print $model->taxType ?></td>
                 </tr>
                 <tr>
-                    <th>tax_option_id</th>
-                    <td><?php print $model->tax_option_id ?></td>
-                </tr>
-                <tr>
-                    <th>is_sync</th>
-                    <td><?php print $model->is_sync ?></td>
+                    <th>Tax Option</th>
+                    <td><?php print $model->taxOption ?></td>
                 </tr>
             </table>
         </div>

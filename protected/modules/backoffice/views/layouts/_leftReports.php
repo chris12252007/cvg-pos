@@ -6,9 +6,9 @@
         </span>
     </a>
     <ul class="treeview-menu">
-        <li><a href="#"><i class="fa fa-circle-o"></i> Sales Summary</a></li>
-        <li><a href="#"><i class="fa fa-circle-o"></i> Receipts</a></li>
-        <li><a href="#"><i class="fa fa-circle-o"></i>Discounts</a></li>
-        <li><a href="#"><i class="fa fa-circle-o"></i>Tax</a></li>
+        <li><?php print CHtml::link('<i class="fa fa-circle-o"></i>Sales Summary', $this->createUrl('default/index')); ?></li>
+        <li><?php print CHtml::link('<i class="fa fa-circle-o"></i>Receipts', $this->createUrl('posPaymentHeaders/adminReports')); ?></li>
+        <li><?php print CHtml::link('<i class="fa fa-circle-o"></i>Discounts', $this->createUrl('discounts/admin')); ?></li>
+        <li><?php print CHtml::link('<i class="fa fa-circle-o"></i>Tax', $this->createUrl('taxSettings/admin')); ?></li>
     </ul>
 </li>

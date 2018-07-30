@@ -1,12 +1,8 @@
 <?php print CHtml::beginForm('', 'POST', array('role' => 'form')); ?>
 <div class="box-body">
     <div class="form-group">
-        <?php print CHtml::activeLabelEx($model, 'branch_id'); ?>
-        <?php print CHtml::activeDropDownList($model, 'branch_id', CHtml::listData(Branches::model_getAllData_byDeleted(Utilities::NO), 'id', 'name'), array('class' => 'form-control', 'prompt' => 'Choose One')); ?>
-    </div>
-    <div class="form-group">
         <?php print CHtml::activeLabelEx($model, 'dealer_id'); ?>
-        <?php print CHtml::activeTextField($model, 'dealer_id', array('class' => 'form-control', 'placeholder' => '')); ?>
+        <?php print CHtml::activeDropDownList($model, 'dealer_id', CHtml::listData(Dealers::model_getAllData_byDeleted(Utilities::NO), 'id', 'fullName'), array('class' => 'form-control', 'prompt' => 'Choose One')); ?>
     </div>
     <div class="form-group">
         <?php print CHtml::activeLabelEx($model, 'firstname'); ?>

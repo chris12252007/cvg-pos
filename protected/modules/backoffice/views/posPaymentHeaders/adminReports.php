@@ -18,24 +18,24 @@ Yii::app()->clientScript->registerScript("javascript", "
     <div class="box box-primary">
         <div class="box-header with-border">
             <h3 class="box-title">Manage</h3>
-            <?php echo CHtml::link('<i class="fa fa-plus"></i>', $this->createUrl('clients/create'), array('class' => 'btn btn-xs btn-success pull-right', 'data-toggle' => 'tooltip', 'title' => 'Create')); ?>
+            <?php echo CHtml::link('<i class="fa fa-plus"></i>', $this->createUrl('posPaymentHeaders/create'), array('class' => 'btn btn-xs btn-success pull-right', 'data-toggle' => 'tooltip', 'title' => 'Create')); ?>
         </div>
         <div class="box-body">
             <?php $static = array('' => Yii::t('', 'All')); ?>
             <?php
             $this->widget('zii.widgets.grid.CGridView', array(
-                'id' => 'clients-grid',
+                'id' => 'pos-payment-headers-grid',
                 'dataProvider' => $model->search(),
                 'afterAjaxUpdate' => 'reinstallDatePicker',
                 'filter' => $model,
                 'columns' => array(
                     array(
-                        'header' => 'Date Created',
-                        'name' => 'created_at',
-                        'value' => 'Settings::setDateStandard($data->created_at)',
+                        'header' => 'Date',
+                        'name' => 'date',
+                        'value' => 'Settings::setDateStandard($data->date)',
                         'filter' => $this->widget('zii.widgets.jui.CJuiDatePicker', array(
                             'model' => $model,
-                            'attribute' => 'created_at',
+                            'attribute' => 'date',
                             'htmlOptions' => array(
                                 'class' => 'datePicker',
                             ),
@@ -54,57 +54,76 @@ Yii::app()->clientScript->registerScript("javascript", "
                         ),
                     ),
                     array(
-                        'name' => 'dealer_id',
-                        'value' => '$data->dealers->fullName',
-                        'filter' => $static + CHtml::listData(Dealers::model_getAllData_byDeleted(Utilities::NO), 'id', 'fullName'),
-                        'headerHtmlOptions' => array(
-                            'style' => 'width: 30%;'
-                        ),
-                    ),
-                    array(
-                        'name' => 'firstname',
-                        'value' => '$data->firstname',
+                        'name' => 'ref_no',
+                        'value' => '$data->ref_no',
                         'headerHtmlOptions' => array(
                             'style' => 'width: 10%;'
                         ),
                     ),
                     array(
-                        'name' => 'middlename',
-                        'value' => '$data->middlename',
+                        'name' => 'or_no',
+                        'value' => '$data->or_no',
                         'headerHtmlOptions' => array(
                             'style' => 'width: 10%;'
                         ),
                     ),
                     array(
-                        'name' => 'lastname',
-                        'value' => '$data->lastname',
+                        'name' => 'customer_id',
+                        'value' => '$data->customer_id',
                         'headerHtmlOptions' => array(
                             'style' => 'width: 10%;'
                         ),
                     ),
                     array(
-                        'name' => 'company_name',
-                        'value' => '$data->company_name',
+                        'name' => 'quantity',
+                        'value' => '$data->quantity',
+                        'headerHtmlOptions' => array(
+                            'style' => 'width: 10%;'
+                        ),
+                    ),
+                    array(
+                        'name' => 'amount',
+                        'value' => '$data->amount',
+                        'headerHtmlOptions' => array(
+                            'style' => 'width: 10%;'
+                        ),
+                    ),
+                    array(
+                        'name' => 'discount',
+                        'value' => '$data->discount',
+                        'headerHtmlOptions' => array(
+                            'style' => 'width: 10%;'
+                        ),
+                    ),
+                    array(
+                        'name' => 'tax',
+                        'value' => '$data->tax',
+                        'headerHtmlOptions' => array(
+                            'style' => 'width: 10%;'
+                        ),
+                    ),
+                    array(
+                        'name' => 'amount_net',
+                        'value' => '$data->amount_net',
                         'headerHtmlOptions' => array(
                             'style' => 'width: 10%;'
                         ),
                     ),
                     array(
                         'class' => 'CButtonColumn',
+                        'template' => '{details}', // buttons here...
                         'header' => 'Action',
-                        'template' => '{view}{update}{delete}',
-                        'viewButtonLabel' => '<span class="minia-icon-search"></span>',
-                        'viewButtonOptions' => ['title' => '', 'data-tooltip' => 'View',],
-                        'viewButtonImageUrl' => false,
-                        'updateButtonLabel' => '<span class="icomoon-icon-pencil-2"></span>',
-                        'updateButtonOptions' => ['title' => '', 'data-tooltip' => 'Update',],
-                        'updateButtonImageUrl' => false,
-                        'deleteButtonLabel' => '<span style="color:red;" class="icomoon-icon-remove"></span>',
-                        'deleteButtonOptions' => ['title' => '', 'data-tooltip' => 'Delete',],
-                        'deleteButtonImageUrl' => false,
-                        'deleteConfirmation' => 'Are you sure you want to delete?',
+                        'buttons' => array(// custom buttons options here...
+                            'details' => array(
+                                'label' => '<span class="minia-icon-search"></span>',
+                                'url' => 'Yii::app()->createUrl("backoffice/posPaymentDetails/adminReports", array("headerID"=>$data->id))',
+                                'options' => array(
+                                    'title' => '', 'data-tooltip' => 'Details',
+                                ),
+                            ),
+                        ),
                         'htmlOptions' => array(
-                            'style' => 'width: 10%;'
+                            'style' => 'width: 5%;'
                         ),
                     ),
                 ),

@@ -10,11 +10,13 @@
  * @property string $username
  * @property string $email
  * @property string $pword_hash
- * @property integer $education_level_id
  * @property integer $role
  * @property string $last_login
- * @property integer $is_active
  * @property integer $emp_id
+ * @property integer $client_id
+ * @property integer $is_override_useraccess
+ * @property integer $is_sync
+ * @property integer $is_active
  */
 class Users extends CActiveRecord {
 
@@ -110,6 +112,7 @@ class Users extends CActiveRecord {
         // class name for the relations automatically generated below.
         return array(
             'employees' => array(self::BELONGS_TO, 'Employees', 'emp_id'),
+            'clients' => array(self::BELONGS_TO, 'Clients', 'client_id'),
             'roles' => array(self::BELONGS_TO, 'Roles', 'role'),
         );
     }
@@ -129,11 +132,11 @@ class Users extends CActiveRecord {
             'new_password' => 'New Password',
             'confirm_password' => 'Confirm Password',
             'repeat_password' => 'Repeat Password',
-            'educational_level_id' => 'Education Level',
             'role' => 'Role',
             'last_login' => 'Last Login',
             'is_active' => 'Is Active',
-            'emp_id' => 'Employee ID'
+            'emp_id' => 'Employee ID',
+            'client_id' => 'Client'
         );
     }
 
@@ -172,6 +175,8 @@ class Users extends CActiveRecord {
         $criteria->compare('role', $this->role, true);
 
         $criteria->compare('emp_id', $this->emp_id, true);
+
+        $criteria->compare('client_id', $this->client_id, true);
 
         return new CActiveDataProvider($this, array(
             'criteria' => $criteria,

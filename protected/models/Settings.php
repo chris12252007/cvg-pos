@@ -190,6 +190,16 @@ class Settings extends CActiveRecord {
         return Yii::app()->user->role;
     }
 
+    public static function get_EmployeeID()
+    {
+        return Yii::app()->user->emp_id;
+    }
+
+    public static function get_ClientID()
+    {
+        return Yii::app()->user->client_id;
+    }
+
     public static function get_EducationalLevelID()
     {
         if ($_SESSION[Users::tbl()]['educational_level_id'] != '')
@@ -201,11 +211,6 @@ class Settings extends CActiveRecord {
     public static function get_AppUser_EducationalLevelID()
     {
         return Yii::app()->user->educational_level_id;
-    }
-
-    public static function get_EmployeeID()
-    {
-        return Yii::app()->user->emp_id;
     }
 
     // get base folder     

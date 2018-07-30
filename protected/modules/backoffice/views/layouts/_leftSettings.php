@@ -6,11 +6,11 @@
         </span>
     </a>
     <ul class="treeview-menu">
-        <li><a href="#"><i class="fa fa-circle-o"></i>Profile</a></li>
-        <li><a href="#"><i class="fa fa-circle-o"></i> Loyalty</a></li>
-        <li><a href="#"><i class="fa fa-circle-o"></i> Taxes</a></li>
-        <li><a href="#"><i class="fa fa-circle-o"></i> Receipts</a></li>
-        <li><a href="#"><i class="fa fa-circle-o"></i> Branches</a></li>
-        <li><a href="#"><i class="fa fa-circle-o"></i> Billing and Subscriptions</a></li>
+        <li><?php print CHtml::link('<i class="fa fa-circle-o"></i>Profile', $this->createUrl('clients/update', array('id' => Settings::get_ClientID()))); ?></li>
+        <li><?php print CHtml::link('<i class="fa fa-circle-o"></i>Loyalty', $this->createUrl('loyaltySettings/admin')); ?></li>
+        <li><?php print CHtml::link('<i class="fa fa-circle-o"></i>Taxes', $this->createUrl('taxSettings/admin')); ?></li>
+        <li><?php print CHtml::link('<i class="fa fa-circle-o"></i>Receipts', $this->createUrl('receiptSettings/admin')); ?></li>
+        <li><?php print CHtml::link('<i class="fa fa-circle-o"></i>Branches', $this->createUrl('branches/admin')); ?></li>
+        <li><?php print CHtml::link('<i class="fa fa-circle-o"></i>Billing and Subscriptions', $this->createUrl('subscriptions/admin')); ?></li>
     </ul>
 </li>

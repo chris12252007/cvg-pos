@@ -16,12 +16,8 @@
                     <td><?php echo Settings::setDateTimeStandard($model->updated_at) ?></td>
                 </tr>
                 <tr>
-                    <th>Branch</th>
-                    <td><?php print $model->branches->name ?></td>
-                </tr>
-                <tr>
                     <th>Dealer</th>
-                    <td><?php print $model->dealer_id ?></td>
+                    <td><?php print $model->dealers->fullName ?></td>
                 </tr>
                 <tr>
                     <th>Firstname</th>

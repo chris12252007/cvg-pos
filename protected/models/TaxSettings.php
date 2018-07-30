@@ -19,6 +19,37 @@
  */
 class TaxSettings extends CActiveRecord {
 
+    CONST TAX_TYPE_INCLUDED = 1;
+    CONST TAX_TYPE_ADDED = 2;
+    CONST TAX_OPTION_NEW = 1;
+    CONST TAX_OPTION_EXISTING = 2;
+    CONST TAX_OPTION_ALL = 3;
+
+    public static function get_ActiveTaxType($id = null)
+    {
+        $active = array(
+            self::TAX_TYPE_INCLUDED => 'Included in item',
+            self::TAX_TYPE_ADDED => 'Added to items',
+        );
+        if (is_null($id))
+            return $active;
+        else
+            return $active[$id];
+    }
+
+    public static function get_ActiveTaxOption($id = null)
+    {
+        $active = array(
+            self::TAX_OPTION_NEW => 'Apply to new',
+            self::TAX_OPTION_EXISTING => 'Apply to existing',
+            self::TAX_OPTION_ALL => 'Apply to all',
+        );
+        if (is_null($id))
+            return $active;
+        else
+            return $active[$id];
+    }
+
     /**
      * @return string the associated database table name
      */
@@ -69,6 +100,9 @@ class TaxSettings extends CActiveRecord {
         // NOTE: you may need to adjust the relation name and the related
         // class name for the relations automatically generated below.
         return array(
+            'clients' => array(self::BELONGS_TO, 'Clients', 'client_id'),
+            'branches' => array(self::BELONGS_TO, 'Branches', 'branch_id'),
+            'loyaltyTypes' => array(self::BELONGS_TO, 'LoyaltyTypes', 'loyalty_type_id'),
         );
     }
 
@@ -162,6 +196,16 @@ class TaxSettings extends CActiveRecord {
     function getIsDeleted()
     {
         return Utilities::get_ActiveSelect($this->is_deleted);
+    }
+
+    function getTaxType()
+    {
+        return self::get_ActiveTaxType($this->tax_type_id);
+    }
+
+    function getTaxOption()
+    {
+        return self::get_ActiveTaxOption($this->tax_type_id);
     }
 
 }

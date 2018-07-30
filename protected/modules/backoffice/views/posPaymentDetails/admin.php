@@ -18,13 +18,13 @@ Yii::app()->clientScript->registerScript("javascript", "
     <div class="box box-primary">
         <div class="box-header with-border">
             <h3 class="box-title">Manage</h3>
-            <?php echo CHtml::link('<i class="fa fa-plus"></i>', $this->createUrl('clients/create'), array('class' => 'btn btn-xs btn-success pull-right', 'data-toggle' => 'tooltip', 'title' => 'Create')); ?>
+            <?php echo CHtml::link('<i class="fa fa-plus"></i>', $this->createUrl('posPaymentDetails/create'), array('class' => 'btn btn-xs btn-success pull-right', 'data-toggle' => 'tooltip', 'title' => 'Create')); ?>
         </div>
         <div class="box-body">
             <?php $static = array('' => Yii::t('', 'All')); ?>
             <?php
             $this->widget('zii.widgets.grid.CGridView', array(
-                'id' => 'clients-grid',
+                'id' => 'pos-payment-details-grid',
                 'dataProvider' => $model->search(),
                 'afterAjaxUpdate' => 'reinstallDatePicker',
                 'filter' => $model,
@@ -54,37 +54,43 @@ Yii::app()->clientScript->registerScript("javascript", "
                         ),
                     ),
                     array(
-                        'name' => 'dealer_id',
-                        'value' => '$data->dealers->fullName',
-                        'filter' => $static + CHtml::listData(Dealers::model_getAllData_byDeleted(Utilities::NO), 'id', 'fullName'),
-                        'headerHtmlOptions' => array(
-                            'style' => 'width: 30%;'
-                        ),
-                    ),
-                    array(
-                        'name' => 'firstname',
-                        'value' => '$data->firstname',
+                        'name' => 'header_id',
+                        'value' => '$data->header_id',
                         'headerHtmlOptions' => array(
                             'style' => 'width: 10%;'
                         ),
                     ),
                     array(
-                        'name' => 'middlename',
-                        'value' => '$data->middlename',
+                        'name' => 'transaction_id',
+                        'value' => '$data->transaction_id',
                         'headerHtmlOptions' => array(
                             'style' => 'width: 10%;'
                         ),
                     ),
                     array(
-                        'name' => 'lastname',
-                        'value' => '$data->lastname',
+                        'name' => 'inventory_id',
+                        'value' => '$data->inventory_id',
                         'headerHtmlOptions' => array(
                             'style' => 'width: 10%;'
                         ),
                     ),
                     array(
-                        'name' => 'company_name',
-                        'value' => '$data->company_name',
+                        'name' => 'price',
+                        'value' => '$data->price',
+                        'headerHtmlOptions' => array(
+                            'style' => 'width: 10%;'
+                        ),
+                    ),
+                    array(
+                        'name' => 'amount_paid',
+                        'value' => '$data->amount_paid',
+                        'headerHtmlOptions' => array(
+                            'style' => 'width: 10%;'
+                        ),
+                    ),
+                    array(
+                        'name' => 'is_sync',
+                        'value' => '$data->is_sync',
                         'headerHtmlOptions' => array(
                             'style' => 'width: 10%;'
                         ),

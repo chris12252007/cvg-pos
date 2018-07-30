@@ -7,7 +7,6 @@
  * @property integer $id
  * @property string $created_at
  * @property string $updated_at
- * @property integer $branch_id
  * @property integer $dealer_id
  * @property string $firstname
  * @property string $middlename
@@ -54,14 +53,14 @@ class Clients extends CActiveRecord {
         // will receive user inputs.
         return array(
             array('created_at', 'required'),
-            array('branch_id, dealer_id, is_sync, is_deleted', 'numerical', 'integerOnly' => true),
+            array('dealer_id, is_sync, is_deleted', 'numerical', 'integerOnly' => true),
             array('firstname, middlename, lastname', 'length', 'max' => 50),
             array('company_name, address, email', 'length', 'max' => 100),
             array('mobile, phone', 'length', 'max' => 15),
             array('updated_at', 'safe'),
             // The following rule is used by search().
             // Please remove those attributes that should not be searched.
-            array('id, created_at, updated_at, branch_id, dealer_id, firstname, middlename, lastname, company_name, address, email, mobile, phone, is_sync, is_deleted', 'safe', 'on' => 'search'),
+            array('id, created_at, updated_at, dealer_id, firstname, middlename, lastname, company_name, address, email, mobile, phone, is_sync, is_deleted', 'safe', 'on' => 'search'),
         );
     }
 
@@ -73,6 +72,7 @@ class Clients extends CActiveRecord {
         // NOTE: you may need to adjust the relation name and the related
         // class name for the relations automatically generated below.
         return array(
+            'dealers' => array(self::BELONGS_TO, 'Dealers', 'dealer_id'),
         );
     }
 
@@ -85,7 +85,6 @@ class Clients extends CActiveRecord {
             'id' => 'Id',
             'created_at' => 'Date Created',
             'updated_at' => 'Last Modified',
-            'branch_id' => 'Branch',
             'dealer_id' => 'Dealer',
             'firstname' => 'Firstname',
             'middlename' => 'Middlename',
@@ -123,8 +122,6 @@ class Clients extends CActiveRecord {
         $criteria->compare('created_at', $this->created_at, true);
 
         $criteria->compare('updated_at', $this->updated_at, true);
-
-        $criteria->compare('branch_id', $this->branch_id);
 
         $criteria->compare('dealer_id', $this->dealer_id);
 

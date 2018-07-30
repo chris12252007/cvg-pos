@@ -54,59 +54,31 @@ Yii::app()->clientScript->registerScript("javascript", "
                         ),
                     ),
                     array(
+                        'name' => 'name',
+                        'value' => '$data->name',
+                        'headerHtmlOptions' => array(
+                            'style' => 'width: 20%;'
+                        ),
+                    ),
+                    array(
                         'name' => 'client_id',
                         'value' => '$data->client_id',
                         'headerHtmlOptions' => array(
-                            'style' => 'width: 10%;'
+                            'style' => 'width: 20%;'
                         ),
                     ),
                     array(
                         'name' => 'branch_id',
                         'value' => '$data->branch_id',
                         'headerHtmlOptions' => array(
-                            'style' => 'width: 10%;'
+                            'style' => 'width: 20%;'
                         ),
                     ),
                     array(
                         'name' => 'loyalty_type_id',
                         'value' => '$data->loyalty_type_id',
                         'headerHtmlOptions' => array(
-                            'style' => 'width: 10%;'
-                        ),
-                    ),
-                    array(
-                        'name' => 'name',
-                        'value' => '$data->name',
-                        'headerHtmlOptions' => array(
-                            'style' => 'width: 10%;'
-                        ),
-                    ),
-                    array(
-                        'name' => 'precentage',
-                        'value' => '$data->precentage',
-                        'headerHtmlOptions' => array(
-                            'style' => 'width: 10%;'
-                        ),
-                    ),
-                    array(
-                        'name' => 'tax_type_id',
-                        'value' => '$data->tax_type_id',
-                        'headerHtmlOptions' => array(
-                            'style' => 'width: 10%;'
-                        ),
-                    ),
-                    array(
-                        'name' => 'tax_option_id',
-                        'value' => '$data->tax_option_id',
-                        'headerHtmlOptions' => array(
-                            'style' => 'width: 10%;'
-                        ),
-                    ),
-                    array(
-                        'name' => 'is_sync',
-                        'value' => '$data->is_sync',
-                        'headerHtmlOptions' => array(
-                            'style' => 'width: 10%;'
+                            'style' => 'width: 20%;'
                         ),
                     ),
                     array(
